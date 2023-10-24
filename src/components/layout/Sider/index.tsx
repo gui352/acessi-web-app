@@ -57,6 +57,11 @@ export const Sider: React.FC<SiderProps> = ({ className }) => {
       icon: "pi pi-fw pi-star",
       url: "/assessments",
     },
+    {
+      label: "teste ",
+      icon: "pi pi-fw pi-star",
+      url: "/assessments",
+    },
   ];
 
   return (

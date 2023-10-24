@@ -5,8 +5,6 @@ import { Button } from "primereact/button";
 import { Password } from "primereact/password";
 import { classNames } from "primereact/utils";
 import "primeicons/primeicons.css";
-// import AcessiLogo from "/assets/images/acessi+LogoName.svg";
-// import ImagemEsquerda from "assets/images/ImageAccessibility.svg";
 
 export const LoginComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -129,8 +127,13 @@ export const LoginComponent = () => {
                         className="p-float-label"
                         style={{ marginTop: "20px" }}
                       >
-                        <InputText
+                        <Password
                           id="password"
+                          className={classNames({
+                            "p-invalid": isFormFieldValid(meta),
+                          })}
+                          feedback={false}
+                          toggleMask
                           {...input}
                           type="password"
                           size={30}

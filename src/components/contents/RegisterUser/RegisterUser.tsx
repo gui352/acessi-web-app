@@ -3,6 +3,7 @@ import { Field, Form } from "react-final-form";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
+import { Password } from "primereact/password";
 
 export const RegisterUserComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -32,16 +33,16 @@ export const RegisterUserComponent = () => {
       erros.password = "Senha é obrigatória.";
     }
 
-    if (!data.accept) {
-      erros.accept = "Você precisa concordar com os termos e condições.";
-    }
-
     if (
       data.password &&
       data.confirmationPassword &&
       data.password !== data.confirmationPassword
     ) {
       erros.confirmationPassword = "As senhas não coincidem.";
+    }
+
+    if (!data.confirmationPassword) {
+      erros.confirmationPassword = "Confirmação de senha é obrigatória.";
     }
 
     return erros;
@@ -105,7 +106,6 @@ export const RegisterUserComponent = () => {
                 email: "",
                 password: "",
                 confirmationPassword: "",
-                aceppt: false,
               }}
               validate={validate}
               render={({ handleSubmit }) => (
@@ -121,6 +121,9 @@ export const RegisterUserComponent = () => {
                             type="text"
                             size={30}
                             style={{ width: "100%" }}
+                            className={classNames({
+                              "p-invalid": isFormFieldValid(meta),
+                            })}
                           />
                           <label
                             htmlFor="name"
@@ -173,12 +176,17 @@ export const RegisterUserComponent = () => {
                           className="p-float-label"
                           style={{ marginTop: "20px" }}
                         >
-                          <InputText
+                          <Password
                             id="password"
+                            feedback={false}
+                            toggleMask
                             {...input}
                             type="password"
                             size={30}
                             style={{ width: "100%" }}
+                            className={classNames({
+                              "p-invalid": isFormFieldValid(meta),
+                            })}
                           />
                           <label
                             htmlFor="password"
@@ -208,6 +216,9 @@ export const RegisterUserComponent = () => {
                             type="password"
                             size={30}
                             style={{ width: "100%" }}
+                            className={classNames({
+                              "p-invalid": isFormFieldValid(meta),
+                            })}
                           />
                           <label
                             htmlFor="confirmationPassword"
