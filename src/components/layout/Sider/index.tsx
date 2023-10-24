@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 import { MENUS } from "../../../configs/nav";
-import { usePersistedState } from "hooks/usePersistedState";
-import { Menu } from "primereact/menu";
+
+import * as Styled from "./styled"
 
 export interface SiderProps {
   className?: string;
@@ -14,7 +14,7 @@ export interface SiderProps {
 export const Sider: React.FC<SiderProps> = ({ className }) => {
   const router = useRouter();
 
-  const [visible, setVisible] = usePersistedState("sider.collapsed", true);
+  // const [visible, setVisible] = usePersistedState("sider.collapsed", true);
 
   // const current = router?.asPath?.match(/^\/(\w*)/)[0];
 
@@ -26,42 +26,13 @@ export const Sider: React.FC<SiderProps> = ({ className }) => {
   //   return false;
   // });
 
-  const menuModel = [
-    {
-      label: "Página inicial",
-      icon: "pi pi-fw pi-home",
-      url: "/home",
-    },
-    {
-      label: "Cadastro",
-      icon: "pi pi-fw pi-id-card",
-      url: "/register-pcd",
-    },
-    {
-      label: "Notícias",
-      icon: "pi pi-fw pi-megaphone",
-      url: "/news",
-    },
-    {
-      label: "Vagas",
-      icon: "pi pi-fw pi-shopping-bag",
-      url: "/jobs",
-    },
-    {
-      label: "Dashboards",
-      icon: "pi pi-fw pi-chart-bar",
-      url: "/dashboards",
-    },
-    {
-      label: "Avaliações",
-      icon: "pi pi-fw pi-star",
-      url: "/assessments",
-    },
-  ];
+  const menuModel = MENUS.map((menu) => {
+    return {label:menu.name, icon: menu.icon, command: (() => {router.push(menu.path)}) };
+  })
 
   return (
     <>
-      <Menu model={menuModel} />
+      <Styled.MenuLayout model={menuModel} />
     </>
   );
 };
