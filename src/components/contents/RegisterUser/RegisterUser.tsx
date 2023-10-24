@@ -4,6 +4,8 @@ import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 import { Password } from "primereact/password";
+import { UserService } from "services/User/UserService";
+import { UserModel } from "interfaces/User/UserInterface";
 
 export const RegisterUserComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -12,6 +14,16 @@ export const RegisterUserComponent = () => {
   const onSubmit = (data: any, form: any) => {
     setFormData(data);
     setShowMessage(true);
+
+    const user: UserModel = {
+      id: 0,
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    var serviceUser = new UserService();
+    serviceUser.CreateUser(user);
 
     form.restart();
   };
