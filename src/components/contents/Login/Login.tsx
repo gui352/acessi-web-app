@@ -155,7 +155,10 @@ export const LoginComponent = () => {
 
                 <div className="flex flex-wrap justify-content-between gap-3">
                   <div className="flex align-items-center">
-                    <a href="url" style={{ textDecoration: "none" }}>
+                    <a
+                      href="/forgot-password"
+                      style={{ textDecoration: "none" }}
+                    >
                       Esqueceu senha?
                     </a>
                   </div>
