@@ -6,11 +6,7 @@ import { Footer } from "../Footer";
 
 import * as Styled from "./styled";
 
-interface PropsBaseLayout {
-  children: any;
-}
-
-export const BaseLayout: React.FC = ({ children }: PropsBaseLayout) => {
+export const BaseLayout: React.FC = ({ children }) => {
   return (
     <Styled.Wrapper>
       <Styled.PlacedHeader />

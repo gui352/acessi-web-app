@@ -6,7 +6,7 @@ import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
 
 const Jobs: NextPage = () => {
-  return <BaseLayout>{"Vagas de Emprego"}</BaseLayout>;
+  return <div>{"Vagas de Emprego"}</div>;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -15,6 +15,8 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
+      pageName: "jobs",
+
     },
   };
 };

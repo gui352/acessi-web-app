@@ -6,7 +6,7 @@ import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
 
 const News: NextPage = () => {
-  return <BaseLayout>{"Notícias"}</BaseLayout>;
+  return <div>{"Notícias"}</div>;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -15,6 +15,8 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
+      pageName: "news",
+
     },
   };
 };

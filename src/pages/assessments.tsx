@@ -7,11 +7,7 @@ import { BaseLayout } from "components/layout/BaseLayout";
 import { getServerSideTranslations } from "configs/language/server";
 
 const Assessments: NextPage = () => {
-  return (
-    <BaseLayout>
-      <div>Avaliações</div>
-    </BaseLayout>
-  );
+  return <div>Avaliações</div>;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -20,6 +16,7 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
+      pageName: "assessments",
     },
   };
 };

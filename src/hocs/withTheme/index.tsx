@@ -11,6 +11,7 @@ export const withTheme: React.HOC = (Component) => {
           styles={css`
             ${normalize()}
             body {
+              font-size: 14px;
               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                 "Helvetica Neue", Arial, "Noto Sans", sans-serif,
                 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",

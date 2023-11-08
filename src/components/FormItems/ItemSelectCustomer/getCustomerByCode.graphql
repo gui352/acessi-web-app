@@ -1,0 +1,5 @@
+query getCustomerByCode($id: String = "") {
+  cpeschema_customers_by_pk(sapCode: $id) {
+    name
+  }
+}

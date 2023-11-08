@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { Button } from "primereact/button";
-
 // import { LoginModal } from "../LoginModal";
 
 // import { LanguageChanger } from "./LanguageChanger";

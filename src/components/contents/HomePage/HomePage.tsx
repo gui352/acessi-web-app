@@ -1,11 +1,15 @@
 import { Sider } from "components/layout/Sider";
-import { Menu } from "primereact/menu";
 import React from "react";
+
+import { InputNumber } from "primereact/inputnumber";
+import {Menu} from "primereact/menu"
 
 export const HomePage = () => {
   return (
     <>
-      <div>{"Home"}</div>
+      <div>
+        <InputNumber />
+      </div>
     </>
   );
 };

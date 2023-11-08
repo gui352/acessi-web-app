@@ -4,9 +4,10 @@ import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";
 import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
+import { RegisterPCDComponent } from "components/contents/RegisterPCD/RegisterPCD";
 
 const RegisterPCD: NextPage = () => {
-  return <BaseLayout><div>{"Cadastro de PCDs"}</div></BaseLayout>;
+  return <RegisterPCDComponent />;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -15,6 +16,8 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
+      pageName: "register-pcd",
+
     },
   };
 };
