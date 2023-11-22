@@ -5,6 +5,7 @@ import { Spin } from "antd";
 import { Footer } from "../Footer";
 
 import * as Styled from "./styled";
+import { FixedButtons } from "../FixedButtons";
 
 export const BaseLayout: React.FC = ({ children }) => {
   return (
@@ -22,6 +23,7 @@ export const BaseLayout: React.FC = ({ children }) => {
           <div>{children}</div>
         </React.Suspense>
         <Footer />
+        <FixedButtons />
       </Styled.ContentWrapper>
     </Styled.Wrapper>
   );

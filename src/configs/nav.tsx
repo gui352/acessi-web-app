@@ -18,7 +18,7 @@ export const MENUS: NavEntry[] = [
   {
     name: "Cadastro",
     icon: "pi pi-fw pi-id-card",
-    path: "/register-pcd",
+    path: "/registerPcd",
   },
   {
     name: "Notícias",

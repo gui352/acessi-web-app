@@ -1,3 +1,4 @@
+import { JobsComponent } from "components/contents/Jobs/Jobs";
 import { BaseLayout } from "components/layout/BaseLayout";
 import { getServerSideTranslations } from "configs/language/server";
 import { withHOCs } from "hocs/withHOCs";
@@ -6,7 +7,7 @@ import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
 
 const Jobs: NextPage = () => {
-  return <div>{"Vagas de Emprego"}</div>;
+  return <JobsComponent/>;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {

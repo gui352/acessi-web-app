@@ -18,9 +18,6 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     hideOverlayOnScroll: true,
   };
 
-  console.log("PROPS", pageProps.pageName !== "login");
-  console.log("PROPS", pageProps.pageName);
-
   let componentResult: ReactNode = {};
 
   if (pageProps.pageName === "login") {
@@ -42,6 +39,10 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
           <meta name="google" content="notranslate" />
           <title>{process.env.SITE_NAME}</title>
           <link rel="icon" href="/favicon.ico" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap"
+          />
         </Head>
         {componentResult}
       </PrimeReactProvider>
