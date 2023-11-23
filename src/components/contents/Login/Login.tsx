@@ -5,10 +5,15 @@ import { Button } from "primereact/button";
 import { Password } from "primereact/password";
 import { classNames } from "primereact/utils";
 import "primeicons/primeicons.css";
+import { UserModel } from "interfaces/User/UserInterface";
+import { UserService } from "services/User/UserService";
+import { useRouter } from "next/router";
 
 export const LoginComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
+  const serviceUser = new UserService();
+  const Router = useRouter();
 
   const validate = (data: any) => {
     let erros: any = {};
@@ -27,6 +32,17 @@ export const LoginComponent = () => {
   const onSubmit = (data: any, form: any) => {
     setFormData(data);
     setShowMessage(true);
+
+    const user: UserModel = {
+      emailUser: data.email,
+      passwordUser: data.password,
+    };
+
+    serviceUser.LoginUser(user).then((res) => {
+      if (res.status == 200) {
+        Router.push("/home");
+      }
+    })
 
     form.restart();
   };

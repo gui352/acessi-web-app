@@ -1,8 +1,7 @@
 export interface UserModel {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
+  nameUser?: string;
+  emailUser: string;
+  passwordUser: string;
 }
 
 // Path: src/services/User/UserService.ts

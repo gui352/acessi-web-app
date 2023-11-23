@@ -10,19 +10,18 @@ import { UserModel } from "interfaces/User/UserInterface";
 export const RegisterUserComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
+  const serviceUser = new UserService();
 
   const onSubmit = (data: any, form: any) => {
     setFormData(data);
     setShowMessage(true);
 
     const user: UserModel = {
-      id: 0,
-      name: data.name,
-      email: data.email,
-      password: data.password,
+      nameUser: data.name,
+      emailUser: data.email,
+      passwordUser: data.password,
     };
 
-    var serviceUser = new UserService();
     serviceUser.CreateUser(user);
 
     form.restart();
