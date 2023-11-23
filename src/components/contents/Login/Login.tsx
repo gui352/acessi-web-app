@@ -5,12 +5,15 @@ import { Button } from "primereact/button";
 import { Password } from "primereact/password";
 import { classNames } from "primereact/utils";
 import "primeicons/primeicons.css";
-// import AcessiLogo from "/assets/images/acessi+LogoName.svg";
-// import ImagemEsquerda from "assets/images/ImageAccessibility.svg";
+import { UserModel } from "interfaces/User/UserInterface";
+import { UserService } from "services/User/UserService";
+import { useRouter } from "next/router";
 
 export const LoginComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
+  const serviceUser = new UserService();
+  const Router = useRouter();
 
   const validate = (data: any) => {
     let erros: any = {};
@@ -29,6 +32,17 @@ export const LoginComponent = () => {
   const onSubmit = (data: any, form: any) => {
     setFormData(data);
     setShowMessage(true);
+
+    const user: UserModel = {
+      emailUser: data.email,
+      passwordUser: data.password,
+    };
+
+    serviceUser.LoginUser(user).then((res) => {
+      if (res.status == 200) {
+        Router.push("/home");
+      }
+    })
 
     form.restart();
   };
@@ -129,8 +143,13 @@ export const LoginComponent = () => {
                         className="p-float-label"
                         style={{ marginTop: "20px" }}
                       >
-                        <InputText
+                        <Password
                           id="password"
+                          className={classNames({
+                            "p-invalid": isFormFieldValid(meta),
+                          })}
+                          feedback={false}
+                          toggleMask
                           {...input}
                           type="password"
                           size={30}
@@ -152,7 +171,10 @@ export const LoginComponent = () => {
 
                 <div className="flex flex-wrap justify-content-between gap-3">
                   <div className="flex align-items-center">
-                    <a href="url" style={{ textDecoration: "none" }}>
+                    <a
+                      href="/forgot-password"
+                      style={{ textDecoration: "none" }}
+                    >
                       Esqueceu senha?
                     </a>
                   </div>
