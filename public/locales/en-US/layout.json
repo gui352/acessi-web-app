@@ -1,0 +1,31 @@
+{
+  "menus": {
+    "home": "Home",
+    "protected": "Protected"
+  },
+  "userCard": {
+    "greeting": "Hello",
+    "menus": {
+      "logout": "Logout"
+    }
+  },
+  "footer": {
+    "copyright": "© {{siteName}} - Developed by Team Acessi+. - UniSENAI"
+  },
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "okButton": "Login",
+    "cancelButton": "Cancel",
+    "errors": {
+      "emptyUsername": "Username can't be empty!",
+      "emptyPassword": "Password can't be empty!",
+      "unauthorized": "Unauthorized!"
+    }
+  },
+  "unauthorized": {
+    "button": "Login",
+    "message": "Sorry, you are not authorized to see this page, please login:"
+  }
+}

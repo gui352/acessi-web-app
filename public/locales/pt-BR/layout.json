@@ -1,0 +1,31 @@
+{
+  "menus": {
+    "home": "Início",
+    "protected": "Protegido"
+  },
+  "userCard": {
+    "greeting": "Olá",
+    "menus": {
+      "logout": "Sair"
+    }
+  },
+  "footer": {
+    "copyright": "© {{siteName}} - Desenvolvido pela Equipe Acessi+ - UniSENAI"
+  },
+  "login": {
+    "title": "Login",
+    "username": "Usuário",
+    "password": "Senha",
+    "okButton": "Entrar",
+    "cancelButton": "Cancelar",
+    "errors": {
+      "emptyUsername": "Usuário não pode estar vazio!",
+      "emptyPassword": "Senha não pode estar vazia!",
+      "unauthorized": "Não autorizado!"
+    }
+  },
+  "unauthorized": {
+    "button": "Entrar",
+    "message": "Desculpe, você não está autorizado a visualizar esta página, por favor faça o login:"
+  }
+}
