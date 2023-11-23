@@ -5,12 +5,9 @@ import { Spin } from "antd";
 import { Footer } from "../Footer";
 
 import * as Styled from "./styled";
+import { FixedButtons } from "../FixedButtons";
 
-interface PropsBaseLayout {
-  children: any;
-}
-
-export const BaseLayout: React.FC = ({ children }: PropsBaseLayout) => {
+export const BaseLayout: React.FC = ({ children }) => {
   return (
     <Styled.Wrapper>
       <Styled.PlacedHeader />
@@ -26,6 +23,7 @@ export const BaseLayout: React.FC = ({ children }: PropsBaseLayout) => {
           <div>{children}</div>
         </React.Suspense>
         <Footer />
+        <FixedButtons />
       </Styled.ContentWrapper>
     </Styled.Wrapper>
   );

@@ -5,13 +5,10 @@ import { withTranslations } from "hocs/withTranslations";
 import { withHOCs } from "hocs/withHOCs";
 import { BaseLayout } from "components/layout/BaseLayout";
 import { getServerSideTranslations } from "configs/language/server";
+import { AssessmentsComponent } from "components/contents/Assessments";
 
 const Assessments: NextPage = () => {
-  return (
-    <BaseLayout>
-      <div>Avaliações</div>
-    </BaseLayout>
-  );
+  return <AssessmentsComponent />;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -20,6 +17,7 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
+      pageName: "assessments",
     },
   };
 };

@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "Gruntfuggly.auto-snippet",
+    "styled-components.vscode-styled-components",
+    "PKief.material-icon-theme"
+  ]
+}

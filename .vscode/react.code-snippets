@@ -1,0 +1,104 @@
+{
+  // Useful replacements:
+  // - Folder Name: ${TM_DIRECTORY/^.+\\\\(.*)$/$1/}
+  // - File Name + Remove Optional Ending: ${TM_FILENAME_BASE/^(.*(?<!ENDING))(ENDING)?$/$1/}
+  "Index React Component": {
+    "scope": "typescriptreact",
+    "prefix": "ircf",
+    "body": [
+      "import { useTranslation } from \"next-i18next\";",
+      "",
+      "export type ${TM_DIRECTORY/^.+\\\\(.*)$/$1/}Props = {",
+      "  children: React.ReactNode;",
+      "};",
+      "",
+      "export function ${TM_DIRECTORY/^.+\\\\(.*)$/$1/}(props: _Props) {",
+      "  const children = props.children;",
+      "",
+      "  const { t } = useTranslation();",
+      "",
+      "  return (",
+      "    <div>",
+      "      <span>{t(\"${TM_DIRECTORY/^.+\\\\(.*)$/$1/}\")}</span>",
+      "      <div>{children}</div>",
+      "    </div>",
+      "  );",
+      "}"
+    ]
+  },
+  "React Component": {
+    "scope": "typescriptreact",
+    "prefix": "rcf",
+    "body": [
+      "import { useTranslation } from \"next-i18next\";",
+      "",
+      "export type ${TM_FILENAME_BASE}Props = {",
+      "  children: React.ReactNode;",
+      "};",
+      "",
+      "export function ${TM_FILENAME_BASE}(props: _Props) {",
+      "  const children = props.children;",
+      "",
+      "  const { t } = useTranslation();",
+      "",
+      "  return (",
+      "    <div>",
+      "      <span>{t(\"${TM_FILENAME_BASE}\")}</span>",
+      "      <div>{children}</div>",
+      "    </div>",
+      "  );",
+      "}"
+    ]
+  },
+  "Index Re-export": {
+    "scope": "typescript",
+    "prefix": "iref",
+    "body": ["export * from \"./${TM_DIRECTORY/^.+\\\\(.*)$/$1/}\";"]
+  },
+  "Component Hooks": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "rchf",
+    "body": [
+      "import { ${TM_FILENAME_BASE/^(.*(?<!\\.hooks))(\\.hooks)?$/$1/}Props } from \"./${TM_FILENAME_BASE/^(.*(?<!\\.hooks))(\\.hooks)?$/$1/}\";",
+      "",
+      "export function use${TM_FILENAME_BASE/^(.*(?<!\\.hooks))(\\.hooks)?$/$1/}(props: ${TM_FILENAME_BASE/^(.*(?<!\\.hooks))(\\.hooks)?$/$1/}Props) {",
+      "  return \"use${TM_FILENAME_BASE/^(.*(?<!\\.hooks))(\\.hooks)?$/$1/}\";",
+      "}"
+    ]
+  },
+  "Component Hooks File": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "rchff",
+    "body": [
+      "import { ${TM_DIRECTORY/^.+\\\\(.*)$/$1/}Props } from \"./${TM_DIRECTORY/^.+\\\\(.*)$/$1/}\";",
+      "",
+      "export function use${TM_DIRECTORY/^.+\\\\(.*)$/$1/}(props: ${TM_DIRECTORY/^.+\\\\(.*)$/$1/}Props) {",
+      "  return \"use${TM_DIRECTORY/^.+\\\\(.*)$/$1/}\";",
+      "}"
+    ]
+  },
+  "Component Styled Components": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "rcsf",
+    "body": [
+      "import styled from \"@emotion/styled\";",
+      "",
+      "export const Wrapper = styled`",
+      "  display: grid;",
+      "`;"
+    ]
+  },
+  "Component Graphql Queries": {
+    "scope": "graphql",
+    "prefix": "cgqf",
+    "body": [
+      "query get${TM_FILENAME_BASE}Data {",
+      "",
+      "}",
+      "",
+      "mutation set${TM_FILENAME_BASE}Data {",
+      "",
+      "}"
+    ]
+  }
+}

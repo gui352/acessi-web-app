@@ -7,11 +7,7 @@ import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
 
 const Login: NextPage = () => {
-  return (
-    <BaseLayout>
-      <HomePage />
-    </BaseLayout>
-  );
+  return <HomePage />;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -20,6 +16,7 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
+      pageName: "home",
     },
   };
 };

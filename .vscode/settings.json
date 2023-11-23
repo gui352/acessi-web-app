@@ -1,0 +1,57 @@
+{
+  // Formatting Config
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.indentSize": "tabSize",
+
+  // Git Config
+  "git.followTagsWhenSync": true,
+
+  // Snippets Config
+  "autoSnippet.snippets": [
+    { "pattern": "**/index.tsx", "snippet": "Index React Component" },
+    { "pattern": "**/index.ts", "snippet": "Index Re-export" },
+    { "pattern": "**/hooks.ts", "snippet": "Component Hooks File" },
+    { "pattern": "**/hooks.tsx", "snippet": "Component Hooks File" },
+    { "pattern": "**/styled.ts", "snippet": "Component Styled Components" },
+    { "pattern": "**/styled.tsx", "snippet": "Component Styled Components" },
+    { "pattern": "**/*.hooks.ts", "snippet": "Component Hooks" },
+    { "pattern": "**/*.hooks.tsx", "snippet": "Component Hooks" },
+    { "pattern": "**/*.styles.ts", "snippet": "Component Styled Components" },
+    { "pattern": "**/*.styles.tsx", "snippet": "Component Styled Components" },
+    { "pattern": "**/*.graphql", "snippet": "Component Graphql Queries" },
+    { "pattern": "**/*.tsx", "snippet": "React Component" }
+  ],
+
+  // Icons Config
+  "material-icon-theme.files.associations": {
+    "index.js": "parcel",
+    "index.ts": "parcel",
+    "index.tsx": "svgr",
+    "hooks.js": "stylus",
+    "hooks.ts": "stylus",
+    "hooks.tsx": "stylus",
+    "styled.js": "css-map",
+    "styled.ts": "css-map",
+    "styled.tsx": "css-map",
+    "constants.js": "tune",
+    "constants.ts": "tune",
+    "config.js": "tune",
+    "config.ts": "tune",
+    "*.gql.ts": "capacitor",
+    "*.hooks.js": "stylus",
+    "*.hooks.ts": "stylus",
+    "*.hooks.tsx": "stylus",
+    "*.styles.js": "css-map",
+    "*.styles.ts": "css-map",
+    "*.styles.tsx": "css-map"
+  },
+  "material-icon-theme.folders.associations": {
+    "hooks": "stylus",
+    "types": "typescript"
+  }
+}

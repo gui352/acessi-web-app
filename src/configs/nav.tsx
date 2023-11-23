@@ -12,27 +12,32 @@ interface NavEntry {
 export const MENUS: NavEntry[] = [
   {
     name: "Página inicial",
-    icon: "pi pi-refresh",
+    icon: "pi pi-fw pi-home",
     path: "/home",
   },
   {
     name: "Cadastro",
-    icon: "pi pi-refresh",
-    path: "/register-pcd",
+    icon: "pi pi-fw pi-id-card",
+    path: "/registerPcd",
   },
   {
     name: "Notícias",
-    icon: "pi pi-refresh",
+    icon: "pi pi-fw pi-megaphone",
     path: "/news",
   },
   {
     name: "Vagas",
-    icon: "pi pi-refresh",
+    icon: "pi pi-fw pi-shopping-bag",
     path: "/jobs",
   },
   {
+    name: "Dashboards",
+    icon: "pi pi-fw pi-chart-bar",
+    path: "/dashboards",
+  },
+  {
     name: "Avaliações",
-    icon: "pi pi-refresh",
+    icon: "pi pi-fw pi-star",
     path: "/assessments",
   },
 ];

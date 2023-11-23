@@ -1,0 +1,7 @@
+query getUserList {
+  cpeusers_users(where: { active: { _eq: true } }) {
+    id
+    username
+    ramal
+  }
+}
