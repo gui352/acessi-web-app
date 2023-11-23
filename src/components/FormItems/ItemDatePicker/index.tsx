@@ -5,7 +5,7 @@ import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
 import { useTranslation } from "next-i18next";
 import dayjs from "dayjs";
-import { useDateFormatter } from "hooks/useDateFormatter";
+// import { useDateFormatter } from "hooks/useDateFormatter";
 
 interface ItemDatePickerProps extends ItemProps {
   message?: string;
@@ -24,7 +24,7 @@ const ItemDatePicker = ({
 }: ItemDatePickerProps) => {
   const { t } = useTranslation();
 
-  const dateFormatter = useDateFormatter();
+  // const dateFormatter = useDateFormatter();
 
   const { field, fieldState } = useController({ name });
   const dataValue = field.value ? dayjs(field.value) : undefined;
@@ -55,7 +55,7 @@ const ItemDatePicker = ({
             field.onChange(date.toDate().toISOString());
           }
         }}
-        format={dateFormatter}
+        format={"DD/MM/YYYY"}
       />
     </Form.Item>
   );

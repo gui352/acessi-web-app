@@ -1,4 +1,8 @@
 import { Button, Form, Input, InputNumber } from "antd";
+import ItemInput from "components/FormItems/ItemInput";
+import ItemNumber from "components/FormItems/ItemNumber";
+import ItemSelect from "components/FormItems/ItemSelect";
+import { SubForm } from "components/common/Form/SubForm";
 import React from "react";
 
 export const AdressRegister = () => {
@@ -25,46 +29,69 @@ export const AdressRegister = () => {
   };
   return (
     <>
-      <Form
-        {...layout}
-        name="nest-messages"
-        onFinish={onFinish}
-        style={{ maxWidth: 600 }}
-        validateMessages={validateMessages}
-      >
-        <Form.Item
-          name={["user", "name"]}
-          label="Name"
-          rules={[{ required: true }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name={["user", "email"]}
-          label="Email"
-          rules={[{ type: "email" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name={["user", "age"]}
-          label="Age"
-          rules={[{ type: "number", min: 0, max: 99 }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item name={["user", "website"]} label="Website">
-          <Input />
-        </Form.Item>
-        <Form.Item name={["user", "introduction"]} label="Introduction">
-          <Input.TextArea />
-        </Form.Item>
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+      <SubForm columns={3}>
+        <ItemSelect
+          disabled={false}
+          label="País"
+          name="country"
+          placeholder="Selecione aqui..."
+          options={[{}, {}, {}, {}]}
+        />
+
+        <ItemInput
+          disabled={false}
+          label="CEP"
+          name="cep"
+          placeholder="Digite aqui..."
+        />
+
+        <ItemSelect
+          disabled={false}
+          label="Estado"
+          name="state"
+          placeholder="Selecione aqui..."
+          options={[{}, {}, {}, {}]}
+        />
+      </SubForm>
+
+      <SubForm columns={2}>
+        <ItemInput
+          disabled={false}
+          label="Cidade"
+          name="city"
+          placeholder="Digite aqui..."
+        />
+
+        <ItemInput
+          disabled={false}
+          label="Bairro"
+          name="neighborhood"
+          placeholder="Digite aqui..."
+        />
+      </SubForm>
+
+      <SubForm columns={2}>
+        <ItemInput
+          disabled={false}
+          label="Rua"
+          name="street"
+          placeholder="Digite aqui..."
+        />
+
+        <ItemNumber
+          disabled={false}
+          label="Número"
+          name="numberHome"
+          placeholder="Digite aqui..."
+        />
+      </SubForm>
+
+      <ItemInput
+        disabled={false}
+        label="Complemento"
+        name="complement"
+        placeholder="Digite aqui..."
+      />
     </>
   );
 };

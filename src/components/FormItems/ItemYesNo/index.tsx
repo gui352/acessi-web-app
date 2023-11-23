@@ -28,8 +28,8 @@ const ItemYesNo: React.FC<ItemInputProps> = ({
   const _message = fieldState.error?.message ? message : undefined;
 
   const options = [
-    { label: t("buttons.yes"), value: true },
-    { label: t("buttons.no"), value: false },
+    { label: t("Sim"), value: true },
+    { label: t("Não"), value: false },
   ];
 
   return (

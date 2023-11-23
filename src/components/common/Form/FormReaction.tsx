@@ -8,7 +8,7 @@ import {
   useController,
 } from "react-hook-form";
 
-import { useEffectEvent } from "hooks/useEffectEvent";
+// import { useEffectEvent } from "hooks/useEffectEvent";
 
 export type FormReactionProps<T extends FieldValues, N extends Path<T>> = {
   control?: Control<T>;
@@ -21,15 +21,15 @@ export function FormReaction<T extends FieldValues, N extends Path<T>>(
 ) {
   const control = props.control;
   const field = props.field;
-  const reaction = useEffectEvent(props.reaction);
+  // const reaction = useEffectEvent(props.reaction);
 
   const {
     field: { value },
   } = useController({ control, name: field });
 
-  React.useEffect(() => {
-    reaction(value);
-  }, [reaction, value]);
+  // React.useEffect(() => {
+  //   reaction(value);
+  // }, [reaction, value]);
 
   return null;
 }

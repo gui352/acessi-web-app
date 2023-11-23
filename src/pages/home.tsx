@@ -17,7 +17,6 @@ export const getStaticProps: GetStaticProps = async (req) => {
     props: {
       ...translations,
       pageName: "home",
-
     },
   };
 };

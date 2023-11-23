@@ -7,7 +7,7 @@ const { Title, Text } = Typography;
 
 interface PropsCard {
   portalName: string;
-  logoSrc: string;
+  logoSrc?: string;
   title: string;
   summary: string;
   imageSrc: string;
@@ -15,6 +15,7 @@ interface PropsCard {
   summaryDisplay?: boolean;
   location?: string;
   workingHours?: string;
+  logoVisible?: boolean;
 }
 
 export const CardComponent = ({
@@ -27,6 +28,7 @@ export const CardComponent = ({
   summaryDisplay,
   location,
   workingHours,
+  logoVisible,
 }: PropsCard) => {
   return (
     <Card
@@ -37,7 +39,11 @@ export const CardComponent = ({
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
       }}
     >
-      <Header portalName={portalName} logoSrc={logoSrc} />
+      <Header
+        portalName={portalName}
+        logoSrc={logoSrc}
+        logoVisible={logoVisible}
+      />
 
       <Styled.Container>
         <div style={{ float: "right", marginLeft: 16 }}>
