@@ -5,26 +5,30 @@ import { Spin } from "antd";
 import { Footer } from "../Footer";
 
 import * as Styled from "./styled";
-import { FixedButtons } from "../FixedButtons";
+import VLibras from "@djpfs/react-vlibras";
 
 export const BaseLayout: React.FC = ({ children }) => {
   return (
-    <Styled.Wrapper>
-      <Styled.PlacedHeader />
-      <Styled.PlacedSider />
-      <Styled.ContentWrapper>
-        <React.Suspense
-          fallback={
-            <Styled.SpinnerWrapper>
-              <Spin />
-            </Styled.SpinnerWrapper>
-          }
-        >
-          <div>{children}</div>
-        </React.Suspense>
-        <Footer />
-        <FixedButtons />
-      </Styled.ContentWrapper>
-    </Styled.Wrapper>
+    <div>
+      <Styled.Wrapper>
+        <Styled.PlacedHeader />
+        <Styled.PlacedSider />
+        <Styled.ContentWrapper>
+          <React.Suspense
+            fallback={
+              <Styled.SpinnerWrapper>
+                <Spin />
+              </Styled.SpinnerWrapper>
+            }
+          >
+            <div>{children}</div>
+            <div>
+              <VLibras forceOnload={true} />
+            </div>
+          </React.Suspense>
+          <Footer />
+        </Styled.ContentWrapper>
+      </Styled.Wrapper>
+    </div>
   );
 };
