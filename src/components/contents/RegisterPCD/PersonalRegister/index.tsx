@@ -58,21 +58,21 @@ export const PersonalRegister = () => {
           name="birth"
           placeholder="Selecione aqui..."
         />
-        <ItemSelect
+        <ItemInput
           disabled={false}
           label="Gênero"
           name="gender"
-          options={[{}, {}, {}, {}]}
+          // options={[{}, {}, {}, {}]}
           placeholder="Selecione aqui..."
         />
       </SubForm>
 
       <SubForm columns={2}>
-        <ItemSelect
+        <ItemInput
           disabled={false}
           label="Grau de escolaridade"
           name="education"
-          options={[{}, {}, {}, {}]}
+          // options={[{}, {}, {}, {}]}
           placeholder="Selecione aqui..."
         />
         <ItemYesNo disabled={false} label="Empregado?" name="isEmployee" />
