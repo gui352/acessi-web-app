@@ -1,9 +1,17 @@
 import { ForgotPasswordComponent } from "components/contents/ForgotPassword/ForgotPassword";
 import { getServerSideTranslations } from "configs/language/server";
 import { NextPage, GetStaticProps } from "next";
+import VLibras from "@djpfs/react-vlibras";
 
 const ForgotPassword: NextPage = () => {
-  return <ForgotPasswordComponent />;
+  return (
+    <div>
+      <div>
+        <ForgotPasswordComponent />
+        <VLibras forceOnload={true} />
+      </div>
+    </div>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -12,6 +20,7 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
+      pageName: "forgot-password",
     },
   };
 };

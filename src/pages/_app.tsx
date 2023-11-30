@@ -24,6 +24,8 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
     componentResult = <Component {...pageProps} />;
   } else if (pageProps.pageName === "register-user") {
     componentResult = <Component {...pageProps} />;
+  } else if (pageProps.pageName === "forgot-password") {
+    componentResult = <Component {...pageProps} />;
   } else {
     componentResult = (
       <BaseLayout>

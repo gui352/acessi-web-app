@@ -1,3 +1,4 @@
+import { DashboardPage } from "components/contents/Dashboards/Dashbaord";
 import { HomePage } from "components/contents/HomePage/HomePage";
 import { BaseLayout } from "components/layout/BaseLayout";
 import { getServerSideTranslations } from "configs/language/server";
@@ -7,7 +8,7 @@ import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
 
 const Dashboards: NextPage = () => {
-  return <div>Building...</div>;
+  return <DashboardPage />;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
