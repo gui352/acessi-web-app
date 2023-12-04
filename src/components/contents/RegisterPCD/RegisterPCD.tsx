@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { PersonalRegister } from "./PersonalRegister";
 
@@ -12,12 +12,15 @@ import {
   FormProvider,
   useFormContext,
 } from "react-hook-form";
+import { DisabilityTypeService } from "services/PCD/DisabilityTypeService";
+import { DefaultOptionType } from "antd/es/select";
 
 const { Option } = Select;
 const { Panel } = Collapse;
 
 export const RegisterPCDComponent = () => {
   const { Title } = Typography;
+  const disabilityTypeService = new DisabilityTypeService();
 
   const [selectedCity, setSelectedCity] = React.useState(null);
   const cities = [
@@ -33,6 +36,17 @@ export const RegisterPCDComponent = () => {
   const onSubmit = (data) => console.log(data);
 
   const methods = useFormContext();
+  const [disabilityType, setDisabilityType] = useState([]);
+
+  useEffect(() => {
+    disabilityTypeService.GetType().then((res) => {
+      const types = [];
+      for (const type in res.data) {
+        types.push({ value: type, label: res.data[type] });
+      }
+      setDisabilityType(types);
+    });
+  }, []);
 
   return (
     <div>
@@ -62,9 +76,7 @@ export const RegisterPCDComponent = () => {
             >
               Para iniciar, selecione o seu tipo de deficiência:
             </Title>
-            <Select style={{ width: "25%", marginBottom: 16 }}>
-              <Option value="deficiencia1">Deficiência 1</Option>
-              <Option value="deficiencia2">Deficiência 2</Option>
+            <Select style={{ width: "25%", marginBottom: 16 }} options={disabilityType}>
             </Select>
           </div>
 
