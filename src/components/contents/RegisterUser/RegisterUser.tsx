@@ -6,11 +6,15 @@ import { Button } from "primereact/button";
 import { Password } from "primereact/password";
 import { UserService } from "services/User/UserService";
 import { UserModel } from "interfaces/User/UserInterface";
+import { useRouter } from "next/router";
+import { message } from "antd";
 
 export const RegisterUserComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
   const serviceUser = new UserService();
+  const Router = useRouter();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const onSubmit = (data: any, form: any) => {
     setFormData(data);
@@ -22,7 +26,17 @@ export const RegisterUserComponent = () => {
       passwordUser: data.password,
     };
 
-    serviceUser.CreateUser(user);
+    serviceUser.CreateUser(user).then((res) => {
+      if (res.status == 200) {
+        messageApi.open({
+          type: "success",
+          content: "Cadastro concluído com sucesso",
+        });
+        setTimeout(() => {
+          Router.push("/");
+        }, 1500);
+      }
+    });
 
     form.restart();
   };
@@ -70,6 +84,7 @@ export const RegisterUserComponent = () => {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "row" }}>
+        {contextHolder}
         <div
           style={{
             flex: 60,
