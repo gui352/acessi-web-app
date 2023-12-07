@@ -2,9 +2,17 @@ import { NextPage, GetStaticProps } from "next";
 
 import { getServerSideTranslations } from "configs/language/server";
 import { LoginComponent } from "components/contents/Login/Login";
+import VLibras from "@djpfs/react-vlibras";
 
 const Login: NextPage = () => {
-  return <LoginComponent />;
+  return (
+    <div>
+      <LoginComponent />
+      <div>
+        <VLibras forceOnload={true} />
+      </div>
+    </div>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -14,7 +22,6 @@ export const getStaticProps: GetStaticProps = async (req) => {
     props: {
       ...translations,
       pageName: "login",
-
     },
   };
 };

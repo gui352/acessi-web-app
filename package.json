@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@djpfs/react-vlibras": "^2.0.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@tanstack/react-query": "^5.0.5",
@@ -16,6 +17,9 @@
     "@types/react": "^18.2.31",
     "@types/react-dom": "^18.2.7",
     "@types/react-redux": "^7.1.28",
+    "ag-grid-community": "^31.0.0",
+    "ag-grid-enterprise": "^31.0.0",
+    "ag-grid-react": "^31.0.0",
     "antd": "^5.11.0",
     "axios": "^1.5.1",
     "final-form": "^4.20.10",
