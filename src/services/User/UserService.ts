@@ -14,6 +14,8 @@ export class UserService {
   }
 
   async LoginUser(user: UserModel) {
-    return await axios.post(`${this.API}/login/auth`, user);
+    return await axios.post(`${this.API}/login/auth`, user, {
+      withCredentials: true,
+    });
   }
 }

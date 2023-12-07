@@ -39,11 +39,12 @@ export const LoginComponent = () => {
     };
 
     serviceUser.LoginUser(user).then((res) => {
-      console.log(res)
+      console.log(res);
+      console.log(res.headers);
       if (res.status == 200) {
         Router.push("/home");
       }
-    })
+    });
 
     form.restart();
   };
