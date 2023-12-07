@@ -39,6 +39,7 @@ export const LoginComponent = () => {
     };
 
     serviceUser.LoginUser(user).then((res) => {
+      console.log(res)
       if (res.status == 200) {
         Router.push("/home");
       }
