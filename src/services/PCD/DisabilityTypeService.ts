@@ -7,9 +7,10 @@ export class DisabilityTypeService {
     console.log("Entrou service");
     console.log(`${this.API}/disability-type`);
 
-    const response = await axios.get(`${this.API}/disability-type`);
+    const response = await axios.get(`${this.API}/disability-type`, {
+      withCredentials: true,
+    });
 
     return response;
   }
-
 }

@@ -9,8 +9,9 @@ export class PCDService {
     console.log(pcd);
     console.log(`${this.API}/pcd`);
 
-    const response = await axios.post(`${this.API}/pcd`, pcd);
+    const response = await axios.post(`${this.API}/pcd`, pcd, {
+      withCredentials: true,
+    });
     return response;
   }
-
 }
