@@ -1,6 +1,7 @@
 import React from "react";
 
 import { PersonalRegister } from "./PersonalRegister";
+import { DeficiencyRegister } from "./DeficiencyRegister";
 
 import { Select, Collapse, Input, Button, Typography } from "antd";
 import { HeaderTitle } from "components/HeaderTitle";
@@ -75,6 +76,10 @@ export const RegisterPCDComponent = () => {
 
             <Panel header="Cadastro de Endereço" key="2">
               <AdressRegister />
+            </Panel>
+
+            <Panel header="Cadastro de Deficiência" key="3">
+              <DeficiencyRegister />
             </Panel>
           </Collapse>
 
