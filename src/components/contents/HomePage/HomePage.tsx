@@ -1,24 +1,31 @@
 import React from "react";
 
 import { HeaderTitle } from "components/HeaderTitle";
-import { ImageGallery } from "components/Galery";
-import { Button } from "antd";
-import { PlusCircleFilled, PlusOutlined } from "@ant-design/icons";
+import { ImageGallery } from "components/Gallery"; // Supondo que isso não dependa do Ant Design
+import { Button } from "primereact/button";
+import "primeicons/primeicons.css";
 
 export const HomePage = () => {
   return (
     <>
       <HeaderTitle
-        normalTitle={"notícias"}
         titleBold={"Principais"}
+        normalTitle={"notícias"}
         displayFilters={false}
       />
       <ImageGallery />
 
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: "1em",
+        }}
+      >
         <Button
-          icon={<PlusCircleFilled />}
-          href="/news"
+          icon="pi pi-plus-circle"
+          className="p-button-text"
+          onClick={() => (window.location.href = "/news")}
           style={{ color: "#3C4F82" }}
         >
           Veja mais

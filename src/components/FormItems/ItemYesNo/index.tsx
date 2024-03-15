@@ -1,4 +1,4 @@
-import { Radio } from "antd";
+import { SelectButton } from "primereact/selectbutton";
 import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
@@ -40,13 +40,13 @@ const ItemYesNo: React.FC<ItemInputProps> = ({
       hideFeedback={hideFeedback}
       hideLabel={hideLabel}
     >
-      <Radio.Group
+      <SelectButton
         options={options}
         {...field}
         defaultValue={defaultValue}
         disabled={disabled}
-        optionType="button"
-        buttonStyle="solid"
+        // optionType="button"
+        // buttonStyle="solid"
       />
     </Form.Item>
   );

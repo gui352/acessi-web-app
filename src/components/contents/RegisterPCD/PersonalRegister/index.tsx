@@ -1,18 +1,5 @@
 import React from "react";
 
-import {
-  Button,
-  Collapse,
-  DatePicker,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Steps,
-  Switch,
-  Typography,
-} from "antd";
-import { Form } from "components/common/Form";
 import ItemInput from "components/FormItems/ItemInput";
 import ItemDatePicker from "components/FormItems/ItemDatePicker";
 import ItemSelect from "components/FormItems/ItemSelect";

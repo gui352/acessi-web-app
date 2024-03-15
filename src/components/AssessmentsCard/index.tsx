@@ -1,22 +1,34 @@
 import React from "react";
-import { Card, Rate, Button } from "antd";
+import { Card } from "primereact/card";
+import { Button } from "primereact/button";
+import { Rating } from "primereact/rating"; // PrimeReact não possui um componente 'Rate', mas você pode usar 'Rating'
 
 export const AssessmentsCard = ({ nameAssessment, imageUrl }) => {
   return (
     <Card
-      bodyStyle={{ boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)" }}
-      cover={
-        <img alt={nameAssessment} src={imageUrl} style={{ height: 200 }} />
+      title={nameAssessment}
+      style={{
+        width: "240px",
+        marginBottom: "2em",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+      }}
+      header={
+        <img
+          alt={nameAssessment}
+          src={imageUrl}
+          style={{ height: 200, objectFit: "cover", width: "100%" }}
+        />
       }
-      style={{ width: 240 }}
     >
-      <h3>{nameAssessment}</h3>
-      <Rate allowHalf defaultValue={0} />
+      <Rating value={null} stars={5} cancel={false} />{" "}
+      {/* Utilize a prop `value` para controlar a avaliação */}
       <div style={{ marginTop: 16, display: "flex", alignItems: "center" }}>
-        <Button type="primary" style={{ marginRight: 8 }}>
-          Ver
-        </Button>
-        <Button>Avaliar</Button>
+        <Button
+          label="Ver"
+          className="p-button-raised p-button-primary"
+          style={{ marginRight: 8 }}
+        />
+        <Button label="Avaliar" className="p-button-raised" />
       </div>
     </Card>
   );

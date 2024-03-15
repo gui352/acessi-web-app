@@ -1,24 +1,12 @@
 import React from "react";
-import { Card, Typography } from "antd";
-import { Header } from "./Header";
+import { Card } from "primereact/card";
+import { Tag } from "primereact/tag"; // Substituto sugerido para Typography para mostrar texto com estilos
 import * as Styled from "./styled";
 
-const { Title, Text } = Typography;
+// Ajuste conforme necessário se Header e Styled.Container forem específicos do Ant Design
+import { Header } from "./Header";
 
-interface PropsCard {
-  portalName: string;
-  logoSrc?: string;
-  title: string;
-  summary: string;
-  imageSrc: string;
-  postDate: string;
-  summaryDisplay?: boolean;
-  location?: string;
-  workingHours?: string;
-  logoVisible?: boolean;
-}
-
-export const CardComponent = ({
+const CardComponent = ({
   portalName,
   logoSrc,
   title,
@@ -29,57 +17,48 @@ export const CardComponent = ({
   location,
   workingHours,
   logoVisible,
-}: PropsCard) => {
+}) => {
+  // Header personalizado e corpo do cartão para PrimeReact
+  const header = (
+    <img
+      alt={portalName}
+      src={imageSrc}
+      style={{
+        width: "100%",
+        height: 150,
+        objectFit: "cover",
+        borderRadius: 3,
+      }}
+    />
+  );
+
   return (
     <Card
+      title={title}
       style={{
         width: "95%",
-        color: "#3C4F82",
         margin: "0px 0px 10px 20px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+        color: "#3C4F82",
       }}
+      header={header}
     >
       <Header
         portalName={portalName}
         logoSrc={logoSrc}
         logoVisible={logoVisible}
       />
-
       <Styled.Container>
-        <div style={{ float: "right", marginLeft: 16 }}>
-          <img
-            alt={portalName}
-            src={imageSrc}
-            style={{
-              width: "100%",
-              height: 150,
-              objectFit: "cover",
-              borderRadius: 3,
-            }}
-          />
-        </div>
-
-        <Title level={3} style={{ color: "#3C4F82" }}>
-          {title}
-        </Title>
-
-        <p style={{ display: summaryDisplay === false ? "none" : "" }}>
-          {summary}
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text type="secondary">{postDate}</Text>
-          <Text style={{ color: "#3C4F82" }} type="secondary">
-            {location}
-          </Text>
-          <Text type="secondary">{workingHours}</Text>
+        <h3 style={{ color: "#3C4F82" }}>{title}</h3>
+        {summaryDisplay !== false && <p>{summary}</p>}
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Tag value={postDate} severity="info" />
+          {location && <Tag value={location} severity="info" />}
+          {workingHours && <Tag value={workingHours} severity="info" />}
         </div>
       </Styled.Container>
     </Card>
   );
 };
+
+export default CardComponent;

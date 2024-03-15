@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Spin } from "antd";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 import { Footer } from "../Footer";
 
@@ -11,20 +11,20 @@ export const BaseLayout: React.FC = ({ children }) => {
   return (
     <div>
       <Styled.Wrapper>
-        <Styled.PlacedHeader />
+        {/* <Styled.PlacedHeader /> */}
         <Styled.PlacedSider />
         <Styled.ContentWrapper>
           <React.Suspense
             fallback={
               <Styled.SpinnerWrapper>
-                <Spin />
+                <ProgressSpinner />
               </Styled.SpinnerWrapper>
             }
           >
             <div>{children}</div>
-            <div>
-              <VLibras forceOnload={true} />
-            </div>
+
+            {/* <div>
+            </div> */}
           </React.Suspense>
           <Footer />
         </Styled.ContentWrapper>

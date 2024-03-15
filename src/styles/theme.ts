@@ -11,6 +11,8 @@ export const theme = {
     primary: {
       bg: "#096dd9",
       text: "white",
+      bluePrimary: "#3C4F82",
+      // blue-text: "#3C4F82",
     },
     dark: {
       bg: "#FFFFFF",
