@@ -1,7 +1,9 @@
 import React from "react";
 
 import { PersonalRegister } from "./PersonalRegister";
-import { AdressRegister } from "./AdressRegister";
+import { DeficiencyRegister } from "./DeficiencyRegister";
+
+import { Select, Collapse, Input, Button, Typography } from "antd";
 import { HeaderTitle } from "components/HeaderTitle";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
@@ -66,8 +68,12 @@ export const RegisterPCDComponent = () => {
             </AccordionTab>
             <AccordionTab header="Cadastro de Endereço">
               <AdressRegister />
-            </AccordionTab>
-          </Accordion>
+            </Panel>
+
+            <Panel header="Cadastro de Deficiência" key="3">
+              <DeficiencyRegister />
+            </Panel>
+          </Collapse>
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button
