@@ -14,6 +14,7 @@ export const MENUS: NavEntry[] = [
     name: "Página inicial",
     icon: "pi pi-fw pi-home",
     path: "/home",
+    roles: ["user", "manager"],
   },
   {
     name: "Cadastro",

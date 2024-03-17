@@ -1,5 +1,4 @@
 import { NewsComponent } from "components/contents/News/News";
-import { BaseLayout } from "components/layout/BaseLayout";
 import { getServerSideTranslations } from "configs/language/server";
 import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";
@@ -7,7 +6,7 @@ import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
 
 const News: NextPage = () => {
-  return <NewsComponent/>;
+  return <NewsComponent />;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -17,7 +16,6 @@ export const getStaticProps: GetStaticProps = async (req) => {
     props: {
       ...translations,
       pageName: "news",
-
     },
   };
 };

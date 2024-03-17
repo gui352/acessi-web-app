@@ -15,6 +15,7 @@ export const FixedButtons = () => {
         style={{
           right: 50,
           bottom: 10,
+          opacity: 0,
         }}
         trigger="click"
         icon={<QuestionCircleOutlined />}
