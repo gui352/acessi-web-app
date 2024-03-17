@@ -1,4 +1,4 @@
-import { Radio } from "antd";
+import { RadioButton } from "primereact/radiobutton";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
@@ -27,7 +27,7 @@ const ItemYesNoWithoutForm: React.FC<ItemInputProps> = ({
 
   return (
     <div>
-      <Radio.Group
+      <RadioButton
         options={options}
         {...field}
         defaultValue={defaultValue}

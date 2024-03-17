@@ -1,52 +1,78 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 import * as React from "react";
-
-import { MENUS } from "../../../configs/nav";
-import { usePersistedState } from "hooks/usePersistedState";
-// import { Menu } from "primereact/menu";
-
 export interface SiderProps {
   className?: string;
 }
 
-import { Menu } from "antd";
+import { Menu } from "primereact/menu";
 
 export const Sider: React.FC<SiderProps> = ({ className }) => {
   const router = useRouter();
 
-  const current = router.asPath.match(/^\/(\w*)/)[0];
-
-  // const current = router?.asPath?.match(/^\/(\w*)/)[0];
-
-  // const userMenus = MENUS.filter((menu) => {
-  //   if (!menu.roles) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // });
-
-  const menuModel = MENUS.map((menu) => {
-    return {
-      label: (
-        <Link href={menu.path} passHref>
-          <span>{menu.name}</span>
-        </Link>
-      ),
-      key: menu.path,
-      icon: <i className={menu.icon} style={{ fontSize: "1rem" }}></i>,
-    };
-  });
+  const model = [
+    {
+      template: () => {
+        return (
+          <span>
+            <img
+              width="250"
+              height="35"
+              style={{ margin: "30px 0px" }}
+              src="/assets/images/acessi+LogoName.svg"
+            />
+          </span>
+        );
+      },
+    },
+    {
+      label: "Página inicial",
+      icon: "pi pi-fw pi-home",
+      command: () => {
+        router.push("/home");
+      },
+    },
+    {
+      label: "Cadastro",
+      icon: "pi pi-fw pi-id-card",
+      command: () => {
+        router.push("/registerPcd");
+      },
+    },
+    {
+      label: "Notícias",
+      icon: "pi pi-fw pi-megaphone",
+      command: () => {
+        router.push("/news");
+      },
+    },
+    {
+      label: "Vagas",
+      icon: "pi pi-fw pi-shopping-bag",
+      command: () => {
+        router.push("/jobs");
+      },
+    },
+    {
+      label: "Dashboards",
+      icon: "pi pi-fw pi-chart-bar",
+      command: () => {
+        router.push("/dashboards");
+      },
+    },
+    {
+      label: "Avaliações",
+      color: "blue",
+      icon: "pi pi-fw pi-star",
+      command: () => {
+        router.push("/assessments");
+      },
+    },
+  ];
 
   return (
     <>
-      <Menu
-        style={{ width: 230 }}
-        items={menuModel}
-        selectedKeys={current ? [current] : undefined}
-      />
+      <Menu model={model} style={{ width: 250, border: "none" }} />
     </>
   );
 };

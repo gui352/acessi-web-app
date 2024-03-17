@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { InputText } from "primereact/inputtext";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
@@ -30,7 +30,7 @@ const ItemWithoutForm = ({
 
   return (
     <div>
-      <Input
+      <InputText
         placeholder={placeholder}
         {...field}
         defaultValue={defaultValue}

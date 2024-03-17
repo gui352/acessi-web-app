@@ -1,4 +1,4 @@
-import { InputNumber } from "antd";
+import { InputNumber } from "primereact/inputnumber";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";

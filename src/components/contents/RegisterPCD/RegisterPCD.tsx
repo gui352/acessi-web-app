@@ -1,24 +1,17 @@
 import React from "react";
 
 import { PersonalRegister } from "./PersonalRegister";
+import { DeficiencyRegister } from "./DeficiencyRegister";
 
 import { Select, Collapse, Input, Button, Typography } from "antd";
 import { HeaderTitle } from "components/HeaderTitle";
-import { AdressRegister } from "./AdressRegister";
-import { Form } from "components/common/Form";
-import {
-  useForm,
-  Controller,
-  FormProvider,
-  useFormContext,
-} from "react-hook-form";
-
-const { Option } = Select;
-const { Panel } = Collapse;
+import { useForm, Controller, FormProvider } from "react-hook-form";
+import { Dropdown } from "primereact/dropdown";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { Button } from "primereact/button";
+import { Fieldset } from "primereact/fieldset";
 
 export const RegisterPCDComponent = () => {
-  const { Title } = Typography;
-
   const [selectedCity, setSelectedCity] = React.useState(null);
   const cities = [
     { name: "New York", code: "NY" },
@@ -32,12 +25,10 @@ export const RegisterPCDComponent = () => {
 
   const onSubmit = (data) => console.log(data);
 
-  const methods = useFormContext();
-
   return (
     <div>
-      <FormProvider control={control} {...methods}>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider {...control}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <HeaderTitle
             titleBold="Cadastro de pessoas com deficiência"
             displayFilters={false}
@@ -51,8 +42,7 @@ export const RegisterPCDComponent = () => {
               marginBottom: 30,
             }}
           >
-            <Title
-              level={4}
+            <h4
               style={{
                 fontWeight: "bold",
                 marginRight: "10px",
@@ -61,32 +51,39 @@ export const RegisterPCDComponent = () => {
               }}
             >
               Para iniciar, selecione o seu tipo de deficiência:
-            </Title>
-            <Select style={{ width: "25%", marginBottom: 16 }}>
-              <Option value="deficiencia1">Deficiência 1</Option>
-              <Option value="deficiencia2">Deficiência 2</Option>
-            </Select>
+            </h4>
+            <Dropdown
+              value={selectedCity}
+              options={cities}
+              onChange={(e) => setSelectedCity(e.value)}
+              optionLabel="name"
+              placeholder="Selecione uma cidade"
+              style={{ width: "25%", marginBottom: 16 }}
+            />
           </div>
 
-          <Collapse style={{ marginBottom: 20 }}>
-            <Panel header="Cadastro Pessoal" key="1">
+          <Accordion multiple style={{ marginBottom: 20 }}>
+            <AccordionTab header="Cadastro Pessoal">
               <PersonalRegister />
+            </AccordionTab>
+            <AccordionTab header="Cadastro de Endereço">
+              <AdressRegister />
             </Panel>
 
-            <Panel header="Cadastro de Endereço" key="2">
-              <AdressRegister />
+            <Panel header="Cadastro de Deficiência" key="3">
+              <DeficiencyRegister />
             </Panel>
           </Collapse>
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button
-              htmlType="submit"
+              type="submit"
+              label="Salvar"
+              className="p-button-raised p-button-text"
               style={{ background: "#3C4F82", color: "white" }}
-            >
-              Salvar
-            </Button>
+            />
           </div>
-        </Form>
+        </form>
       </FormProvider>
     </div>
   );

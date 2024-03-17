@@ -1,4 +1,4 @@
-import { Select } from "antd";
+import { Dropdown } from "primereact/dropdown";
 import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
@@ -43,17 +43,17 @@ const ItemSelect = ({
       hideFeedback={hideFeedback}
       hideLabel={hideLabel}
     >
-      <Select
-        mode={multi ? "multiple" : undefined}
-        maxTagCount={1}
+      <Dropdown
+        // mode={multi ? "multiple" : undefined}
+        // maxTagCount={1}
         placeholder={placeholder || t("common:placeholders.select")}
         {...field}
-        showSearch
-        optionFilterProp="label"
+        // showSearch
+        // optionFilterProp="label"
         options={options}
         defaultValue={defaultValue}
         disabled={disabled}
-        allowClear
+        // allowClear
       />
     </Form.Item>
   );

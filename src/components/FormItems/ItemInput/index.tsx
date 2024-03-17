@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { InputText } from "primereact/inputtext";
 import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
@@ -35,7 +35,7 @@ const ItemInput: React.FC<ItemInputProps> = ({
       message={_message}
       hideFeedback={hideFeedback}
     >
-      <Input
+      <InputText
         type={type}
         placeholder={placeholder || t("common:placeholders.input")}
         {...field}

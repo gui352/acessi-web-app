@@ -1,18 +1,5 @@
 import React from "react";
 
-import {
-  Button,
-  Collapse,
-  DatePicker,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Steps,
-  Switch,
-  Typography,
-} from "antd";
-import { Form } from "components/common/Form";
 import ItemInput from "components/FormItems/ItemInput";
 import ItemDatePicker from "components/FormItems/ItemDatePicker";
 import ItemSelect from "components/FormItems/ItemSelect";
@@ -75,14 +62,34 @@ export const PersonalRegister = () => {
           options={[{}, {}, {}, {}]}
           placeholder="Selecione aqui..."
         />
-        <ItemYesNo disabled={false} label="Empregado?" name="isEmployee" />
+
+        <ItemSelect
+        disabled={false}
+        label="Raça/Cor"
+        name="color"
+        options={
+          [
+            { label: "Preta", value: "black" },
+            { label: "Parda", value: "brown" },
+            { label: "Amarela", value: "yellow" },
+            { label: "Indígena", value: "indigenous" },
+          ]
+        }
+        placeholder="Seelecione aqui..."
+      />
       </SubForm>
 
-      <ItemYesNo
-        disabled={false}
-        label="Utiliza transporte público?"
-        name="isUsePublicTransport"
-      />
+      <SubForm columns={2}>
+        <ItemYesNo disabled={false} label="Empregado?" name="isEmployee" />
+
+        <ItemYesNo
+          disabled={false}
+          label="Utiliza transporte público?"
+          name="isUsePublicTransport"
+        />
+      </SubForm>
+
+
     </>
   );
 };

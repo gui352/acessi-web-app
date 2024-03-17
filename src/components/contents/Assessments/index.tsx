@@ -1,8 +1,8 @@
-import { Col, Row } from "antd";
-import { AssessmentsCard } from "components/AssessmentsCard";
-import { CarouselComponent } from "components/Carousel";
-import { HeaderTitle } from "components/HeaderTitle";
 import React from "react";
+import { Card } from "primereact/card";
+import { Galleria } from "primereact/galleria";
+import "primeflex/primeflex.css";
+import { HeaderTitle } from "components/HeaderTitle";
 
 export const AssessmentsComponent = () => {
   const assessments = [
@@ -38,21 +38,39 @@ export const AssessmentsComponent = () => {
     },
   ];
 
+  // Função para renderizar cada item do Carousel (Galleria)
+  const itemTemplate = (item) => {
+    return (
+      <img
+        src={item.imageSrc}
+        alt={item.portalName}
+        style={{ width: "100%" }}
+      />
+    );
+  };
+
   return (
     <>
       <HeaderTitle titleBold="Lugares" normalTitle="para visitar" />
-      <CarouselComponent data={assessments} />
+      <Galleria
+        value={assessments}
+        item={itemTemplate}
+        style={{ maxWidth: "640px", marginBottom: "20px" }}
+      />
       <div style={{ padding: "20px" }}>
-        <Row gutter={[16, 16]}>
+        <div className="p-grid p-fluid" style={{ gap: "1rem" }}>
           {assessments.map((estabelecimento, index) => (
-            <Col span={6} key={index}>
-              <AssessmentsCard
-                nameAssessment={estabelecimento.portalName}
-                imageUrl={estabelecimento.imageSrc}
-              />
-            </Col>
+            <div className="p-col-3" key={index}>
+              <Card title={estabelecimento.portalName}>
+                <img
+                  src={estabelecimento.imageSrc}
+                  alt={estabelecimento.portalName}
+                  style={{ width: "100%" }}
+                />
+              </Card>
+            </div>
           ))}
-        </Row>
+        </div>
       </div>
     </>
   );
