@@ -8,32 +8,32 @@ export const AssessmentsComponent = () => {
   const assessments = [
     {
       portalName: "Restaurante A",
-      imageSrc: "assets/images/restaurant.jpg",
+      imageSrc: "/assets/images/restaurant.jpg",
       logoVisible: false,
     },
     {
       portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
+      imageSrc: "/assets/images/coffee.jpg",
       logoVisible: false,
     },
     {
       portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
+      imageSrc: "/assets/images/coffee.jpg",
       logoVisible: false,
     },
     {
       portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
+      imageSrc: "/assets/images/coffee.jpg",
       logoVisible: false,
     },
     {
       portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
+      imageSrc: "/assets/images/coffee.jpg",
       logoVisible: false,
     },
     {
       portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
+      imageSrc: "/assets/images/coffee.jpg",
       logoVisible: false,
     },
   ];

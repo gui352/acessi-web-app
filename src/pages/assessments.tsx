@@ -3,7 +3,6 @@ import { NextPage, GetStaticProps } from "next";
 import { withTheme } from "hocs/withTheme";
 import { withTranslations } from "hocs/withTranslations";
 import { withHOCs } from "hocs/withHOCs";
-import { BaseLayout } from "components/layout/BaseLayout";
 import { getServerSideTranslations } from "configs/language/server";
 import { AssessmentsComponent } from "components/contents/Assessments";
 
