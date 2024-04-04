@@ -3,13 +3,13 @@ import React from "react";
 import { PersonalRegister } from "./PersonalRegister";
 import { DeficiencyRegister } from "./DeficiencyRegister";
 
-import { Select, Collapse, Input, Button, Typography } from "antd";
 import { HeaderTitle } from "components/HeaderTitle";
-import { useForm, Controller, FormProvider } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { Dropdown } from "primereact/dropdown";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Button } from "primereact/button";
-import { Fieldset } from "primereact/fieldset";
+import {} from "primereact/accordion";
+import { AdressRegister } from "./AdressRegister";
 
 export const RegisterPCDComponent = () => {
   const [selectedCity, setSelectedCity] = React.useState(null);
@@ -68,12 +68,12 @@ export const RegisterPCDComponent = () => {
             </AccordionTab>
             <AccordionTab header="Cadastro de Endereço">
               <AdressRegister />
-            </Panel>
+            </AccordionTab>
 
-            <Panel header="Cadastro de Deficiência" key="3">
+            <AccordionTab header="Cadastro de Deficiência" key="3">
               <DeficiencyRegister />
-            </Panel>
-          </Collapse>
+            </AccordionTab>
+          </Accordion>
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button

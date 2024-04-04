@@ -21,15 +21,15 @@ export const ContentWrapper = styled.main`
   background-color: ${({ theme }) => theme.color.normal.bg};
   /* color: ${({ theme }) => theme.color.normal.text}; */
 
-  padding: ${({ theme }) => theme.spacing.sm};
+  padding-top: ${({ theme }) => theme.spacing.md};
 
   overflow-x: auto;
 
   & > div {
-    /* background-color: ${({ theme }) => theme.color.normal.bg}; */
+    /* background-color: ${({ theme }) => theme.color.normal.text}; */
     /* color: ${({ theme }) => theme.color.light.text}; */
 
-    padding: ${({ theme }) => theme.spacing.xl};
+    padding: ${({ theme }) => theme.spacing.xs};
     border-radius: 15px;
   }
 `;
