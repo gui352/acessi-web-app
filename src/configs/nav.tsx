@@ -40,4 +40,9 @@ export const MENUS: NavEntry[] = [
     icon: "pi pi-fw pi-star",
     path: "/assessments",
   },
+  {
+    name: "Cadastro de Empresa",
+    icon: "pi pi-fw pi-briefcase",
+    path: "/register-company",
+  },
 ];

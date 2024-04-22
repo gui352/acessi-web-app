@@ -1,4 +1,4 @@
-import { AddressModel } from "./AddressInterface";
+import { AddressModel } from "../Adress/AddressInterface";
 
 export interface PCDModel {
   namePCD: string;

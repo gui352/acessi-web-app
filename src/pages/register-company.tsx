@@ -1,13 +1,12 @@
-import { NewsComponent } from "components/contents/News";
-import { BaseLayout } from "components/layout/BaseLayout";
+import { RegisterCompany } from "components/contents/Register-Company";
 import { getServerSideTranslations } from "configs/language/server";
 import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";
 import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
 
-const News: NextPage = () => {
-  return <NewsComponent />;
+const NewCompany: NextPage = () => {
+  return <RegisterCompany />;
 };
 
 export const getStaticProps: GetStaticProps = async (req) => {
@@ -16,9 +15,9 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
-      pageName: "news",
+      pageName: "register-company",
     },
   };
 };
 
-export default withHOCs(withTheme, withTranslations)(News);
+export default withHOCs(withTheme, withTranslations)(NewCompany);

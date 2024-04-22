@@ -15,7 +15,7 @@ import {
 import { DisabilityTypeService } from "services/PCD/DisabilityTypeService";
 import { DefaultOptionType } from "antd/es/select";
 import { PCDModel } from "interfaces/PCD/PCDInterface";
-import { AddressModel } from "interfaces/PCD/AddressInterface";
+import { AddressModel } from "interfaces/Adress/AddressInterface";
 import { PCDService } from "services/PCD/PCDService";
 
 const { Option } = Select;
@@ -39,7 +39,7 @@ export const RegisterPCDComponent = () => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
 
     const pcd: PCDModel = {
       namePCD: data.name,
@@ -58,20 +58,19 @@ export const RegisterPCDComponent = () => {
         neighborhoodAddress: data.neighborhood,
         numberAddress: data.numberHome,
         complementAddress: data.complement,
-        cepAddress: data.cep
-      } as AddressModel
+        cepAddress: data.cep,
+      } as AddressModel,
     };
 
     pcdService.CreateUser(pcd).then((res) => {
-      console.log(res)
+      console.log(res);
       if (res.status == 200) {
         messageApi.open({
-          type: 'success',
-          content: 'Cadastro concluído com sucesso',
+          type: "success",
+          content: "Cadastro concluído com sucesso",
         });
       }
-    })
-
+    });
   };
 
   const methods = useFormContext();
@@ -116,8 +115,10 @@ export const RegisterPCDComponent = () => {
             >
               Para iniciar, selecione o seu tipo de deficiência:
             </Title>
-            <Select style={{ width: "25%", marginBottom: 16 }} options={disabilityType}>
-            </Select>
+            <Select
+              style={{ width: "25%", marginBottom: 16 }}
+              options={disabilityType}
+            ></Select>
           </div>
 
           <Collapse style={{ marginBottom: 20 }}>
