@@ -43,6 +43,7 @@ export const RegisterCompany = () => {
       areaActivity: data.areaActivity,
       telephone: data.telephone,
       email: data.email,
+      password: data.password,
     };
 
     companyService.CreateCompany(company).then((res) => {
@@ -71,67 +72,80 @@ export const RegisterCompany = () => {
 
   return (
     <>
-      <HeaderTitle titleBold="Cadastro de Empresa" displayFilters={false} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <div style={{ background: "#f2f2f2", width: "50%", borderRadius: 10 }}>
+          <HeaderTitle titleBold="Cadastro de Empresa" displayFilters={false} />
 
-      <Row>
-        <Col span={12} offset={6}>
-          <div>
-            <FormProvider control={control} {...methods}>
-              <Form onSubmit={handleSubmit(onSubmit)}>
-                <div style={{ marginTop: 50 }}>
-                  <ItemInput
-                    disabled={false}
-                    label="CNPJ"
-                    name="cnpj"
-                    placeholder="Digite aqui..."
-                  />
-                  <ItemInput
-                    disabled={false}
-                    label="Razão Social"
-                    name="corporateName"
-                    placeholder="Digite aqui..."
-                  />
-                  <ItemInput
-                    disabled={false}
-                    label="Site"
-                    name="site"
-                    type={"url"}
-                    placeholder="Digite aqui..."
-                  />
-                  <ItemInput
-                    disabled={false}
-                    label="Área de Atividade"
-                    name="areaActivity"
-                    placeholder="Digite aqui..."
-                  />
-                  <ItemInput
-                    disabled={false}
-                    label="Telefone"
-                    name="telephone"
-                    placeholder="Digite aqui..."
-                  />
-                  <ItemInput
-                    disabled={false}
-                    label="E-mail"
-                    name="email"
-                    type={"email"}
-                    placeholder="Digite aqui..."
-                  />
-                </div>
+          <FormProvider control={control} {...methods}>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <div style={{ marginTop: 25 }}>
+                <ItemInput
+                  disabled={false}
+                  label="CNPJ"
+                  name="cnpj"
+                  placeholder="Digite aqui..."
+                />
+                <ItemInput
+                  disabled={false}
+                  label="Razão Social"
+                  name="corporateName"
+                  placeholder="Digite aqui..."
+                />
+                <ItemInput
+                  disabled={false}
+                  label="Site"
+                  name="site"
+                  type={"url"}
+                  placeholder="Digite aqui..."
+                />
+                <ItemInput
+                  disabled={false}
+                  label="Área de Atividade"
+                  name="areaActivity"
+                  placeholder="Digite aqui..."
+                />
+                <ItemInput
+                  disabled={false}
+                  label="Telefone"
+                  name="telephone"
+                  placeholder="Digite aqui..."
+                />
+                <ItemInput
+                  disabled={false}
+                  label="E-mail"
+                  name="email"
+                  type={"email"}
+                  placeholder="Digite aqui..."
+                />
 
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                  <Button
-                    htmlType="submit"
-                    style={{ background: "#3C4F82", color: "white" }}
-                  >
-                    Salvar
-                  </Button>
-                </div>
-              </Form>
-            </FormProvider>
-          </div>
-        </Col>
-      </Row>
+                <ItemInput
+                  disabled={false}
+                  label="Senha"
+                  name="password"
+                  type={"password"}
+                  placeholder="Digite aqui..."
+                />
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <Button
+                  htmlType="submit"
+                  style={{ background: "#3C4F82", color: "white" }}
+                >
+                  Salvar
+                </Button>
+              </div>
+            </Form>
+          </FormProvider>
+        </div>
+      </div>
     </>
   );
 };

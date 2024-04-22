@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
-      pageName: "register-company",
+      defaultLayout: false,
     },
   };
 };

@@ -5,4 +5,5 @@ export interface CompanyModel {
   areaActivity: string;
   telephone: string;
   email: string;
+  password: string;
 }

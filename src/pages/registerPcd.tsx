@@ -16,8 +16,7 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
-      pageName: "register-pcd",
-
+      defaultLayout: true,
     },
   };
 };

@@ -188,6 +188,13 @@ export const LoginComponent = () => {
               </form>
             )}
           ></Form>
+          <Button
+            label="Para empresas"
+            className="mt-2"
+            style={{ width: "100%" }}
+            severity="secondary"
+            onClick={() => Router.push("/register-company")}
+          />
         </div>
       </div>
     </div>
