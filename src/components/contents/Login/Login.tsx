@@ -169,7 +169,9 @@ export const LoginComponent = () => {
                   )}
                 />
 
-                <div className="flex flex-wrap justify-content-between gap-3">
+                <Button type="submit" label="Entrar" className="mt-2" />
+
+                <div className="flex flex-wrap justify-content-between gap-3 mt-2">
                   <div className="flex align-items-center">
                     <a
                       href="/forgot-password"
@@ -184,17 +186,16 @@ export const LoginComponent = () => {
                     </a>
                   </div>
                 </div>
-                <Button type="submit" label="Entrar" className="mt-2" />
               </form>
             )}
           ></Form>
-          <Button
+          {/* <Button
             label="Para empresas"
             className="mt-2"
             style={{ width: "100%" }}
             severity="secondary"
             onClick={() => Router.push("/register-company")}
-          />
+          /> */}
         </div>
       </div>
     </div>
