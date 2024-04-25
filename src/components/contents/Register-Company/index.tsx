@@ -18,7 +18,7 @@ import {
   FormProvider,
   useFormContext,
 } from "react-hook-form";
-import { CompanyModel } from "interfaces/Company/ComanyInterface";
+import { CompanyModel } from "interfaces/Company/CompanyInterface";
 import { AddressModel } from "interfaces/Adress/AddressInterface";
 import { DisabilityTypeService } from "services/PCD/DisabilityTypeService";
 import { DefaultOptionType } from "antd/es/select";

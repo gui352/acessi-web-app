@@ -45,4 +45,9 @@ export const MENUS: NavEntry[] = [
   //   icon: "pi pi-fw pi-briefcase",
   //   path: "/register-company",
   // },
+  {
+    name: "Cadastro de Avaliação",
+    icon: "pi pi-fw pi-briefcase",
+    path: "/register-avaliations",
+  },
 ];

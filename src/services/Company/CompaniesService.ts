@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CompanyModel } from "interfaces/Company/ComanyInterface";
+import { CompanyModel } from "interfaces/Company/CompanyInterface";
 
 export class CompaniesService {
   private API = "http://localhost:8085/acessi";
