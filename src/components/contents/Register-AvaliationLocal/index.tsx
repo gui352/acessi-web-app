@@ -16,6 +16,9 @@ import { Dialog } from "primereact/dialog";
 import { classNames } from "primereact/utils";
 import { InputTextarea } from "primereact/inputtextarea";
 import { RadioButton } from "primereact/radiobutton";
+import { Tooltip } from "primereact/tooltip";
+import { FileUpload } from "primereact/fileupload";
+import { ProgressBar } from "primereact/progressbar";
 
 export const RegisterAvaliationLocal = () => {
   const avaliationLocalService = new AvaliationLocalService();
@@ -37,6 +40,145 @@ export const RegisterAvaliationLocal = () => {
   const [globalFilter, setGlobalFilter] = useState(null);
   const toast = useRef(null);
   const dt = useRef(null);
+  const [totalSize, setTotalSize] = useState(0);
+  const fileUploadRef = useRef(null);
+
+  const onTemplateSelect = (e) => {
+    let _totalSize = totalSize;
+    let files = e.files;
+
+    Object.keys(files).forEach((key) => {
+      _totalSize += files[key].size || 0;
+    });
+
+    setTotalSize(_totalSize);
+  };
+
+  const onTemplateUpload = (e) => {
+    let _totalSize = 0;
+
+    e.files.forEach((file) => {
+      _totalSize += file.size || 0;
+    });
+
+    setTotalSize(_totalSize);
+    toast.current.show({
+      severity: "info",
+      summary: "Success",
+      detail: "File Uploaded",
+    });
+  };
+
+  const onTemplateRemove = (file, callback) => {
+    setTotalSize(totalSize - file.size);
+    callback();
+  };
+
+  const onTemplateClear = () => {
+    setTotalSize(0);
+  };
+
+  const headerTemplate = (options) => {
+    const { className, chooseButton, uploadButton, cancelButton } = options;
+    const value = totalSize / 10000;
+    const formatedValue =
+      fileUploadRef && fileUploadRef.current
+        ? fileUploadRef.current.formatSize(totalSize)
+        : "0 B";
+
+    return (
+      <div
+        className={className}
+        style={{
+          backgroundColor: "transparent",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {chooseButton}
+        {uploadButton}
+        {cancelButton}
+        <div className="flex align-items-center gap-3 ml-auto">
+          <span>{formatedValue} / 1 MB</span>
+          <ProgressBar
+            value={value}
+            showValue={false}
+            style={{ width: "10rem", height: "12px" }}
+          ></ProgressBar>
+        </div>
+      </div>
+    );
+  };
+
+  const itemTemplate = (file, props) => {
+    return (
+      <div className="flex align-items-center flex-wrap">
+        <div className="flex align-items-center" style={{ width: "40%" }}>
+          <img
+            alt={file.name}
+            role="presentation"
+            src={file.objectURL}
+            width={100}
+          />
+          <span className="flex flex-column text-left ml-3">
+            {file.name}
+            <small>{new Date().toLocaleDateString()}</small>
+          </span>
+        </div>
+        <Tag
+          value={props.formatSize}
+          severity="warning"
+          className="px-3 py-2"
+        />
+        <Button
+          type="button"
+          icon="pi pi-times"
+          className="p-button-outlined p-button-rounded p-button-danger ml-auto"
+          onClick={() => onTemplateRemove(file, props.onRemove)}
+        />
+      </div>
+    );
+  };
+
+  const emptyTemplate = () => {
+    return (
+      <div className="flex align-items-center flex-column">
+        <i
+          className="pi pi-image mt-3 p-5"
+          style={{
+            fontSize: "5em",
+            borderRadius: "50%",
+            backgroundColor: "var(--surface-b)",
+            color: "var(--surface-d)",
+          }}
+        ></i>
+        <span
+          style={{ fontSize: "1.2em", color: "var(--text-color-secondary)" }}
+          className="my-5"
+        >
+          Clique e arraste a imagem aqui
+        </span>
+      </div>
+    );
+  };
+
+  const chooseOptions = {
+    icon: "pi pi-fw pi-images",
+    iconOnly: true,
+    className: "custom-choose-btn p-button-rounded p-button-outlined",
+  };
+  const uploadOptions = {
+    icon: "pi pi-fw pi-cloud-upload",
+    iconOnly: true,
+    className:
+      "custom-upload-btn p-button-success p-button-rounded p-button-outlined",
+  };
+  const cancelOptions = {
+    icon: "pi pi-fw pi-times",
+    iconOnly: true,
+    className:
+      "custom-cancel-btn p-button-danger p-button-rounded p-button-outlined",
+  };
 
   useEffect(() => {
     avaliationLocalService
@@ -74,8 +216,9 @@ export const RegisterAvaliationLocal = () => {
     setSubmitted(true);
     let _products = Array.isArray(products) ? [...products] : [];
     let _product = { ...product };
-    console.log("Lista produtos", _products);
-    console.log("produto selecionado", _product);
+
+    console.log("produto que chegou", product);
+    console.log("lista de produtos antes de salvar/editar", products);
 
     if (
       product.name.trim() &&
@@ -83,26 +226,39 @@ export const RegisterAvaliationLocal = () => {
       product.typeLocalAvaliation
     ) {
       if (product.idLocalAvaliation) {
-        const index = findIndexById(product.idLocalAvaliation);
-
+        console.log("objeto passado pro update", _product);
         avaliationLocalService.UpdateAvaliationLocal(_product);
-
-        _products[index] = _product;
+        const index = _products.findIndex(
+          (p) => p.idLocalAvaliation === product.idLocalAvaliation
+        );
+        if (index !== -1) {
+          _products[index] = _product;
+        }
         toast.current.show({
           severity: "success",
-          summary: "Successful",
+          summary: "Sucesso",
           detail: "Avaliação Atualizada",
           life: 3000,
         });
       } else {
-        _product.idLocalAvaliation = 0;
-        _product.imageAvaliationLocal = [];
-        avaliationLocalService.CreateAvaliationLocal(_product);
+        console.log("comecou create");
 
-        _products.push(_product);
+        const createAvaliation = async () => {
+          let avaliationCriada: AvaliationLocalModel =
+            await avaliationLocalService.CreateAvaliationLocal(_product);
+
+          console.log("objeto recebido api", avaliationCriada);
+
+          if (avaliationCriada != null) {
+            _product.idLocalAvaliation = avaliationCriada.idLocalAvaliation;
+          }
+          _products.push(_product);
+        };
+
+        createAvaliation();
         toast.current.show({
           severity: "success",
-          summary: "Successful",
+          summary: "Sucesso",
           detail: "Avaliação criada",
           life: 3000,
         });
@@ -110,43 +266,22 @@ export const RegisterAvaliationLocal = () => {
     } else {
       toast.current.show({
         severity: "error",
-        summary: "Error",
-        detail: "Por favor, preencha todos os campos obrigatórios",
+        summary: "Erro inesperado",
+        detail: "Por favor, preencha todos os campos.",
         life: 3000,
       });
     }
-
-    // if (product.name.trim()) {
-
-    // if (product.idLocalAvaliation) {
-    //   const index = findIndexById(product.idLocalAvaliation);
-
-    //   _products[index] = _product;
-    //   toast.current.show({
-    //     severity: "success",
-    //     summary: "Successful",
-    //     detail: "Avaliação Atualizada",
-    //     life: 3000,
-    //   });
-    // } else {
-    //   _product.idLocalAvaliation = 0;
-    //   _product.imageAvaliationLocal = [];
-    //   _products.push(_product);
-    //   toast.current.show({
-    //     severity: "success",
-    //     summary: "Successful",
-    //     detail: "Avaliação criada",
-    //     life: 3000,
-    //   });
-    // }
+    console.log("lista de produtos apos  de salvar/editar", products);
 
     setProducts(_products);
     setProductDialog(false);
     setProduct(emptyAvaliation);
-    // }
   };
 
   const editProduct = (product) => {
+    console.log("chamou edit propduct");
+    console.log("lista atual de produtos", products);
+    console.log("produto a ser editado", product);
     setProduct({ ...product });
     setProductDialog(true);
   };
@@ -161,28 +296,24 @@ export const RegisterAvaliationLocal = () => {
       (val) => val.idLocalAvaliation !== product.idLocalAvaliation
     );
 
+    if (product.idLocalAvaliation) {
+      let response = avaliationLocalService.DeleteAvaliationLocal(
+        product.idLocalAvaliation
+      );
+    } else {
+      console.log("Produto não encontrado");
+    }
+
     setProducts(_products);
     setDeleteProductDialog(false);
     setProduct(emptyAvaliation);
+
     toast.current.show({
       severity: "success",
-      summary: "Successful",
-      detail: "Product Deleted",
+      summary: "Sucesso",
+      detail: "Produto deletado ",
       life: 3000,
     });
-  };
-
-  const findIndexById = (id) => {
-    let index = -1;
-
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].id === id) {
-        index = i;
-        break;
-      }
-    }
-
-    return index;
   };
 
   const confirmDeleteSelected = () => {
@@ -205,8 +336,7 @@ export const RegisterAvaliationLocal = () => {
 
   const onCategoryChange = (e) => {
     let _product = { ...product };
-
-    _product["typeLocalAvaliation"] = e.value;
+    _product.typeLocalAvaliation = e.value as LocalAvaliationType;
     setProduct(_product);
   };
 
@@ -258,15 +388,6 @@ export const RegisterAvaliationLocal = () => {
     return <Rating value={rowData.rating} readOnly cancel={false} />;
   };
 
-  const statusBodyTemplate = (rowData) => {
-    return (
-      <Tag
-        value={rowData.inventoryStatus}
-        severity={getSeverity(rowData)}
-      ></Tag>
-    );
-  };
-
   const actionBodyTemplate = (rowData) => {
     return (
       <React.Fragment>
@@ -288,25 +409,9 @@ export const RegisterAvaliationLocal = () => {
     );
   };
 
-  const getSeverity = (product) => {
-    switch (product.inventoryStatus) {
-      case "INSTOCK":
-        return "success";
-
-      case "LOWSTOCK":
-        return "warning";
-
-      case "OUTOFSTOCK":
-        return "danger";
-
-      default:
-        return null;
-    }
-  };
-
   const header = (
     <div className="flex flex-wrap gap-2 align-items-center justify-content-between">
-      <h4 className="m-0">Manage Products</h4>
+      <h4 className="m-0">Locais de avaliação</h4>
       <span className="p-input-icon-left">
         <i className="pi pi-search" />
         <InputText
@@ -381,7 +486,7 @@ export const RegisterAvaliationLocal = () => {
           globalFilter={globalFilter}
           header={header}
         >
-          {/* <Column selectionMode="multiple" exportable={false}></Column> */}
+          <Column selectionMode="multiple" exportable={false}></Column>
           <Column
             field="name"
             header="Name"
@@ -416,7 +521,7 @@ export const RegisterAvaliationLocal = () => {
 
       <Dialog
         visible={productDialog}
-        style={{ width: "32rem" }}
+        style={{ width: "50rem" }}
         breakpoints={{ "960px": "75vw", "641px": "90vw" }}
         header="Novo local de avaliação"
         modal
@@ -455,7 +560,7 @@ export const RegisterAvaliationLocal = () => {
               <RadioButton
                 inputId="category1"
                 name="typeLocalAvaliation"
-                value="Restaurante"
+                value="Restaurant"
                 onChange={onCategoryChange}
                 checked={
                   product.typeLocalAvaliation == LocalAvaliationType.Restaurant
@@ -467,7 +572,7 @@ export const RegisterAvaliationLocal = () => {
               <RadioButton
                 inputId="category2"
                 name="typeLocalAvaliation"
-                value="Bar"
+                value="Pub"
                 onChange={onCategoryChange}
                 checked={product.typeLocalAvaliation == LocalAvaliationType.Pub}
               />
@@ -477,7 +582,7 @@ export const RegisterAvaliationLocal = () => {
               <RadioButton
                 inputId="category3"
                 name="typeLocalAvaliation"
-                value="Parque"
+                value="Park"
                 onChange={onCategoryChange}
                 checked={
                   product.typeLocalAvaliation == LocalAvaliationType.Park
@@ -489,7 +594,7 @@ export const RegisterAvaliationLocal = () => {
               <RadioButton
                 inputId="category4"
                 name="typeLocalAvaliation"
-                value="Publico"
+                value="Public"
                 onChange={onCategoryChange}
                 checked={
                   product.typeLocalAvaliation == LocalAvaliationType.Public
@@ -501,7 +606,7 @@ export const RegisterAvaliationLocal = () => {
               <RadioButton
                 inputId="category5"
                 name="typeLocalAvaliation"
-                value="Privado"
+                value="Private"
                 onChange={onCategoryChange}
                 checked={
                   product.typeLocalAvaliation == LocalAvaliationType.Private
@@ -513,7 +618,7 @@ export const RegisterAvaliationLocal = () => {
               <RadioButton
                 inputId="category6"
                 name="typeLocalAvaliation"
-                value="Outro"
+                value="Another"
                 onChange={onCategoryChange}
                 checked={
                   product.typeLocalAvaliation == LocalAvaliationType.Another
@@ -522,6 +627,43 @@ export const RegisterAvaliationLocal = () => {
               <label htmlFor="category6">Outro</label>
             </div>
           </div>
+        </div>
+
+        <div className="field">
+          <Tooltip
+            target=".custom-choose-btn"
+            content="Choose"
+            position="bottom"
+          />
+          <Tooltip
+            target=".custom-upload-btn"
+            content="Upload"
+            position="bottom"
+          />
+          <Tooltip
+            target=".custom-cancel-btn"
+            content="Clear"
+            position="bottom"
+          />
+
+          <FileUpload
+            ref={fileUploadRef}
+            name="demo[]"
+            url="/api/upload"
+            multiple
+            accept="image/*"
+            maxFileSize={1000000}
+            onUpload={onTemplateUpload}
+            onSelect={onTemplateSelect}
+            onError={onTemplateClear}
+            onClear={onTemplateClear}
+            headerTemplate={headerTemplate}
+            itemTemplate={itemTemplate}
+            emptyTemplate={emptyTemplate}
+            chooseOptions={chooseOptions}
+            uploadOptions={uploadOptions}
+            cancelOptions={cancelOptions}
+          />
         </div>
       </Dialog>
 
@@ -541,7 +683,7 @@ export const RegisterAvaliationLocal = () => {
           />
           {product && (
             <span>
-              Você tem certeza que deseja deletas o <b>{product.name}</b>?
+              Você tem certeza que deseja deletar o <b>{product.name}</b>?
             </span>
           )}
         </div>
@@ -563,7 +705,7 @@ export const RegisterAvaliationLocal = () => {
           />
           {product && (
             <span>
-              Você tem certeza que deseja deletar o produto selecionado ?
+              Você tem certeza que deseja deletar o(s) produto(s) selecionado ?
             </span>
           )}
         </div>
