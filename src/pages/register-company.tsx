@@ -1,4 +1,5 @@
-import { RegisterCompany } from "components/contents/Register-Company";
+
+import { RegisterCompany } from "components/contents/Register-Company/RegisterCompany";
 import { getServerSideTranslations } from "configs/language/server";
 import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";
