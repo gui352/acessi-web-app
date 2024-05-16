@@ -321,15 +321,19 @@ export const RegisterAvaliationLocal = () => {
   };
 
   const deleteSelectedProducts = () => {
+    console.log("lista de produtos antes de deletar", selectedProducts);
+
     let _products = products.filter((val) => !selectedProducts.includes(val));
+
+    console.log("lista de produtos apos deletar", _products);
 
     setProducts(_products);
     setDeleteProductsDialog(false);
     setSelectedProducts(null);
     toast.current.show({
       severity: "success",
-      summary: "Successful",
-      detail: "Products Deleted",
+      summary: "Sucesso",
+      detail: "Avaliação(s) deletada(s) com sucesso.",
       life: 3000,
     });
   };
@@ -452,13 +456,13 @@ export const RegisterAvaliationLocal = () => {
   const deleteProductsDialogFooter = (
     <React.Fragment>
       <Button
-        label="No"
+        label="Não"
         icon="pi pi-times"
         outlined
         onClick={hideDeleteProductsDialog}
       />
       <Button
-        label="Yes"
+        label="Sim"
         icon="pi pi-check"
         severity="danger"
         onClick={deleteSelectedProducts}
@@ -486,7 +490,6 @@ export const RegisterAvaliationLocal = () => {
           globalFilter={globalFilter}
           header={header}
         >
-          <Column selectionMode="multiple" exportable={false}></Column>
           <Column
             field="name"
             header="Name"
@@ -671,7 +674,7 @@ export const RegisterAvaliationLocal = () => {
         visible={deleteProductDialog}
         style={{ width: "32rem" }}
         breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-        header="Confirm"
+        header="Confirmar"
         modal
         footer={deleteProductDialogFooter}
         onHide={hideDeleteProductDialog}
@@ -690,10 +693,10 @@ export const RegisterAvaliationLocal = () => {
       </Dialog>
 
       <Dialog
-        visible={deleteProductsDialog}
+        visible={false}
         style={{ width: "32rem" }}
         breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-        header="Confirm"
+        header="Confirmar"
         modal
         footer={deleteProductsDialogFooter}
         onHide={hideDeleteProductsDialog}
@@ -705,7 +708,8 @@ export const RegisterAvaliationLocal = () => {
           />
           {product && (
             <span>
-              Você tem certeza que deseja deletar o(s) produto(s) selecionado ?
+              Você tem certeza que deseja deletar a(s) avaliação(s)
+              selecionada(s) ?
             </span>
           )}
         </div>
