@@ -96,6 +96,25 @@ export const RegisterUserComponent = () => {
             justifyContent: "center",
           }}
         >
+
+          <div style={{ height: '100%' }}>
+            <div>
+              <a
+                href="/"
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center"
+                }}
+              >
+                <i className="pi pi-arrow-circle-left" style={{ fontSize: '1.5rem', marginLeft: "20px" }}></i>
+                <h4 style={{ marginLeft: "5px" }}>
+                  Voltar
+                </h4>
+              </a>
+            </div>
+          </div>
+
           <img
             src={"/assets/images/acessi+Register.PNG"}
             alt="Imagem esquerda"
@@ -107,7 +126,7 @@ export const RegisterUserComponent = () => {
           className="flex justify-content-center"
           style={{
             flex: 40,
-            background: "#f2f2f2",
+            background: "#e7e7e7",
             alignItems: "center",
             display: "flex",
             justifyContent: "center",

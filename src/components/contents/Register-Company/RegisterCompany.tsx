@@ -109,6 +109,24 @@ export const RegisterCompany = () => {
             justifyContent: "center",
           }}
         >
+          <div style={{ height: '100%' }}>
+            <div>
+              <a
+                href="/register-user"
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center"
+                }}
+              >
+                <i className="pi pi-arrow-circle-left" style={{ fontSize: '1.5rem', marginLeft: "20px" }}></i>
+                <h4 style={{ marginLeft: "5px" }}>
+                  Voltar
+                </h4>
+              </a>
+            </div>
+          </div>
+
           <img
             src={"/assets/images/acessi+Register.PNG"}
             alt="Imagem esquerda"
@@ -120,7 +138,7 @@ export const RegisterCompany = () => {
           className="flex justify-content-center"
           style={{
             flex: 40,
-            background: "#f2f2f2",
+            background: "#e7e7e7",
             alignItems: "center",
             display: "flex",
             justifyContent: "center",
@@ -180,7 +198,7 @@ export const RegisterCompany = () => {
                     )}
                   />
 
-                <Field
+                  <Field
                     name="corporateName"
                     render={({ meta, input }) => (
                       <div className="field">
@@ -333,17 +351,6 @@ export const RegisterCompany = () => {
                   />
 
                   <Button type="submit" label="Cadastrar" className="mt-2" />
-
-                  <div className="flex flex-wrap justify-content-end mt-2">
-                    <div className="flex align-items-center">
-                      <a
-                        href="/register-user"
-                        style={{ textDecoration: "none" }}
-                      >
-                        Voltar
-                      </a>
-                    </div>
-                  </div>
                 </form>
               )}
             ></Form>
