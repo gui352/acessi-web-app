@@ -8,28 +8,38 @@ import "primeicons/primeicons.css";
 export const HomePage = () => {
   return (
     <>
-      <HeaderTitle
-        titleBold={"Principais"}
-        normalTitle={"notícias"}
-        displayFilters={false}
-      />
-      <ImageGallery />
+      <div>
+        <HeaderTitle
+          titleBold={"Principais"}
+          normalTitle={"notícias"}
+          displayFilters={false}
+        />
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginTop: "1em",
-        }}
-      >
-        <Button
-          icon="pi pi-plus-circle"
-          className="p-button-text"
-          onClick={() => (window.location.href = "/news")}
-          style={{ color: "#3C4F82" }}
+        <ImageGallery />
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "94%",
+          }}
         >
-          Veja mais
-        </Button>
+          <Button
+            icon="pi pi-plus-circle"
+            // className="p-button-text"
+
+            onClick={() => (window.location.href = "/news")}
+            className="p-button-raised p-button-text"
+            style={{
+              background: "#3C4F82",
+              color: "white",
+              height: 40,
+              margin: 15,
+            }}
+          >
+            <p style={{ marginLeft: 10 }}>Veja mais</p>
+          </Button>
+        </div>
       </div>
     </>
   );

@@ -5,7 +5,6 @@ import { DeficiencyRegister } from "./DeficiencyRegister";
 
 import { HeaderTitle } from "components/HeaderTitle";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
-import { Dropdown } from "primereact/dropdown";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Button } from "primereact/button";
 import { AdressRegister } from "./AdressRegister";
