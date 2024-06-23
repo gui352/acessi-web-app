@@ -29,13 +29,13 @@ export const AdressRegister = () => {
   return (
     <>
       <SubForm columns={3}>
-        <ItemSelect
+        {/* <ItemSelect
           disabled={false}
           label="País"
           name="country"
           placeholder="Selecione aqui..."
           options={[{}, {}, {}, {}]}
-        />
+        /> */}
 
         <ItemInput
           disabled={false}
@@ -44,13 +44,13 @@ export const AdressRegister = () => {
           placeholder="Digite aqui..."
         />
 
-        <ItemSelect
+        {/* <ItemSelect
           disabled={false}
           label="Estado"
           name="state"
           placeholder="Selecione aqui..."
           options={[{}, {}, {}, {}]}
-        />
+        /> */}
       </SubForm>
 
       <SubForm columns={2}>

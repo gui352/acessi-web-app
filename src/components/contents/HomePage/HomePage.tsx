@@ -1,7 +1,7 @@
 import React from "react";
 
 import { HeaderTitle } from "components/HeaderTitle";
-import { ImageGallery } from "components/Gallery"; // Supondo que isso não dependa do Ant Design
+import { ImageGallery } from "components/Gallery";
 import { Button } from "primereact/button";
 import "primeicons/primeicons.css";
 

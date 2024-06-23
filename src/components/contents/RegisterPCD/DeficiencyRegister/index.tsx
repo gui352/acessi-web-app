@@ -8,7 +8,7 @@ export const DeficiencyRegister = () => {
   return (
     <>
       <SubForm columns={2}>
-        <ItemSelect
+        {/* <ItemSelect
           disabled={false}
           label="Tipo de deficiência"
           placeholder="Selecione aqui..."
@@ -19,9 +19,9 @@ export const DeficiencyRegister = () => {
             { label: "Deficiência mental", value: "mental" },
             { label: "Deficiência visual", value: "visual" },
           ]}
-        />
+        /> */}
 
-        <ItemSelect
+        {/* <ItemSelect
           disabled={false}
           placeholder="Selecione aqui..."
           label="Tipo de deficiência"
@@ -32,7 +32,7 @@ export const DeficiencyRegister = () => {
             { label: "Deficiência mental", value: "mental" },
             { label: "Deficiência visual", value: "visual" },
           ]}
-        />
+        /> */}
       </SubForm>
 
       <SubForm columns={2}>

@@ -3,7 +3,6 @@ import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
 import { Feedback } from "components/common/Form/FormItem";
-import { useTranslation } from "react-i18next";
 
 interface ItemInputProps extends ItemProps {
   type?;
@@ -21,7 +20,6 @@ const ItemWithoutForm = ({
   message,
   defaultValue,
 }: ItemInputProps) => {
-  const { t } = useTranslation("common");
   const { field, fieldState } = useController({ name });
 
   const _message = fieldState.error?.message
@@ -37,7 +35,7 @@ const ItemWithoutForm = ({
         disabled={disabled}
         style={{ width: "100%" }}
       />
-      {!hideFeedback && <Feedback>{t(_message)}</Feedback>}
+      {!hideFeedback && <Feedback>{_message}</Feedback>}
     </div>
   );
 };

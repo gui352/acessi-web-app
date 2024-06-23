@@ -16,17 +16,19 @@ import VLibras from "@djpfs/react-vlibras/dist/types";
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
   const value = {
-    hideOverlayOnScroll: false,
+    hideOverlayOnScroll: true,
   };
 
   let componentResult: ReactNode = {};
 
-  if (pageProps.pageName === "login") {
+  if (pageProps.defaultLayout === false) {
     componentResult = <Component {...pageProps} />;
-  } else if (pageProps.pageName === "register-user") {
-    componentResult = <Component {...pageProps} />;
-  } else if (pageProps.pageName === "forgot-password") {
-    componentResult = <Component {...pageProps} />;
+  } else if (pageProps.defaultLayout === true) {
+    componentResult = (
+      <BaseLayout>
+        <Component {...pageProps} />
+      </BaseLayout>
+    );
   } else {
     componentResult = (
       <BaseLayout>

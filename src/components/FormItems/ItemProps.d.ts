@@ -1,5 +1,5 @@
 export default interface ItemProps {
-  label: string | undefined;
+  label?: string | undefined;
   name: string;
   disabled: boolean;
   placeholder?: string;

@@ -2,7 +2,6 @@ import { RadioButton } from "primereact/radiobutton";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
-import { useTranslation } from "next-i18next";
 
 interface ItemInputProps extends ItemProps {
   type?;
@@ -17,23 +16,22 @@ const ItemYesNoWithoutForm: React.FC<ItemInputProps> = ({
   disabled,
   defaultValue,
 }) => {
-  const { t } = useTranslation("common");
   const { field } = useController({ name });
 
   const options = [
-    { label: t("buttons.yes"), value: true },
-    { label: t("buttons.no"), value: false },
+    { label: "Sim", value: true },
+    { label: "Não", value: false },
   ];
 
   return (
     <div>
       <RadioButton
-        options={options}
+        // options={options}
         {...field}
         defaultValue={defaultValue}
         disabled={disabled}
-        optionType="button"
-        buttonStyle="solid"
+        // optionType="button"
+        // buttonStyle="solid"
       />
     </div>
   );

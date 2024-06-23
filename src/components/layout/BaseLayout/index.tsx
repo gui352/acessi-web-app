@@ -26,7 +26,7 @@ export const BaseLayout: React.FC = ({ children }) => {
             {/* <div>
             </div> */}
           </React.Suspense>
-          <Footer />
+          {/* <Footer /> */}
         </Styled.ContentWrapper>
       </Styled.Wrapper>
     </div>

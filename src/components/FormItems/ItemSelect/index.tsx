@@ -3,7 +3,6 @@ import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
-import { useTranslation } from "next-i18next";
 
 interface ItemSelectProps extends ItemProps {
   rules?;
@@ -27,8 +26,6 @@ const ItemSelect = ({
   hideLabel,
   multi = false,
 }: ItemSelectProps) => {
-  const { t } = useTranslation();
-
   const { field, fieldState } = useController({ name });
 
   const _message = fieldState.error?.message
@@ -46,7 +43,7 @@ const ItemSelect = ({
       <Dropdown
         // mode={multi ? "multiple" : undefined}
         // maxTagCount={1}
-        placeholder={placeholder || t("common:placeholders.select")}
+        placeholder={placeholder || "Digite aqui..."}
         {...field}
         // showSearch
         // optionFilterProp="label"
@@ -54,6 +51,7 @@ const ItemSelect = ({
         defaultValue={defaultValue}
         disabled={disabled}
         // allowClear
+        style={{ width: 250 }}
       />
     </Form.Item>
   );

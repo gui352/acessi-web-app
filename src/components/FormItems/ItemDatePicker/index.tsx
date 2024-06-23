@@ -3,7 +3,6 @@ import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
-import { useTranslation } from "next-i18next";
 import dayjs from "dayjs";
 // import { useDateFormatter } from "hooks/useDateFormatter";
 
@@ -22,8 +21,6 @@ const ItemDatePicker = ({
   hideFeedback,
   defaultValue,
 }: ItemDatePickerProps) => {
-  const { t } = useTranslation();
-
   // const dateFormatter = useDateFormatter();
 
   const { field, fieldState } = useController({ name });
@@ -44,7 +41,7 @@ const ItemDatePicker = ({
         style={{ width: "100%" }}
         {...field}
         id={name}
-        placeholder={placeholder || t("common:placeholders.select")}
+        placeholder={placeholder || "Digite aqui..."}
         disabled={disabled}
         // value={dataValue}
         // defaultValue={defaultValue}

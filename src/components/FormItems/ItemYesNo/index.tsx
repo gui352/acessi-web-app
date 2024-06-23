@@ -3,7 +3,6 @@ import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
-import { useTranslation } from "next-i18next";
 
 interface ItemInputProps extends ItemProps {
   type?;
@@ -22,14 +21,13 @@ const ItemYesNo: React.FC<ItemInputProps> = ({
   message,
   hideLabel,
 }) => {
-  const { t } = useTranslation("common");
   const { field, fieldState } = useController({ name });
 
   const _message = fieldState.error?.message ? message : undefined;
 
   const options = [
-    { label: t("Sim"), value: true },
-    { label: t("Não"), value: false },
+    { label: "Sim", value: true },
+    { label: "Não", value: false },
   ];
 
   return (

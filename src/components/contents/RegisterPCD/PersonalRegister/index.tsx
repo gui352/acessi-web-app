@@ -49,7 +49,12 @@ export const PersonalRegister = () => {
           disabled={false}
           label="Gênero"
           name="gender"
-          options={[{}, {}, {}, {}]}
+          options={[
+            { label: "Masculino", value: "male" },
+            { label: "Feminino", value: "female" },
+            { label: "Outro", value: "other" },
+            { label: "Prefiro não declarar", value: "notDeclare" },
+          ]}
           placeholder="Selecione aqui..."
         />
       </SubForm>
@@ -59,24 +64,60 @@ export const PersonalRegister = () => {
           disabled={false}
           label="Grau de escolaridade"
           name="education"
-          options={[{}, {}, {}, {}]}
+          options={[
+            { label: "Analfabeto", value: "Analfabeto" },
+            {
+              label: "Analfabeto (Incompleto)",
+              value: "Analfabeto (Incompleto)",
+            },
+            {
+              label: "Ensino Fundamental I Completo",
+              value: "Ensino Fundamental I Completo",
+            },
+            {
+              label: "Ensino Fundamental I Incompleto",
+              value: "Ensino Fundamental I Incompleto",
+            },
+            {
+              label: "Ensino Fundamental II Completo",
+              value: "Ensino Fundamental II Completo",
+            },
+            {
+              label: "Ensino Fundamental II Incompleto",
+              value: "Ensino Fundamental II Incompleto",
+            },
+            {
+              label: "Ensino Médio Completo",
+              value: "Ensino Médio Completo",
+            },
+            {
+              label: "Ensino Médio Incompleto",
+              value: "Ensino Médio Incompleto",
+            },
+            {
+              label: "Ensino Superior Completo",
+              value: "Ensino Superior Completo",
+            },
+            {
+              label: "Ensino Superior Incompleto",
+              value: "Ensino Superior Incompleto",
+            },
+          ]}
           placeholder="Selecione aqui..."
         />
 
         <ItemSelect
-        disabled={false}
-        label="Raça/Cor"
-        name="color"
-        options={
-          [
+          disabled={false}
+          label="Raça/Cor"
+          name="color"
+          options={[
             { label: "Preta", value: "black" },
             { label: "Parda", value: "brown" },
             { label: "Amarela", value: "yellow" },
             { label: "Indígena", value: "indigenous" },
-          ]
-        }
-        placeholder="Seelecione aqui..."
-      />
+          ]}
+          placeholder="Seelecione aqui..."
+        />
       </SubForm>
 
       <SubForm columns={2}>
@@ -88,8 +129,6 @@ export const PersonalRegister = () => {
           name="isUsePublicTransport"
         />
       </SubForm>
-
-
     </>
   );
 };
