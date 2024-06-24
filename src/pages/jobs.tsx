@@ -1,5 +1,4 @@
 import { JobsComponent } from "components/contents/Jobs/Jobs";
-import { BaseLayout } from "components/layout/BaseLayout";
 import { getServerSideTranslations } from "configs/language/server";
 import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";

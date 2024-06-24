@@ -1,9 +1,8 @@
-import { InputNumber } from "antd";
+import { InputNumber } from "primereact/inputnumber";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
 import { Feedback } from "components/common/Form/FormItem";
-import { useTranslation } from "react-i18next";
 
 interface ItemInputProps extends ItemProps {
   min?: number;
@@ -25,7 +24,6 @@ const ItemNumberWithoutFromItem = ({
   max,
   defaultValue,
 }: ItemInputProps) => {
-  const { t } = useTranslation("common");
   const { field, fieldState } = useController({ name });
 
   const _message = fieldState.error?.message
@@ -43,7 +41,7 @@ const ItemNumberWithoutFromItem = ({
         max={max}
         style={{ width: "100%" }}
       />
-      {!hideFeedback && <Feedback>{t(_message)}</Feedback>}
+      {!hideFeedback && <Feedback>{_message}</Feedback>}
     </div>
   );
 };

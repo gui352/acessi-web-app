@@ -1,4 +1,3 @@
-import { Button, Form, Input, InputNumber } from "antd";
 import ItemInput from "components/FormItems/ItemInput";
 import ItemNumber from "components/FormItems/ItemNumber";
 import ItemSelect from "components/FormItems/ItemSelect";
@@ -30,13 +29,13 @@ export const AdressRegister = () => {
   return (
     <>
       <SubForm columns={3}>
-        <ItemInput
+        {/* <ItemSelect
           disabled={false}
           label="País"
           name="country"
           placeholder="Selecione aqui..."
-          // options={[{}, {}, {}, {}]}
-        />
+          options={[{}, {}, {}, {}]}
+        /> */}
 
         <ItemInput
           disabled={false}
@@ -45,13 +44,13 @@ export const AdressRegister = () => {
           placeholder="Digite aqui..."
         />
 
-        <ItemInput
+        {/* <ItemSelect
           disabled={false}
           label="Estado"
           name="state"
           placeholder="Selecione aqui..."
-          // options={[{}, {}, {}, {}]}
-        />
+          options={[{}, {}, {}, {}]}
+        /> */}
       </SubForm>
 
       <SubForm columns={2}>

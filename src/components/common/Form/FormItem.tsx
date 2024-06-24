@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useTranslation } from "next-i18next";
 
 export type FormItemProps = {
   label?: string;
@@ -11,7 +10,6 @@ export type FormItemProps = {
 };
 
 export function FormItem(props: FormItemProps) {
-  const { t } = useTranslation("common");
   const label = props.label;
   const message = props.message ?? "";
   const name = props.name;
@@ -27,7 +25,7 @@ export function FormItem(props: FormItemProps) {
         <span>&nbsp;</span>
       )}
       {children}
-      {!hideFeedback && <Feedback>{t(message)}</Feedback>}
+      {!hideFeedback && <Feedback>{message}</Feedback>}
     </Wrapper>
   );
 }

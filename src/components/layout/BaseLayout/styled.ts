@@ -11,9 +11,7 @@ export const Wrapper = styled(Layout)`
 
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "header header"
-    "sider content";
+  grid-template-areas: "sider content";
 `;
 
 export const ContentWrapper = styled.main`

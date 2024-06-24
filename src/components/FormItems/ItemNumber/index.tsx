@@ -1,4 +1,4 @@
-import { InputNumber } from "antd";
+import { InputNumber } from "primereact/inputnumber";
 import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
@@ -52,8 +52,8 @@ const ItemNumber = ({
         min={min}
         max={max}
         style={{ width: "100%" }}
-        addonAfter={addonAfter}
-        addonBefore={addonBefore}
+        // addonAfter={addonAfter}
+        // addonBefore={addonBefore}
       />
     </Form.Item>
   );

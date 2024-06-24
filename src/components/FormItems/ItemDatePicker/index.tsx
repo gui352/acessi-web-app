@@ -1,9 +1,8 @@
-import { DatePicker } from "antd";
+import { Calendar } from "primereact/calendar";
 import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
-import { useTranslation } from "next-i18next";
 import dayjs from "dayjs";
 // import { useDateFormatter } from "hooks/useDateFormatter";
 
@@ -22,8 +21,6 @@ const ItemDatePicker = ({
   hideFeedback,
   defaultValue,
 }: ItemDatePickerProps) => {
-  const { t } = useTranslation();
-
   // const dateFormatter = useDateFormatter();
 
   const { field, fieldState } = useController({ name });
@@ -40,14 +37,14 @@ const ItemDatePicker = ({
       hideFeedback={hideFeedback}
       message={_message}
     >
-      <DatePicker
+      <Calendar
         style={{ width: "100%" }}
         {...field}
         id={name}
-        placeholder={placeholder || t("common:placeholders.select")}
+        placeholder={placeholder || "Digite aqui..."}
         disabled={disabled}
-        value={dataValue}
-        defaultValue={defaultValue}
+        // value={dataValue}
+        // defaultValue={defaultValue}
         onChange={(date) => {
           if (date === null) {
             field.onChange(date);
@@ -55,7 +52,7 @@ const ItemDatePicker = ({
             field.onChange(date.toDate().toISOString());
           }
         }}
-        format={"DD/MM/YYYY"}
+        // format={"DD/MM/YYYY"}
       />
     </Form.Item>
   );

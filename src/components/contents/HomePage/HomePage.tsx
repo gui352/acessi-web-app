@@ -1,28 +1,45 @@
 import React from "react";
 
 import { HeaderTitle } from "components/HeaderTitle";
-import { ImageGallery } from "components/Galery";
-import { Button } from "antd";
-import { PlusCircleFilled, PlusOutlined } from "@ant-design/icons";
+import { ImageGallery } from "components/Gallery";
+import { Button } from "primereact/button";
+import "primeicons/primeicons.css";
 
 export const HomePage = () => {
   return (
     <>
-      <HeaderTitle
-        normalTitle={"notícias"}
-        titleBold={"Principais"}
-        displayFilters={false}
-      />
-      <ImageGallery />
+      <div>
+        <HeaderTitle
+          titleBold={"Principais"}
+          normalTitle={"notícias"}
+          displayFilters={false}
+        />
 
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button
-          icon={<PlusCircleFilled />}
-          href="/news"
-          style={{ color: "#3C4F82" }}
+        <ImageGallery />
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "94%",
+          }}
         >
-          Veja mais
-        </Button>
+          <Button
+            icon="pi pi-plus-circle"
+            // className="p-button-text"
+
+            onClick={() => (window.location.href = "/news")}
+            className="p-button-raised p-button-text"
+            style={{
+              background: "#3C4F82",
+              color: "white",
+              height: 40,
+              margin: 15,
+            }}
+          >
+            <p style={{ marginLeft: 10 }}>Veja mais</p>
+          </Button>
+        </div>
       </div>
     </>
   );

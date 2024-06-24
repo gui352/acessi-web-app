@@ -1,8 +1,9 @@
 import React from "react";
-import { Typography, Input, Button } from "antd";
-import { FilterOutlined } from "@ant-design/icons";
-
-const { Title } = Typography;
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import "primereact/resources/themes/saga-blue/theme.css"; // Tema
+import "primereact/resources/primereact.min.css"; // core css
+import "primeicons/primeicons.css"; // Ícones
 
 interface PropsHeaderTitle {
   titleBold: string;
@@ -18,49 +19,39 @@ export const HeaderTitle = ({
   return (
     <div
       style={{
-        padding: "10px",
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "base-line",
+        alignItems: "baseline",
+        marginBottom: 40,
+        marginLeft: "5%"
       }}
     >
       <div
         style={{ display: "flex", alignItems: "baseline", color: "#3C4F82" }}
       >
-        <Title
-          level={2}
+        <h2
           style={{
             fontWeight: "bold",
+            fontSize: 40,
             marginRight: "10px",
             marginBottom: "0",
             color: "#3C4F82",
           }}
         >
           {titleBold}
-        </Title>
-        <span
-          style={{
-            fontSize: 20,
-            color: "#3C4F82",
-          }}
-        >
-          {normalTitle}
-        </span>
+        </h2>
+        <span style={{ fontSize: 25, color: "#3C4F82" }}>{normalTitle}</span>
       </div>
 
-      <div
-        style={{
-          // display: "flex",
-          alignItems: "center",
-          display: displayFilters === false ? "none" : "flex",
-        }}
-      >
-        <Input.Search
-          placeholder="Pesquisar..."
-          style={{ marginRight: "10px" }}
-        />
-        <Button type="primary" icon={<FilterOutlined />} />
-      </div>
+      {displayFilters !== false && (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <InputText
+            placeholder="Pesquisar..."
+            style={{ marginRight: "10px" }}
+          />
+          <Button icon="pi pi-filter" className="p-button-primary" />
+        </div>
+      )}
     </div>
   );
 };

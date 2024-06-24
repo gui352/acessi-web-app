@@ -1,6 +1,4 @@
 import React from "react";
-import { Card, Button } from "antd";
-import { EllipsisOutlined } from "@ant-design/icons";
 
 export const ImageGallery = () => {
   return (
@@ -8,7 +6,9 @@ export const ImageGallery = () => {
       style={{
         display: "flex",
         flexDirection: "row",
-        // alignItems: "center",
+        alignContent: "space-between",
+        justifyContent: "center",
+        height: "100%",
       }}
     >
       {/* Imagem à Esquerda (Maior) */}
@@ -17,19 +17,19 @@ export const ImageGallery = () => {
         <img
           src="/assets/images/accessible.jpg"
           alt="Imagem Esquerda"
-          style={{ borderRadius: 3, width: "97%", height: "auto" }}
+          style={{ borderRadius: 3, width: "90%", height: "auto" }}
         />
         <div
           style={{
             position: "absolute",
-            bottom: 0,
+            bottom: 10,
             left: 0,
             background: "rgba(0, 0, 0, 0.3)",
             color: "white",
             padding: "8px",
-            width: "97%",
+            width: "95%",
             boxSizing: "border-box",
-            borderRadius: 3,
+            borderRadius: "0px 0px 10px 10px",
           }}
         >
           Legenda da Imagem Esquerda
@@ -56,19 +56,19 @@ export const ImageGallery = () => {
           <img
             src="/assets/images/accessible.jpg"
             alt="Imagem Direita 1"
-            style={{ borderRadius: 3, width: "100%", height: "auto" }}
+            style={{ borderRadius: 3, width: "100%", height: "90%" }}
           />
           <div
             style={{
               position: "absolute",
-              bottom: 0,
+              bottom: 33,
               left: 0,
               background: "rgba(0, 0, 0, 0.3)",
               color: "white",
               padding: "8px",
-              width: "100%",
+              width: "95%",
               boxSizing: "border-box",
-              borderRadius: 3,
+              borderRadius: "0px 0px 10px 10px",
             }}
           >
             Legenda da Imagem Direita 1
@@ -91,14 +91,14 @@ export const ImageGallery = () => {
           <div
             style={{
               position: "absolute",
-              bottom: 0,
+              bottom: 2,
               left: 0,
               background: "rgba(0, 0, 0, 0.3)",
               color: "white",
               padding: "8px",
-              width: "100%",
+              width: "95%",
               boxSizing: "border-box",
-              borderRadius: 3,
+              borderRadius: "0px 0px 10px 10px",
             }}
           >
             Legenda da Imagem Direita 2
