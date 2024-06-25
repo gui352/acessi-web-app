@@ -10,6 +10,7 @@ export class AvaliationLocalService {
   }
 
   CreateAvaliationLocal(avaliationLocal: AvaliationLocalModel) {
+    console.log("chegou objeto no ", avaliationLocal);
     const createAvaliation = () => {
       return axios
         .post(`${this.ApiUrl}/avaliation`, avaliationLocal)

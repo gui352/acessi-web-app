@@ -19,17 +19,19 @@ import { RadioButton } from "primereact/radiobutton";
 import { Tooltip } from "primereact/tooltip";
 import { FileUpload } from "primereact/fileupload";
 import { ProgressBar } from "primereact/progressbar";
+import { set } from "react-hook-form";
 
 export const RegisterAvaliationLocal = () => {
-  const avaliationLocalService = new AvaliationLocalService();
-
   let emptyAvaliation: AvaliationLocalModel = {
     idLocalAvaliation: 0,
     name: "",
     imageAvaliationLocal: [],
-    typeLocalAvaliation: LocalAvaliationType.Another, // Provide a valid value for typeLocalAvaliation
+    typeLocalAvaliation: LocalAvaliationType.Another,
   };
 
+  const avaliationLocalService = new AvaliationLocalService();
+  const toast = useRef(null);
+  const dt = useRef(null);
   const [products, setProducts] = useState(null);
   const [productDialog, setProductDialog] = useState(false);
   const [deleteProductDialog, setDeleteProductDialog] = useState(false);
@@ -38,147 +40,6 @@ export const RegisterAvaliationLocal = () => {
   const [selectedProducts, setSelectedProducts] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [globalFilter, setGlobalFilter] = useState(null);
-  const toast = useRef(null);
-  const dt = useRef(null);
-  const [totalSize, setTotalSize] = useState(0);
-  const fileUploadRef = useRef(null);
-
-  const onTemplateSelect = (e) => {
-    let _totalSize = totalSize;
-    let files = e.files;
-
-    Object.keys(files).forEach((key) => {
-      _totalSize += files[key].size || 0;
-    });
-
-    setTotalSize(_totalSize);
-  };
-
-  const onTemplateUpload = (e) => {
-    let _totalSize = 0;
-
-    e.files.forEach((file) => {
-      _totalSize += file.size || 0;
-    });
-
-    setTotalSize(_totalSize);
-    toast.current.show({
-      severity: "info",
-      summary: "Success",
-      detail: "File Uploaded",
-    });
-  };
-
-  const onTemplateRemove = (file, callback) => {
-    setTotalSize(totalSize - file.size);
-    callback();
-  };
-
-  const onTemplateClear = () => {
-    setTotalSize(0);
-  };
-
-  const headerTemplate = (options) => {
-    const { className, chooseButton, uploadButton, cancelButton } = options;
-    const value = totalSize / 10000;
-    const formatedValue =
-      fileUploadRef && fileUploadRef.current
-        ? fileUploadRef.current.formatSize(totalSize)
-        : "0 B";
-
-    return (
-      <div
-        className={className}
-        style={{
-          backgroundColor: "transparent",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        {chooseButton}
-        {uploadButton}
-        {cancelButton}
-        <div className="flex align-items-center gap-3 ml-auto">
-          <span>{formatedValue} / 1 MB</span>
-          <ProgressBar
-            value={value}
-            showValue={false}
-            style={{ width: "10rem", height: "12px" }}
-          ></ProgressBar>
-        </div>
-      </div>
-    );
-  };
-
-  const itemTemplate = (file, props) => {
-    return (
-      <div className="flex align-items-center flex-wrap">
-        <div className="flex align-items-center" style={{ width: "40%" }}>
-          <img
-            alt={file.name}
-            role="presentation"
-            src={file.objectURL}
-            width={100}
-          />
-          <span className="flex flex-column text-left ml-3">
-            {file.name}
-            <small>{new Date().toLocaleDateString()}</small>
-          </span>
-        </div>
-        <Tag
-          value={props.formatSize}
-          severity="warning"
-          className="px-3 py-2"
-        />
-        <Button
-          type="button"
-          icon="pi pi-times"
-          className="p-button-outlined p-button-rounded p-button-danger ml-auto"
-          onClick={() => onTemplateRemove(file, props.onRemove)}
-        />
-      </div>
-    );
-  };
-
-  const emptyTemplate = () => {
-    return (
-      <div className="flex align-items-center flex-column">
-        <i
-          className="pi pi-image mt-3 p-5"
-          style={{
-            fontSize: "5em",
-            borderRadius: "50%",
-            backgroundColor: "var(--surface-b)",
-            color: "var(--surface-d)",
-          }}
-        ></i>
-        <span
-          style={{ fontSize: "1.2em", color: "var(--text-color-secondary)" }}
-          className="my-5"
-        >
-          Clique e arraste a imagem aqui
-        </span>
-      </div>
-    );
-  };
-
-  const chooseOptions = {
-    icon: "pi pi-fw pi-images",
-    iconOnly: true,
-    className: "custom-choose-btn p-button-rounded p-button-outlined",
-  };
-  const uploadOptions = {
-    icon: "pi pi-fw pi-cloud-upload",
-    iconOnly: true,
-    className:
-      "custom-upload-btn p-button-success p-button-rounded p-button-outlined",
-  };
-  const cancelOptions = {
-    icon: "pi pi-fw pi-times",
-    iconOnly: true,
-    className:
-      "custom-cancel-btn p-button-danger p-button-rounded p-button-outlined",
-  };
 
   useEffect(() => {
     avaliationLocalService
@@ -222,7 +83,7 @@ export const RegisterAvaliationLocal = () => {
 
     if (
       product.name.trim() &&
-      // product.imageAvaliationLocal.length > 0 &&
+      product.imageAvaliationLocal.length > 0 &&
       product.typeLocalAvaliation
     ) {
       if (product.idLocalAvaliation) {
@@ -256,6 +117,7 @@ export const RegisterAvaliationLocal = () => {
         };
 
         createAvaliation();
+        console.log(`apos adicionado`, _products);
         toast.current.show({
           severity: "success",
           summary: "Sucesso",
@@ -271,8 +133,6 @@ export const RegisterAvaliationLocal = () => {
         life: 3000,
       });
     }
-    console.log("lista de produtos apos  de salvar/editar", products);
-
     setProducts(_products);
     setProductDialog(false);
     setProduct(emptyAvaliation);
@@ -384,10 +244,6 @@ export const RegisterAvaliationLocal = () => {
     );
   };
 
-  const priceBodyTemplate = (rowData) => {
-    return formatCurrency(rowData.price);
-  };
-
   const ratingBodyTemplate = (rowData) => {
     return <Rating value={rowData.rating} readOnly cancel={false} />;
   };
@@ -469,6 +325,21 @@ export const RegisterAvaliationLocal = () => {
       />
     </React.Fragment>
   );
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    let _product = { ...product };
+
+    reader.onload = (progressEvent) => {
+      const arrayBuffer = progressEvent.target.result as ArrayBuffer;
+      const uint8Array = Array.from(new Uint8Array(arrayBuffer));
+      _product.imageAvaliationLocal = uint8Array;
+      setProduct(_product);
+    };
+    reader.readAsArrayBuffer(file);
+    console.log(`produto adicionado`, _product);
+  };
 
   return (
     <div>
@@ -648,25 +519,9 @@ export const RegisterAvaliationLocal = () => {
             content="Clear"
             position="bottom"
           />
-
-          <FileUpload
-            ref={fileUploadRef}
-            name="demo[]"
-            url="/api/upload"
-            multiple
-            accept="image/*"
-            maxFileSize={1000000}
-            onUpload={onTemplateUpload}
-            onSelect={onTemplateSelect}
-            onError={onTemplateClear}
-            onClear={onTemplateClear}
-            headerTemplate={headerTemplate}
-            itemTemplate={itemTemplate}
-            emptyTemplate={emptyTemplate}
-            chooseOptions={chooseOptions}
-            uploadOptions={uploadOptions}
-            cancelOptions={cancelOptions}
-          />
+        </div>
+        <div>
+          <input type="file" onChange={handleFileChange} />
         </div>
       </Dialog>
 

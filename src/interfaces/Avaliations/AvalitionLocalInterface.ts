@@ -4,12 +4,12 @@ export enum LocalAvaliationType {
   Park = "Park",
   Public = "Public",
   Private = "Private",
-  Another = "Another"
+  Another = "Another",
 }
 
 export interface AvaliationLocalModel {
   idLocalAvaliation: number | null;
   name: string;
-  imageAvaliationLocal: number[] | Uint8Array;
+  imageAvaliationLocal: number[];
   typeLocalAvaliation: LocalAvaliationType;
 }
