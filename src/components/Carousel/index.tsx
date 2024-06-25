@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "primereact/carousel";
-import { CardComponent } from "components/Card";
+import CardComponent from "components/Card";
 
 export const CarouselComponent = ({ data }) => {
   const dataTemplate = (data) => {

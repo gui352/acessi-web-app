@@ -1,4 +1,4 @@
-import { NewsComponent } from "components/contents/News/News";
+import { NewsComponent } from "components/contents/News";
 import { getServerSideTranslations } from "configs/language/server";
 import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";
