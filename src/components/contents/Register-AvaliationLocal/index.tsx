@@ -40,19 +40,13 @@ export const RegisterAvaliationLocal = () => {
   const [selectedProducts, setSelectedProducts] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [globalFilter, setGlobalFilter] = useState(null);
+  const [imageAvaliation, setImageAvaliation] = useState(null);
 
   useEffect(() => {
     avaliationLocalService
       .GetAllAvaliations()
       .then((response) => setProducts(response.data));
   }, []);
-
-  const formatCurrency = (value) => {
-    return value.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
 
   const openNew = () => {
     setProduct(emptyAvaliation);
@@ -63,6 +57,7 @@ export const RegisterAvaliationLocal = () => {
   const hideDialog = () => {
     setSubmitted(false);
     setProductDialog(false);
+    setImageAvaliation("");
   };
 
   const hideDeleteProductDialog = () => {
@@ -136,6 +131,7 @@ export const RegisterAvaliationLocal = () => {
     setProducts(_products);
     setProductDialog(false);
     setProduct(emptyAvaliation);
+    setImageAvaliation("");
   };
 
   const editProduct = (product) => {
@@ -233,17 +229,6 @@ export const RegisterAvaliationLocal = () => {
     );
   };
 
-  const imageBodyTemplate = (rowData) => {
-    return (
-      <img
-        src={`https://primefaces.org/cdn/primereact/images/product/${rowData.image}`}
-        alt={rowData.image}
-        className="shadow-2 border-round"
-        style={{ width: "64px" }}
-      />
-    );
-  };
-
   const ratingBodyTemplate = (rowData) => {
     return <Rating value={rowData.rating} readOnly cancel={false} />;
   };
@@ -327,6 +312,9 @@ export const RegisterAvaliationLocal = () => {
   );
 
   const handleFileChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImageAvaliation(URL.createObjectURL(event.target.files[0]));
+    }
     const file = event.target.files[0];
     const reader = new FileReader();
     let _product = { ...product };
@@ -338,7 +326,6 @@ export const RegisterAvaliationLocal = () => {
       setProduct(_product);
     };
     reader.readAsArrayBuffer(file);
-    console.log(`produto adicionado`, _product);
   };
 
   return (
@@ -357,7 +344,7 @@ export const RegisterAvaliationLocal = () => {
           rows={10}
           rowsPerPageOptions={[5, 10, 25]}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} avaliations"
           globalFilter={globalFilter}
           header={header}
         >
@@ -366,11 +353,6 @@ export const RegisterAvaliationLocal = () => {
             header="Name"
             sortable
             style={{ minWidth: "16rem" }}
-          ></Column>
-          <Column
-            field="image"
-            header="Imagem Local"
-            body={imageBodyTemplate}
           ></Column>
           <Column
             field="typeLocalAvaliation"
@@ -403,13 +385,6 @@ export const RegisterAvaliationLocal = () => {
         footer={productDialogFooter}
         onHide={hideDialog}
       >
-        {product.imageAvaliationLocal && (
-          <img
-            // src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`}
-            // alt={product.imageAvaliationLocal}
-            className="product-image block m-auto pb-3"
-          />
-        )}
         <div className="field">
           <label htmlFor="name" className="font-bold">
             Nome
@@ -520,8 +495,9 @@ export const RegisterAvaliationLocal = () => {
             position="bottom"
           />
         </div>
-        <div>
-          <input type="file" onChange={handleFileChange} />
+        <div style={{ width: "300px", height: "300px" }}>
+          <input type="file" onChange={handleFileChange} className="filetype" />
+          <img src={imageAvaliation} />
         </div>
       </Dialog>
 

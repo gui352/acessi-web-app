@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps = async (req) => {
   return {
     props: {
       ...translations,
-      defaultLayout: false,
+      defaultLayout: true,
     },
   };
 };
