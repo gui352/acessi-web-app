@@ -1,9 +1,10 @@
-import { Input } from "antd";
+// import { InputText } from "primereact/inputtext";
 import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
-import { useTranslation } from "next-i18next";
+import { InputText } from "primereact/inputtext";
+
 interface ItemInputProps extends ItemProps {
   type?;
   defaultValue?;
@@ -21,7 +22,6 @@ const ItemInput: React.FC<ItemInputProps> = ({
   hideFeedback,
   message,
 }) => {
-  const { t } = useTranslation("common");
   const { field, fieldState } = useController({ name });
 
   const _message = fieldState.error?.message
@@ -35,12 +35,14 @@ const ItemInput: React.FC<ItemInputProps> = ({
       message={_message}
       hideFeedback={hideFeedback}
     >
-      <Input
+      <InputText
         type={type}
-        placeholder={placeholder || t("common:placeholders.input")}
+        placeholder={placeholder || "Digite aqui..."}
         {...field}
         defaultValue={defaultValue}
         disabled={disabled}
+        // addon={false}
+        // className={_highlight ? "p_invalid" : ""}
       />
     </Form.Item>
   );

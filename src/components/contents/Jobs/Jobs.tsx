@@ -1,4 +1,4 @@
-import { CardComponent } from "components/Card";
+import CardComponent from "components/Card";
 import { CarouselComponent } from "components/Carousel";
 import { HeaderTitle } from "components/HeaderTitle";
 import React from "react";
@@ -73,7 +73,7 @@ export const JobsComponent = () => {
       <CarouselComponent data={jobsData} />
       <div style={{ marginTop: 50 }}>
         {jobsData.map((n, i) => (
-          <CardComponent {...n} />
+          <CardComponent summaryDisplay={undefined} logoVisible={undefined} {...n} />
         ))}
       </div>
     </>

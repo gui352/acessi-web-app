@@ -53,5 +53,8 @@
   "material-icon-theme.folders.associations": {
     "hooks": "stylus",
     "types": "typescript"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }

@@ -6,7 +6,6 @@ export interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ className }) => {
-  const { t } = useTranslation("layout");
   const siteName = process.env.SITE_NAME;
 
   return (
