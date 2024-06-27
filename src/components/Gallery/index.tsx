@@ -8,21 +8,23 @@ export const ImageGallery = () => {
         flexDirection: "row",
         alignContent: "space-between",
         justifyContent: "center",
-        height: "100%",
+        width: "100%",
+        height: "70%",
+        marginBottom: 30
       }}
     >
       {/* Imagem à Esquerda (Maior) */}
 
-      <div style={{ position: "relative", marginBottom: "10px", width: "70%" }}>
+      <div style={{ position: "relative", width: "70%", height: "100%" }}>
         <img
           src="/assets/images/accessible.jpg"
           alt="Imagem Esquerda"
-          style={{ borderRadius: 3, width: "90%", height: "auto" }}
+          style={{ borderRadius: 3, width: "95%", height: "100%" }}
         />
         <div
           style={{
             position: "absolute",
-            bottom: 10,
+            bottom: 0,
             left: 0,
             background: "rgba(0, 0, 0, 0.3)",
             color: "white",
@@ -42,31 +44,33 @@ export const ImageGallery = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          width: "33%",
+          width: "30%",
+          height: "100%"
         }}
       >
         {/* Primeira Imagem à Direita (Menor) */}
         <div
           style={{
             position: "relative",
-            marginBottom: "10px",
-            flex: "1 0 30%",
+            marginBottom: "20px",
+            flex: "0 0 30%",
+            height: "48%"
           }}
         >
           <img
             src="/assets/images/accessible.jpg"
             alt="Imagem Direita 1"
-            style={{ borderRadius: 3, width: "100%", height: "90%" }}
+            style={{ borderRadius: 3, width: "100%", height: "100%" }}
           />
           <div
             style={{
               position: "absolute",
-              bottom: 33,
+              bottom: 0,
               left: 0,
               background: "rgba(0, 0, 0, 0.3)",
               color: "white",
               padding: "8px",
-              width: "95%",
+              width: "100%",
               boxSizing: "border-box",
               borderRadius: "0px 0px 10px 10px",
             }}
@@ -79,24 +83,25 @@ export const ImageGallery = () => {
         <div
           style={{
             position: "relative",
-            marginBottom: "10px",
-            flex: "1 0 30%",
+            // marginBottom: "10px",
+            flex: "0 0 30%",
+            height: "48%"
           }}
         >
           <img
             src="/assets/images/accessible.jpg"
             alt="Imagem Direita 2"
-            style={{ borderRadius: 3, width: "100%", height: "auto" }}
+            style={{ borderRadius: 3, width: "100%", height: "100%" }}
           />
           <div
             style={{
               position: "absolute",
-              bottom: 2,
+              bottom: 0,
               left: 0,
               background: "rgba(0, 0, 0, 0.3)",
               color: "white",
               padding: "8px",
-              width: "95%",
+              width: "100%",
               boxSizing: "border-box",
               borderRadius: "0px 0px 10px 10px",
             }}

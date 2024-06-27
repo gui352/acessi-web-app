@@ -8,7 +8,7 @@ import "primeicons/primeicons.css";
 export const HomePage = () => {
   return (
     <>
-      <div>
+      <div style={{ height: "100%" }}>
         <HeaderTitle
           titleBold={"Principais"}
           normalTitle={"notícias"}
@@ -21,7 +21,6 @@ export const HomePage = () => {
           style={{
             display: "flex",
             justifyContent: "flex-end",
-            width: "94%",
           }}
         >
           <Button
