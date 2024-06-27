@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { Layout } from "antd";
+// import { Layout } from "antd";
 
 import { Header } from "../Header";
 import { Sider } from "../Sider";
 
-export const Wrapper = styled(Layout)`
+export const Wrapper = styled("div")`
   display: grid;
 
   height: 100vh;

@@ -72,7 +72,7 @@ export const Sider: React.FC<SiderProps> = ({ className }) => {
 
   return (
     <>
-      <Menu model={model} style={{ width: 250, border: "none" }} />
+      <Menu model={model} style={{ width: 250, height: "100%", border: "none" }} />
     </>
   );
 };

@@ -8,7 +8,7 @@ import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Button } from "primereact/button";
 import { AdressRegister } from "./AdressRegister";
-import { DisabilityTypeService } from "../../../services/PCD/DisabilityTypeService";
+// import { DisabilityTypeService } from "../../../services/PCD/DisabilityTypeService";
 import { PCDService } from "../../../services/PCD/PCDService";
 import { PCDModel } from "../../../interfaces/PCD/PCDInterface";
 import { AddressModel } from "../../../interfaces/Adress/AddressInterface";
@@ -17,7 +17,7 @@ import ItemSelect from "components/FormItems/ItemSelect";
 
 export const RegisterPCDComponent = () => {
   const [selectedDeficiency, setSelectedDeficiency] = React.useState(null);
-  const disabilityTypeService = new DisabilityTypeService();
+  // const disabilityTypeService = new DisabilityTypeService();
 
   const deficiency = [
     { label: "Auditiva", value: "Auditiva" },
@@ -71,15 +71,15 @@ export const RegisterPCDComponent = () => {
   const methods = useFormContext();
   const [disabilityType, setDisabilityType] = useState([]);
 
-  useEffect(() => {
-    disabilityTypeService.GetType().then((res) => {
-      const types = [];
-      for (const type in res.data) {
-        types.push({ value: type, label: res.data[type] });
-      }
-      setDisabilityType(types);
-    });
-  }, []);
+  // useEffect(() => {
+  //   disabilityTypeService.GetType().then((res) => {
+  //     const types = [];
+  //     for (const type in res.data) {
+  //       types.push({ value: type, label: res.data[type] });
+  //     }
+  //     setDisabilityType(types);
+  //   });
+  // }, []);
 
   // const onSubmit = (data) => console.log(data);
 

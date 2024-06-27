@@ -23,7 +23,6 @@ export const HeaderTitle = ({
         justifyContent: "space-between",
         alignItems: "baseline",
         marginBottom: 40,
-        marginLeft: "5%"
       }}
     >
       <div

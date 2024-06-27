@@ -4,6 +4,7 @@ import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { ColDef } from "ag-grid-community";
+import { HeaderTitle } from "components/HeaderTitle";
 
 interface IRow {
   id: number;
@@ -109,12 +110,19 @@ export const DashboardPage = () => {
 
   return (
     <>
+
+      <HeaderTitle titleBold={"Gráficos"} normalTitle={"e relatórios"} displayFilters={false} />
       <div
         className={"ag-theme-alpine"}
-        style={{ width: "100%", height: "50%" }}
+        style={{ width: "100%", height: "100%" }}
       >
         <AgGridReact rowData={rowData} columnDefs={colDefs} />
+        <AgGridReact rowData={rowData} columnDefs={colDefs} />
+
+        <AgGridReact rowData={rowData} columnDefs={colDefs} />
+
       </div>
+
     </>
   );
 };
