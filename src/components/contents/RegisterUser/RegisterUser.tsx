@@ -97,9 +97,9 @@ export const RegisterUserComponent = () => {
           }}
         >
           <img
-            src={"/assets/images/ImageAccessibility.svg"}
+            src={"/assets/images/acessi+Register.PNG"}
             alt="Imagem esquerda"
-            style={{ width: "60%" }}
+            style={{ width: "90%" }}
           />
         </div>
 
@@ -261,6 +261,17 @@ export const RegisterUserComponent = () => {
                   />
 
                   <Button type="submit" label="Cadastrar" className="mt-2" />
+
+                  <div className="flex flex-wrap justify-content-end mt-2">
+                    <div className="flex align-items-center">
+                      <a
+                        href="/register-company"
+                        style={{ textDecoration: "none" }}
+                      >
+                        É uma empresa?
+                      </a>
+                    </div>
+                  </div>
                 </form>
               )}
             ></Form>
