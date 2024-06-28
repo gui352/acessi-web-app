@@ -31,7 +31,7 @@ export const RegisterPCDComponent = () => {
     { label: "Outra", value: "OUTRA" },
   ];
 
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, reset } = useForm();
   const toastRef = useRef(null);
 
   const onSubmit = (data) => {
@@ -66,6 +66,12 @@ export const RegisterPCDComponent = () => {
         message.open({
           type: "success",
           content: "Cadastro concluído com sucesso",
+        });
+        reset();
+      } else {
+        message.open({
+          type: "error",
+          content: "Erro ao cadastrar o PCD.",
         });
       }
     });
