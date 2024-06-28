@@ -77,7 +77,7 @@ export const AdressRegister = () => {
           placeholder="Digite aqui..."
         />
 
-        <ItemNumber
+        <ItemInput
           disabled={false}
           label="Número"
           name="numberHome"

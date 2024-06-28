@@ -49,10 +49,11 @@ const ItemDatePicker = ({
           if (date === null) {
             field.onChange(date);
           } else {
-            field.onChange(date.toDate().toISOString());
+            // console.log(date.toDate().toISOString())
+            field.onChange(date);
           }
         }}
-        // format={"DD/MM/YYYY"}
+      // format={"DD/MM/YYYY"}
       />
     </Form.Item>
   );
