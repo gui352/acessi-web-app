@@ -110,12 +110,16 @@ export const PersonalRegister = () => {
           disabled={false}
           label="Raça/Cor"
           name="color"
-          options={[
-            { label: "Preta", value: "black" },
-            { label: "Parda", value: "brown" },
-            { label: "Amarela", value: "yellow" },
-            { label: "Indígena", value: "indigenous" },
-          ]}
+          options={
+            [
+              { value: "white", label: "Branco" },
+              { value: "black", label: "Preto" },
+              { value: "brown", label: "Pardo" },
+              { value: "yellow", label: "Amarelo" },
+              { value: "indigenous", label: "Indígena" },
+              { label: "Prefiro não declarar", value: "notDeclare" },
+            ]
+          }
           placeholder="Seelecione aqui..."
         />
       </SubForm>

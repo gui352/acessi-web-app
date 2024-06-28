@@ -8,7 +8,7 @@ interface ItemInputProps extends ItemProps {
   min?: number;
   max?: number;
   type?;
-  defaultValue?;
+  // defaultValue?;
   hideLabel?: boolean;
   hideFeedback?: boolean;
   message?: string;
@@ -25,7 +25,7 @@ const ItemNumber = ({
   addonAfter,
   addonBefore,
   max,
-  defaultValue,
+  // defaultValue,
   hideLabel,
   message,
   hideFeedback,
@@ -47,13 +47,13 @@ const ItemNumber = ({
       <InputNumber
         placeholder={placeholder}
         {...field}
-        defaultValue={defaultValue}
+        // defaultValue={defaultValue}
         disabled={disabled}
         min={min}
         max={max}
         style={{ width: "100%" }}
-        // addonAfter={addonAfter}
-        // addonBefore={addonBefore}
+      // addonAfter={addonAfter}
+      // addonBefore={addonBefore}
       />
     </Form.Item>
   );
