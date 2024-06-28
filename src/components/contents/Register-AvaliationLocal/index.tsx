@@ -119,6 +119,8 @@ export const RegisterAvaliationLocal = () => {
           detail: "Avaliação criada",
           life: 3000,
         });
+
+        window.location.reload();
       }
     } else {
       toast.current.show({
@@ -218,13 +220,13 @@ export const RegisterAvaliationLocal = () => {
           severity="success"
           onClick={openNew}
         />
-        <Button
+        {/* <Button
           label="Delete"
           icon="pi pi-trash"
           severity="danger"
           onClick={confirmDeleteSelected}
           disabled={!selectedProducts || !selectedProducts.length}
-        />
+        /> */}
       </div>
     );
   };
