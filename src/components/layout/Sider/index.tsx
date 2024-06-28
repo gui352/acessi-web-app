@@ -68,6 +68,14 @@ export const Sider: React.FC<SiderProps> = ({ className }) => {
         router.push("/assessments");
       },
     },
+    {
+      label: "Cadastro de Avaliação",
+      color: "blue",
+      icon: "pi pi-fw pi-briefcase",
+      command: () => {
+        router.push("/register-avaliations");
+      },
+    },
   ];
 
   return (

@@ -10,7 +10,7 @@ export const Wrapper = styled("div")`
   height: 100vh;
 
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 0fr;
   grid-template-areas: "sider content";
 `;
 
@@ -31,6 +31,7 @@ export const ContentWrapper = styled.main`
   & > div {
     background-color: ${({ theme }) => theme.color.light.bg};
     color: ${({ theme }) => theme.color.light.text};
+    border-radius: 10px;
 
     padding: ${({ theme }) => theme.spacing.sm};
   }

@@ -110,16 +110,12 @@ export const DashboardPage = () => {
 
   return (
     <>
-      <div style={{ height: "90vh" }}>
-        <HeaderTitle titleBold={"Gráficos"} normalTitle={"e relatórios"} displayFilters={false} />
-        <div
-          className={"ag-theme-alpine"}
-          style={{ width: "100%" }}
-        >
-          <AgGridReact rowData={rowData} columnDefs={colDefs} />
-
-
-        </div>
+      <HeaderTitle titleBold={"Gráficos"} normalTitle={"e relatórios"} displayFilters={false} />
+      <div
+        className={"ag-theme-alpine"}
+        style={{ width: "100%", height: "40%" }}
+      >
+        <AgGridReact rowData={rowData} columnDefs={colDefs} />
       </div >
     </>
   );

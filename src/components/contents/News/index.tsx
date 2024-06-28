@@ -61,7 +61,7 @@ export const NewsComponent = () => {
       <CarouselComponent data={newsData} />
       <div style={{ marginTop: 50 }}>
         {newsData.map((n, i) => (
-          <CardComponent summaryDisplay={undefined} location={undefined} workingHours={undefined} logoVisible={undefined} {...n} />
+          <CardComponent summaryDisplay={undefined} location={undefined} workingHours={undefined} logoVisible={undefined} {...n} width={"95%"} />
         ))}
       </div>
     </>

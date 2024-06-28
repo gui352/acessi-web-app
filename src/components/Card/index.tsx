@@ -6,7 +6,21 @@ import * as Styled from "./styled";
 // Ajuste conforme necessário se Header e Styled.Container forem específicos do Ant Design
 import { Header } from "./Header";
 
-const CardComponent = ({
+interface PropsCardComponent {
+  portalName;
+  logoSrc;
+  title;
+  summary;
+  imageSrc;
+  postDate;
+  summaryDisplay;
+  location;
+  workingHours;
+  logoVisible;
+  width?
+}
+
+const CardComponent: React.FC<PropsCardComponent> = ({
   portalName,
   logoSrc,
   title,
@@ -17,6 +31,7 @@ const CardComponent = ({
   location,
   workingHours,
   logoVisible,
+  width
 }) => {
   // Header personalizado e corpo do cartão para PrimeReact
   const header = (
@@ -36,7 +51,7 @@ const CardComponent = ({
     <Card
       title={title}
       style={{
-        width: "95%",
+        width: width ?? "95%",
         margin: "0px 0px 10px 20px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
         color: "#3C4F82",

@@ -4,7 +4,7 @@ import CardComponent from "components/Card";
 
 export const CarouselComponent = ({ data }) => {
   const dataTemplate = (data) => {
-    return <CardComponent {...data} />;
+    return <CardComponent {...data} width={"80%"} />;
   };
 
   return (
@@ -12,7 +12,7 @@ export const CarouselComponent = ({ data }) => {
       <Carousel
         value={data}
         numScroll={1}
-        numVisible={2}
+        numVisible={3}
         showIndicators={false}
         itemTemplate={dataTemplate}
       />
