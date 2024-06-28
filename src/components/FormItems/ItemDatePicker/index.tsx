@@ -49,6 +49,7 @@ const ItemDatePicker = ({
           if (date === null) {
             field.onChange(date);
           } else {
+            // console.log(date.toDate().toISOString())
             field.onChange(date);
           }
         }}

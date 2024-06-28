@@ -78,7 +78,7 @@ export const LoginComponent = () => {
         className="flex justify-content-center"
         style={{
           flex: 40,
-          background: "#e7e7e7",
+          background: "#f1f1f1",
           alignItems: "center",
           display: "flex",
           justifyContent: "center",

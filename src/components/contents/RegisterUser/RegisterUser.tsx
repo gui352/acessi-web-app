@@ -116,7 +116,7 @@ export const RegisterUserComponent = () => {
           </div>
 
           <img
-            src={"/assets/images/acessi+Register.PNG"}
+            src={"/assets/images/CadastroUsuario.PNG"}
             alt="Imagem esquerda"
             style={{ width: "90%" }}
           />
@@ -126,7 +126,7 @@ export const RegisterUserComponent = () => {
           className="flex justify-content-center"
           style={{
             flex: 40,
-            background: "#e7e7e7",
+            background: "#f1f1f1",
             alignItems: "center",
             display: "flex",
             justifyContent: "center",
@@ -255,9 +255,10 @@ export const RegisterUserComponent = () => {
                           className="p-float-label"
                           style={{ marginTop: "20px" }}
                         >
-                          <InputText
+                          <Password
                             id="confirmationPassword"
                             {...input}
+                            toggleMask
                             type="password"
                             size={30}
                             style={{ width: "100%" }}

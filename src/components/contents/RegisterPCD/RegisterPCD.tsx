@@ -14,18 +14,21 @@ import { PCDModel } from "../../../interfaces/PCD/PCDInterface";
 import { AddressModel } from "../../../interfaces/Adress/AddressInterface";
 import { Form } from "components/common/Form";
 import ItemSelect from "components/FormItems/ItemSelect";
+import { message } from "antd";
 
 export const RegisterPCDComponent = () => {
   const [selectedDeficiency, setSelectedDeficiency] = React.useState(null);
   // const disabilityTypeService = new DisabilityTypeService();
 
   const deficiency = [
-    { label: "Auditiva", value: "Auditiva" },
-    { label: "Visual", value: "Visual" },
-    { label: "Física", value: "Física" },
-    { label: "Intelectual", value: "Intelectual" },
-    { label: "Múltipla", value: "Múltipla" },
-    { label: "Outra", value: "Outra" },
+    { label: "Auditiva", value: "AUDITIVA" },
+    { label: "Visual", value: "VISUAL" },
+    { label: "Motora", value: "MOTORA" },
+    { label: "Intelectual", value: "INTELECTUAL" },
+    { label: "Austimo", value: "AUTISMO" },
+    { label: "Física", value: "FISICA" },
+    { label: "Cognitiva", value: "COGNITIVA" },
+    { label: "Outra", value: "OUTRA" },
   ];
 
   const { handleSubmit, control } = useForm();
@@ -44,7 +47,7 @@ export const RegisterPCDComponent = () => {
       educationLevelPCD: data.education,
       employee: data.isEmployee,
       publicTransportation: data.isUsePublicTransport,
-      disabilityTypePCD: "AUDITIVA",
+      disabilityTypePCD: data.deficiency,
       addressPCD: {
         cityAddress: data.city,
         streetAddress: data.street,
@@ -59,12 +62,12 @@ export const RegisterPCDComponent = () => {
 
     pcdService.CreateUser(pcd).then((res) => {
       console.log(res);
-      // if (res.status == 200) {
-      //   messageApi.open({
-      //     type: "success",
-      //     content: "Cadastro concluído com sucesso",
-      //   });
-      // }
+      if (res.status == 200) {
+        message.open({
+          type: "success",
+          content: "Cadastro concluído com sucesso",
+        });
+      }
     });
   };
 

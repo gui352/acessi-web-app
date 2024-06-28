@@ -1,9 +1,11 @@
+import { UserModel } from "interfaces/User/UserInterface";
+
 export interface CompanyModel {
-  cnpj: string;
-  corporateName: string;
-  site: string;
-  areaActivity: string;
-  telephone: string;
-  email: string;
-  password: string;
+  cnpjCompany: string;
+  companyName: string;
+  site?: string;
+  areaActivity?: string;
+  telephoneCompany: string;
+  emailCompany: string;
+  userCompany: UserModel;
 }

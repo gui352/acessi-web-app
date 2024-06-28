@@ -4,16 +4,16 @@ import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 import { Password } from "primereact/password";
-import { UserService } from "services/User/UserService";
 import { UserModel } from "interfaces/User/UserInterface";
 import { useRouter } from "next/router";
 import { message } from "antd";
 import { CompanyModel } from "interfaces/Company/ComanyInterface";
+import { CompanyService } from "services/Company/CompanyService";
 
 export const RegisterCompany = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
-  const serviceUser = new UserService();
+  const serviceCompany = new CompanyService();
   const Router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -22,26 +22,28 @@ export const RegisterCompany = () => {
     setShowMessage(true);
 
     const company: CompanyModel = {
-      cnpj: data.cnpj,
-      corporateName: data.corporateName,
-      site: data.site,
-      areaActivity: data.areaActivity,
-      telephone: data.telephone,
-      email: data.email,
-      password: data.password
+      cnpjCompany: data.cnpj,
+      companyName: data.corporateName,
+      telephoneCompany: data.telephone,
+      emailCompany: data.email,
+      userCompany: {
+        nameUser: data.corporateName,
+        emailUser: data.email,
+        passwordUser: data.password,
+      }
     };
 
-    // serviceUser.CreateUser(user).then((res) => {
-    //   if (res.status == 200) {
-    //     messageApi.open({
-    //       type: "success",
-    //       content: "Cadastro concluído com sucesso",
-    //     });
-    //     setTimeout(() => {
-    //       Router.push("/");
-    //     }, 1500);
-    //   }
-    // });
+    serviceCompany.CreateCompany(company).then((res) => {
+      if (res.status == 200) {
+        messageApi.open({
+          type: "success",
+          content: "Cadastro concluído com sucesso",
+        });
+        setTimeout(() => {
+          Router.push("/");
+        }, 1500);
+      }
+    });
 
     form.restart();
   };
@@ -138,7 +140,7 @@ export const RegisterCompany = () => {
           className="flex justify-content-center"
           style={{
             flex: 40,
-            background: "#e7e7e7",
+            background: "#f1f1f1",
             alignItems: "center",
             display: "flex",
             justifyContent: "center",
@@ -326,10 +328,11 @@ export const RegisterCompany = () => {
                           className="p-float-label"
                           style={{ marginTop: "20px" }}
                         >
-                          <InputText
+                          <Password
                             id="confirmationPassword"
                             {...input}
                             type="password"
+                            toggleMask
                             size={30}
                             style={{ width: "100%" }}
                             className={classNames({
