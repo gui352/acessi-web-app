@@ -1,28 +1,29 @@
-import React from "react";
+import React, { ReactHTMLElement, useState } from "react";
 import { Card } from "primereact/card";
 import { Tag } from "primereact/tag"; // Substituto sugerido para Typography para mostrar texto com estilos
 import * as Styled from "./styled";
 
 // Ajuste conforme necessário se Header e Styled.Container forem específicos do Ant Design
 import { Header } from "./Header";
+import { Rating } from "primereact/rating";
 
 interface PropsCardComponent {
-  portalName;
-  logoSrc;
-  title;
-  summary;
-  imageSrc;
-  postDate;
-  summaryDisplay;
-  location;
-  workingHours;
-  logoVisible;
-  width?
+  portalName: string;
+  title: string;
+  summary?: string;
+  imageSrc: string;
+  postDate?: string;
+  summaryDisplay?: boolean;
+  location?: string;
+  workingHours?: string;
+  logoVisible?: boolean;
+  width?: string;
+  hiddenTag?: boolean;
+  hiddenRating?: boolean;
 }
 
 const CardComponent: React.FC<PropsCardComponent> = ({
   portalName,
-  logoSrc,
   title,
   summary,
   imageSrc,
@@ -31,8 +32,12 @@ const CardComponent: React.FC<PropsCardComponent> = ({
   location,
   workingHours,
   logoVisible,
-  width
+  width,
+  hiddenTag,
+  hiddenRating,
 }) => {
+
+  const [value, setValue] = useState(4.5);
   // Header personalizado e corpo do cartão para PrimeReact
   const header = (
     <img
@@ -40,9 +45,9 @@ const CardComponent: React.FC<PropsCardComponent> = ({
       src={imageSrc}
       style={{
         width: "100%",
-        height: 150,
+        height: 250,
         objectFit: "cover",
-        borderRadius: 3,
+        borderRadius: "3px 3px 0px 0px",
       }}
     />
   );
@@ -60,19 +65,21 @@ const CardComponent: React.FC<PropsCardComponent> = ({
     >
       <Header
         portalName={portalName}
-        logoSrc={logoSrc}
+        logoSrc={imageSrc}
         logoVisible={logoVisible}
       />
       <Styled.Container>
-        <h3 style={{ color: "#3C4F82" }}>{title}</h3>
+        {/* <h3 style={{ color: "#3C4F82" }}>{title}</h3> */}
         {summaryDisplay !== false && <p>{summary}</p>}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Tag value={postDate} severity="info" />
+          {postDate && <Tag value={postDate} severity="info" />}
           {location && <Tag value={location} severity="info" />}
           {workingHours && <Tag value={workingHours} severity="info" />}
         </div>
+        {/*  */}
+        {hiddenRating && <Rating value={value} onChange={(e) => setValue(e.value)} cancel={false} readOnly />}
       </Styled.Container>
-    </Card>
+    </Card >
   );
 };
 
