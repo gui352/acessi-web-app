@@ -22,9 +22,7 @@ export const BaseLayout: React.FC = ({ children }) => {
             }
           >
             <div style={{ height: "98%", overflow: "auto" }}>{children}</div>
-
-            {/* <div>
-            </div> */}
+            <VLibras forceOnload={true} />
           </React.Suspense>
           <Footer />
         </Styled.ContentWrapper>

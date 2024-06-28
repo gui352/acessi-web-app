@@ -76,7 +76,6 @@ const CardComponent: React.FC<PropsCardComponent> = ({
           {location && <Tag value={location} severity="info" />}
           {workingHours && <Tag value={workingHours} severity="info" />}
         </div>
-        {/*  */}
         {hiddenRating && <Rating value={value} onChange={(e) => setValue(e.value)} cancel={false} readOnly />}
       </Styled.Container>
     </Card >

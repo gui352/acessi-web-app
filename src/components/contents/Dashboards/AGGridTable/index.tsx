@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
-import { AGGridTable } from './AGGridTable/index';
-import { AgChart } from './AGCharts/index';
-import { Button } from 'primereact/button';
+import React, { useState } from "react";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-enterprise";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import { ColDef } from "ag-grid-community";
+import { HeaderTitle } from "components/HeaderTitle";
 
-export const DashboardsPage = () => {
-  const initialData = [
+interface IRow {
+  id: number;
+  isUsePublicTransportation: boolean;
+  age: number;
+  gender: string;
+  deficiency: {
+    type: string;
+    degree: string;
+    description: string;
+  };
+  neighborhood: string;
+  isEmployee: boolean;
+  education: string;
+}
+
+export const AGGridTable = ({ onRowSelected }) => {
+  const [rowData, setRowData] = useState<IRow[]>([
     {
       id: 1,
       isUsePublicTransportation: true,
@@ -75,23 +93,32 @@ export const DashboardsPage = () => {
       isEmployee: true,
       education: "Ensino Superior Completo",
     },
-  ];
+  ]);
 
-  const [selectedData, setSelectedData] = useState(initialData);
-
-  const handleRowSelected = (data) => {
-    setSelectedData(data.length > 0 ? data : initialData);
-  };
-
-  const handleResetSelection = () => {
-    setSelectedData(initialData);
-  };
+  const [colDefs] = useState<ColDef<IRow>[]>([
+    { field: "id", filter: true },
+    { field: "age", filter: true },
+    { field: "isUsePublicTransportation", filter: true },
+    { field: "gender", filter: true },
+    { field: "deficiency.type", filter: true },
+    { field: "deficiency.degree", filter: true },
+    { field: "deficiency.description", filter: true },
+    { field: "neighborhood", filter: true },
+    { field: "isEmployee", filter: true },
+    { field: "education", filter: true },
+  ]);
 
   return (
-    <div>
-      <AGGridTable onRowSelected={handleRowSelected} />
-      <Button style={{ marginTop: 20 }} icon="pi pi-refresh" rounded text raised severity="secondary" onClick={handleResetSelection}></Button>
-      <AgChart data={selectedData} />
-    </div>
+    <>
+      <HeaderTitle titleBold={"Gráficos"} normalTitle={"e relatórios"} displayFilters={false} />
+      <div className="ag-theme-alpine" style={{ height: "300px", width: "100%" }}>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={colDefs}
+          rowSelection="multiple"
+          onRowSelected={(event) => onRowSelected(event.api.getSelectedRows())}
+        />
+      </div>
+    </>
   );
 };
