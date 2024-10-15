@@ -3,6 +3,8 @@ import ItemNumber from "components/FormItems/ItemNumber";
 import ItemSelect from "components/FormItems/ItemSelect";
 import { SubForm } from "components/common/Form/SubForm";
 import React from "react";
+import ItemYesNo from "components/FormItems/ItemYesNo";
+import { useForm } from "react-hook-form"
 
 export const AdressRegister = () => {
   const layout = {
@@ -10,6 +12,8 @@ export const AdressRegister = () => {
     wrapperCol: { span: 16 },
   };
 
+
+  const { watch } = useForm();
   /* eslint-disable no-template-curly-in-string */
   const validateMessages = {
     required: "${label} is required!",
@@ -26,6 +30,8 @@ export const AdressRegister = () => {
   const onFinish = (values: any) => {
     console.log(values);
   };
+
+  console.log(watch())
   return (
     <>
       <SubForm columns={3}>
@@ -90,6 +96,12 @@ export const AdressRegister = () => {
         label="Complemento"
         name="complement"
         placeholder="Digite aqui..."
+      />
+
+      <ItemYesNo
+        disabled={false}
+        label="Você reside junto com o PCD?"
+        name="withPCD"
       />
     </>
   );

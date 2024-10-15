@@ -15,21 +15,13 @@ import { AddressModel } from "../../../interfaces/Adress/AddressInterface";
 import { Form } from "components/common/Form";
 import ItemSelect from "components/FormItems/ItemSelect";
 import { message } from "antd";
+import ItemYesNo from "components/FormItems/ItemYesNo";
 
 export const RegisterPCDComponent = () => {
   const [selectedDeficiency, setSelectedDeficiency] = React.useState(null);
   // const disabilityTypeService = new DisabilityTypeService();
 
-  const deficiency = [
-    { label: "Auditiva", value: "AUDITIVA" },
-    { label: "Visual", value: "VISUAL" },
-    { label: "Motora", value: "MOTORA" },
-    { label: "Intelectual", value: "INTELECTUAL" },
-    { label: "Austimo", value: "AUTISMO" },
-    { label: "Física", value: "FISICA" },
-    { label: "Cognitiva", value: "COGNITIVA" },
-    { label: "Outra", value: "OUTRA" },
-  ];
+
 
   const { handleSubmit, control, reset } = useForm();
   const toastRef = useRef(null);
@@ -117,14 +109,25 @@ export const RegisterPCDComponent = () => {
                 color: "#3C4F82",
               }}
             >
-              Para iniciar, selecione o seu tipo de deficiência:
+              Está utilizando assistência para cadastrar?
             </h2>
-            <ItemSelect
+            <ItemYesNo
               disabled={false}
-              name="deficiency"
-              options={deficiency}
-              placeholder="Selecione aqui..."
+              // label="Está utilizando assistência para cadastrar?"
+              name="neededAssistency"
             />
+
+            {/* <h2
+              style={{
+                fontWeight: "bold",
+                marginRight: "10px",
+                width: "45%",
+                color: "#3C4F82",
+              }}
+            >
+              Para iniciar, selecione o seu tipo de deficiência:
+            </h2> */}
+
           </div>
 
           <Accordion multiple style={{ marginBottom: 20 }}>

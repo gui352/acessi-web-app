@@ -5,6 +5,17 @@ import ItemYesNo from "components/FormItems/ItemYesNo";
 import { SubForm } from "components/common/Form/SubForm";
 
 export const DeficiencyRegister = () => {
+  const deficiency = [
+    { label: "Auditiva", value: "AUDITIVA" },
+    { label: "Visual", value: "VISUAL" },
+    { label: "Motora", value: "MOTORA" },
+    { label: "Intelectual", value: "INTELECTUAL" },
+    { label: "Austimo", value: "AUTISMO" },
+    { label: "Física", value: "FISICA" },
+    { label: "Cognitiva", value: "COGNITIVA" },
+    { label: "Outra", value: "OUTRA" },
+  ];
+
   return (
     <>
       <SubForm columns={2}>
@@ -42,10 +53,12 @@ export const DeficiencyRegister = () => {
           name="deficiencyAcquired"
         />
 
-        <ItemYesNo
+        <ItemSelect
           disabled={false}
-          label="Precisou de assistência para cadastrar?"
-          name="neededAssistency"
+          name="deficiency"
+          options={deficiency}
+          label="Selecione o tipo da deficiência"
+          placeholder="Selecione aqui..."
         />
       </SubForm>
     </>
