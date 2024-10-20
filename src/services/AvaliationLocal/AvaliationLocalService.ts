@@ -6,7 +6,9 @@ export class AvaliationLocalService {
   private ApiUrl = "http://localhost:8085/acessi";
 
   async GetAllAvaliations() {
-    return await axios.get<AvaliationLocalModel[]>(`${this.ApiUrl}/avaliation`);
+    return await axios.get<AvaliationLocalModel[]>(
+      `${this.ApiUrl}/avaliation/search-all-avaliation`
+    );
   }
 
   CreateAvaliationLocal(avaliationLocal: AvaliationLocalModel) {
