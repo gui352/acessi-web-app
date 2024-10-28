@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { AGGridTable } from './AGGridTable/index';
-import { AgChart } from './AGCharts/index';
-import { Button } from 'primereact/button';
+import { Card } from 'antd';
+import { HeaderTitle } from 'components/HeaderTitle';
+import BarChart from './BarChart';
+import HorizontalBarChart from './HorizontalBarChart';
+import LineChart from './LineChart';
 
 export const DashboardsPage = () => {
   const initialData = [
@@ -89,9 +91,20 @@ export const DashboardsPage = () => {
 
   return (
     <div>
-      <AGGridTable onRowSelected={handleRowSelected} />
-      <Button style={{ marginTop: 20 }} icon="pi pi-refresh" rounded text raised severity="secondary" onClick={handleResetSelection}></Button>
-      <AgChart data={selectedData} />
+      <HeaderTitle titleBold={"Gráficos"} normalTitle={"e relatórios"} displayFilters={false} />
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ width: "49%", height: "100%" }}>
+          <Card title="Distribuição de PCDs por Tipo" style={{ width: "100%", height: "60%", marginBottom: "2vh" }}>
+            <BarChart />
+          </Card>
+          <Card title="Distribuição de PCDs por Tipo" style={{ width: "100%", height: "40%" }}>
+            <LineChart />
+          </Card>
+        </div>
+        <Card title="Distribuição de PCDs por Gênero e idade" style={{ width: "49%", height: "100%" }}>
+          <HorizontalBarChart />
+        </Card>
+      </div>
     </div>
   );
 };

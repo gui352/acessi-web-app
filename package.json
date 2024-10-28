@@ -23,6 +23,7 @@
     "ag-grid-react": "^31.3.2",
     "antd": "^5.15.3",
     "axios": "^1.5.1",
+    "chart.js": "^4.4.5",
     "final-form": "^4.20.10",
     "i18next-http-backend": "^2.2.2",
     "next": "^13.5.6",
