@@ -25,7 +25,7 @@ export const RegisterAvaliationLocal = () => {
   let emptyAvaliation: AvaliationLocalModel = {
     idLocalAvaliation: 0,
     name: "",
-    imageAvaliationLocal: [],
+    imageAvaliationLocal: "",
     typeLocalAvaliation: LocalAvaliationType.Another,
   };
 
@@ -75,7 +75,8 @@ export const RegisterAvaliationLocal = () => {
 
     if (
       product.name.trim() &&
-      product.imageAvaliationLocal.length > 0 &&
+      product.imageAvaliationLocal != undefined &&
+      product.imageAvaliationLocal != "" &&
       product.typeLocalAvaliation
     ) {
       if (product.idLocalAvaliation) {
@@ -317,17 +318,18 @@ export const RegisterAvaliationLocal = () => {
     if (event.target.files && event.target.files[0]) {
       setImageAvaliation(URL.createObjectURL(event.target.files[0]));
     }
+
     const file = event.target.files[0];
     const reader = new FileReader();
     let _product = { ...product };
 
     reader.onload = (progressEvent) => {
-      const arrayBuffer = progressEvent.target.result as ArrayBuffer;
-      const uint8Array = Array.from(new Uint8Array(arrayBuffer));
-      _product.imageAvaliationLocal = uint8Array;
+      const base64String = progressEvent.target.result as string; // Será uma string base64
+      _product.imageAvaliationLocal = base64String;
       setProduct(_product);
     };
-    reader.readAsArrayBuffer(file);
+
+    reader.readAsDataURL(file); // Lê o arquivo como DataURL (Base64)
   };
 
   return (
