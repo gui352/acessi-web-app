@@ -4,7 +4,7 @@ import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";
 import { withTranslations } from "hocs/withTranslations";
 import { NextPage, GetStaticProps } from "next";
-import { RegisterPCDComponent } from "components/contents/RegisterPCD/RegisterPCD";
+import { RegisterPCDComponent } from "components/contents/RegisterPCD";
 
 const RegisterPCD: NextPage = () => {
   return <RegisterPCDComponent />;
