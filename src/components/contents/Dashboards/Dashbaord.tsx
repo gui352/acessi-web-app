@@ -97,7 +97,7 @@ export const DashboardsPage = () => {
           <Card title="Distribuição de PCDs por Tipo" style={{ width: "100%", height: "60%", marginBottom: "2vh" }}>
             <BarChart />
           </Card>
-          <Card title="Distribuição de PCDs por Tipo" style={{ width: "100%", height: "40%" }}>
+          <Card title="Crescimento de PCDs registrados" style={{ width: "100%", height: "40%" }}>
             <LineChart />
           </Card>
         </div>
