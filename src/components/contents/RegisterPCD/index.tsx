@@ -23,11 +23,13 @@ export const RegisterPCDComponent = () => {
 
 
 
-  const { handleSubmit, control, reset } = useForm();
+  const methods = useForm();
+
+  const { handleSubmit, control, reset } = methods;
   const toastRef = useRef(null);
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log("Testando data", data);
 
     const pcd: PCDModel = {
       namePCD: data.name,
@@ -69,7 +71,6 @@ export const RegisterPCDComponent = () => {
     });
   };
 
-  const methods = useFormContext();
   const [disabilityType, setDisabilityType] = useState([]);
 
   // useEffect(() => {
@@ -143,6 +144,8 @@ export const RegisterPCDComponent = () => {
               <DeficiencyRegister />
             </AccordionTab>
           </Accordion>
+
+
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button
