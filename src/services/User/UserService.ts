@@ -18,4 +18,45 @@ export class UserService {
       withCredentials: true,
     });
   }
+
+  async SendEmailValidationToken(email: string) {
+    const response = await axios.post(
+      `${this.API}/reset-password/send-email-reset-password`,
+      null,
+      {
+        params: {
+          email: email,
+        },
+      }
+    );
+    return response.data;
+  }
+
+  async ValidateToken(token: string, email: string) {
+    const response = await axios.post(
+      `${this.API}/reset-password/validate-token-reset-password`,
+      null,
+      {
+        params: {
+          token: token,
+          email: email,
+        },
+      }
+    );
+    return response.data;
+  }
+
+  async ChangePassword(senha: string, email: string) {
+    const response = await axios.post(
+      `${this.API}/reset-password/change-password`,
+      null,
+      {
+        params: {
+          password: senha,
+          email: email,
+        },
+      }
+    );
+    return response.data;
+  }
 }
