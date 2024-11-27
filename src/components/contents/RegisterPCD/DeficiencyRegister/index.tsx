@@ -7,16 +7,6 @@ import { useFormContext } from "react-hook-form";
 import ItemInput from "components/FormItems/ItemInput";
 
 export const DeficiencyRegister = () => {
-  // const deficiency = [
-  //   { label: "Auditiva", value: "AUDITIVA" },
-  //   { label: "Visual", value: "VISUAL" },
-  //   { label: "Motora", value: "MOTORA" },
-  //   { label: "Intelectual", value: "INTELECTUAL" },
-  //   { label: "Austimo", value: "AUTISMO" },
-  //   { label: "Física", value: "FISICA" },
-  //   { label: "Cognitiva", value: "COGNITIVA" },
-  //   { label: "Outra", value: "OUTRA" },
-  // ];
 
   const { watch, resetField } = useFormContext();
 

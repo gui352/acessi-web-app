@@ -97,38 +97,6 @@ export const PersonalRegister = () => {
             { label: "Ensino Médio", value: "EnsinoMédio" },
             { label: "Ensino Superior", value: "EnsinoSuperior" },
             { label: "Pós-Graduação", value: "PosGraduacao" },
-            // {
-            //   label: "Ensino Fundamental I Completo",
-            //   value: "Ensino Fundamental I Completo",
-            // },
-            // {
-            //   label: "Ensino Fundamental I Incompleto",
-            //   value: "Ensino Fundamental I Incompleto",
-            // },
-            // {
-            //   label: "Ensino Fundamental II Completo",
-            //   value: "Ensino Fundamental II Completo",
-            // },
-            // {
-            //   label: "Ensino Fundamental II Incompleto",
-            //   value: "Ensino Fundamental II Incompleto",
-            // },
-            // {
-            //   label: "Ensino Médio Completo",
-            //   value: "Ensino Médio Completo",
-            // },
-            // {
-            //   label: "Ensino Médio Incompleto",
-            //   value: "Ensino Médio Incompleto",
-            // },
-            // {
-            //   label: "Ensino Superior Completo",
-            //   value: "Ensino Superior Completo",
-            // },
-            // {
-            //   label: "Ensino Superior Incompleto",
-            //   value: "Ensino Superior Incompleto",
-            // },
           ]}
           placeholder="Selecione aqui..."
         />
