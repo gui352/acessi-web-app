@@ -74,6 +74,7 @@ export const AdressRegister = () => {
           label="CEP"
           name="cep"
           placeholder="Digite aqui..."
+          mask="99999-999"
         />
 
         <ItemInput
@@ -133,13 +134,14 @@ export const AdressRegister = () => {
       </div>
 
       <div style={{ display: watch("withPCD") === false ? "" : "none" }}>
-        Complementos do auxiliar:
+        <h3>Complementos do auxiliar:</h3>
         <SubForm columns={3}>
           <ItemInput
             disabled={false}
             label="CEP"
             name="cepAuxiliar"
             placeholder="Digite aqui..."
+            mask="99999-999"
           />
 
           <ItemInput
@@ -161,7 +163,7 @@ export const AdressRegister = () => {
           <ItemInput
             disabled={false}
             label="Bairro"
-            name="neighborhood"
+            name="neighborhoodAuxiliar"
             placeholder="Digite aqui..."
           />
         </SubForm>

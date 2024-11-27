@@ -54,17 +54,14 @@ export const DeficiencyRegister = () => {
   );
 
   React.useEffect(() => {
-    if (selectedDeficiency && selectedDeficiency.forms.length === 0) {
+    if (selectedDeficiency && selectedDeficiency.forms?.length === 0) {
       resetField("formTypeDeficiency");
     }
   }, [selectedDeficiency, resetField]);
 
-  console.log("DEF VALUES", selectedDeficiencyValue)
-  console.log("DEFCIENCIES", selectedDeficiency)
-
   return (
     <>
-      <SubForm columns={2}>
+      <SubForm columns={3}>
         <ItemYesNo
           disabled={false}
           label="Deficiência adquirida?"
@@ -79,7 +76,7 @@ export const DeficiencyRegister = () => {
           placeholder="Selecione aqui..."
         />
 
-        {selectedDeficiency && selectedDeficiency.forms.length > 0 && (
+        {selectedDeficiency && selectedDeficiency.forms?.length > 0 && (
           <ItemSelect
             disabled={false}
             name="formTypeDeficiency"
@@ -94,68 +91,68 @@ export const DeficiencyRegister = () => {
       <h3>Escolaridade</h3>
       <SubForm columns={2}>
 
-        <ItemInput disabled={false} name="" label="Acesso à escola" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="accessSchool" label="Acesso à escola" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="" label="Nome da escola" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="schoolName" label="Nome da escola" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="" label="Tipo da escola e classe" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="schoolType" label="Tipo da escola e classe" placeholder="Digite aqui..." />
 
-        <ItemYesNo disabled={false} name="" label="Frequenta classe comum do ensino regular?" />
+        <ItemYesNo disabled={false} name="regularEducationClass" label="Frequenta classe comum do ensino regular?" />
 
-        <ItemInput disabled={false} name="" label="Onde frequenta atendimento educacional especializado?" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="specializedEducationalService" label="Onde frequenta atendimento educacional especializado?" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="" label="Qual ano/ciclo?" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="yearCicle" label="Qual ano/ciclo?" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="" label="Frequência (dias por semana)" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="frequencyDaysWeek" label="Frequência (dias por semana)" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="" label="Tempo de trajeto casa/escola" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="travelTime" label="Tempo de trajeto casa/escola" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Transporte e Acessibilidade */}
       <h3>Transporte e Acessibilidade</h3>
       <SubForm columns={2}>
 
-        <ItemYesNo disabled={false} name="" label="Necessita de companhia para o trajeto?" />
+        <ItemYesNo disabled={false} name="needsCompany" label="Necessita de companhia para o trajeto?" />
 
-        <ItemYesNo disabled={false} name="" label="Existe falta de acessibilidade no caminho?" />
+        <ItemYesNo disabled={false} name="lackOfAccessibilityWay" label="Existe falta de acessibilidade no caminho?" />
 
-        <ItemInput disabled={false} name="" label="Outras barreiras no caminho" placeholder="Descreva aqui..." />
+        <ItemInput disabled={false} name="barriersWay" label="Outras barreiras no caminho" placeholder="Descreva aqui..." />
 
-        <ItemYesNo disabled={false} name="" label="Transporte escolar apropriado/acessível?" />
+        <ItemYesNo disabled={false} name="affordableTransportations" label="Transporte escolar apropriado/acessível?" />
 
-        <ItemInput disabled={false} name="" label="Tipo de transporte escolar" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="typeTransportation" label="Tipo de transporte escolar" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Cuidados Pessoais e Interações */}
       <h3>Cuidados Pessoais e Interações</h3>
       <SubForm columns={2}>
 
-        <ItemYesNo disabled={false} name="" label="Profissional de apoio na escola?" />
+        <ItemYesNo disabled={false} name="hasSupportProfessional" label="Profissional de apoio na escola?" />
 
-        <ItemYesNo disabled={false} name="" label="Precisa de apoio extra nas atividades diárias?" />
+        <ItemYesNo disabled={false} name="needsSupportExtraActivities" label="Precisa de apoio extra nas atividades diárias?" />
 
-        <ItemYesNo disabled={false} name="" label="Barreiras físicas na escola?" />
+        <ItemYesNo disabled={false} name="physicalBarriersSchool" label="Barreiras físicas na escola?" />
 
-        <ItemYesNo disabled={false} name="" label="Brinca/diverte-se com outras crianças?" />
+        <ItemYesNo disabled={false} name="playWithColleagues" label="Brinca/diverte-se com outras crianças?" />
 
-        <ItemYesNo disabled={false} name="" label="Possui cuidador?" />
+        <ItemYesNo disabled={false} name="hasCaregiver" label="Possui cuidador?" />
 
-        <ItemInput disabled={false} name="" label="Quem é o cuidador principal?" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="primaryCaregiver" label="Quem é o cuidador principal?" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Benefícios e Serviços Públicos */}
       <h3>Benefícios e Serviços Públicos</h3>
       <SubForm columns={2}>
 
-        <ItemInput disabled={false} name="" label="Benefícios recebidos pela família" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="benefitsRecived" label="Benefícios recebidos pela família" placeholder="Digite aqui..." />
 
-        <ItemYesNo disabled={false} name="" label="Transporte público é gratuito?" />
+        <ItemYesNo disabled={false} name="freePublicTransport" label="Transporte público é gratuito?" />
 
-        <ItemYesNo disabled={false} name="" label="Transporte público acessível?" />
+        <ItemYesNo disabled={false} name="accessiblePublicTransport" label="Transporte público acessível?" />
 
-        <ItemInput disabled={false} name="" label="Área da residência" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="areaResidence" label="Área da residência" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="" label="Condições de moradia" placeholder="Descreva aqui..." />
+        <ItemInput disabled={false} name="housingConditions" label="Condições de moradia" placeholder="Descreva aqui..." />
 
       </SubForm>
     </>

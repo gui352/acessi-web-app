@@ -6,16 +6,19 @@ import ItemSelect from "components/FormItems/ItemSelect";
 import ItemYesNo from "components/FormItems/ItemYesNo";
 import { SubForm } from "components/common/Form/SubForm";
 import { useFormContext } from "react-hook-form"
+import { isValidCPF } from "..";
 
 
 export const PersonalRegister = () => {
   const { watch } = useFormContext();
 
+
+
   return (
     <>
       <ItemInput
         disabled={false}
-        label="Nome"
+        label="Nome completo"
         name="name"
         placeholder="Digite aqui..."
       />
@@ -33,12 +36,16 @@ export const PersonalRegister = () => {
           label="CPF"
           name="cpf"
           placeholder="Digite aqui..."
+          mask="999.999.999-99"
+          validate={(value) => isValidCPF(value) || "CPF inválido"}
         />
         <ItemInput
           disabled={false}
           label="Telefone"
           name="phone"
           placeholder="Digite aqui..."
+          type="tel"
+          mask="+55 (99) 99999-9999"
         />
       </SubForm>
 
@@ -48,6 +55,7 @@ export const PersonalRegister = () => {
           label="N° Beneficio BPC"
           name="bpc"
           placeholder="Digite aqui..."
+          mask="9999 9999 9999 9999"
         />
 
         <ItemInput
@@ -55,6 +63,7 @@ export const PersonalRegister = () => {
           label="NIT"
           name="nit"
           placeholder="Digite aqui..."
+          mask="999.99999.99-9"
         />
 
         <ItemInput
@@ -62,6 +71,7 @@ export const PersonalRegister = () => {
           label="N° Cartão SUS"
           name="sus"
           placeholder="Digite aqui..."
+          mask="999 9999 9999 9999"
         />
       </SubForm>
 
@@ -133,17 +143,17 @@ export const PersonalRegister = () => {
       </SubForm>
 
       <div style={{ display: watch("neededAssistency") === true ? "" : "none" }}>
-        Informações do auxiliar:
+      <h3>Informações do auxiliar:</h3>
         <ItemInput
           disabled={false}
           label="Nome"
-          name="name"
+          name="nameAuxiliar"
           placeholder="Digite aqui..."
         />
         <ItemInput
           disabled={false}
           label="E-mail"
-          name="email"
+          name="emailAuxiliar"
           type={"email"}
           placeholder="Digite aqui..."
         />
@@ -152,14 +162,16 @@ export const PersonalRegister = () => {
           <ItemInput
             disabled={false}
             label="CPF"
-            name="cpf"
+            name="cpfAuxiliar"
             placeholder="Digite aqui..."
+            mask="999.999.999-99"
           />
           <ItemInput
             disabled={false}
             label="Telefone"
-            name="phone"
+            name="phoneAuxiliar"
             placeholder="Digite aqui..."
+            mask="+55 (99) 99999-9999"
           />
         </SubForm>
 
@@ -167,13 +179,13 @@ export const PersonalRegister = () => {
           <ItemDatePicker
             disabled={false}
             label="Data de nascimento"
-            name="birth"
+            name="birthAuxiliar"
             placeholder="Selecione aqui..."
           />
           <ItemSelect
             disabled={false}
             label="Gênero"
-            name="gender"
+            name="genderAuxiliar"
             options={[
               { label: "Masculino", value: "Masculino" },
               { label: "Feminino", value: "Feminino" },

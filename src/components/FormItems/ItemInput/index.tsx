@@ -1,15 +1,17 @@
-// import { InputText } from "primereact/inputtext";
 import { Form } from "components/common/Form";
 import * as React from "react";
 import { useController } from "react-hook-form";
+import InputMask from "react-input-mask";
 import ItemProps from "../ItemProps";
 import { InputText } from "primereact/inputtext";
 
 interface ItemInputProps extends ItemProps {
-  type?;
-  defaultValue?;
+  type?: string;
+  defaultValue?: string;
   message?: string;
   hideFeedback?: boolean;
+  mask?: string; // Suporte para máscara
+  validate?: (value: string) => boolean | string; // Validação customizada
 }
 
 const ItemInput: React.FC<ItemInputProps> = ({
@@ -17,15 +19,22 @@ const ItemInput: React.FC<ItemInputProps> = ({
   name,
   placeholder,
   disabled,
-  type,
+  type = "text",
   defaultValue,
   hideFeedback,
   message,
+  mask,
+  validate,
 }) => {
-  const { field, fieldState } = useController({ name });
+  const { field, fieldState } = useController({
+    name,
+    rules: {
+      validate: validate ? validate : undefined,
+    },
+  });
 
   const _message = fieldState.error?.message
-    ? message || "error.text_area"
+    ? fieldState.error.message
     : undefined;
 
   return (
@@ -35,16 +44,33 @@ const ItemInput: React.FC<ItemInputProps> = ({
       message={_message}
       hideFeedback={hideFeedback}
     >
-      <InputText
-        type={type}
-        placeholder={placeholder || "Digite aqui..."}
-        {...field}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        // addon={false}
-        // className={_highlight ? "p_invalid" : ""}
-      />
+      {mask ? (
+        <InputMask
+          mask={mask}
+          disabled={disabled}
+          defaultValue={defaultValue}
+          {...field}
+        >
+          {(inputProps) => (
+            <InputText
+              {...inputProps}
+              type={type}
+              placeholder={placeholder || "Digite aqui..."}
+            />
+          )}
+        </InputMask>
+      ) : (
+        <InputText
+          type={type}
+          placeholder={placeholder || "Digite aqui..."}
+          {...field}
+          defaultValue={defaultValue}
+          disabled={disabled}
+
+        />
+      )}
     </Form.Item>
   );
 };
+
 export default ItemInput;

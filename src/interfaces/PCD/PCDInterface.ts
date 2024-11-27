@@ -11,5 +11,14 @@ export interface PCDModel {
   employee: boolean;
   publicTransportation: boolean;
   disabilityTypePCD: string;
+  bpc: string;
+  nit: string;
+  sus: string;
+  color: string;
+  isEmployee: boolean;
+  isUsePublicTransport: boolean;
+  hasSons: boolean;
+  neededAssistency: boolean;
   addressPCD: AddressModel;
+  aboutDeficiency: {};
 }
