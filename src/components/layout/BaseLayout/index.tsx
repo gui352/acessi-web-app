@@ -21,8 +21,10 @@ export const BaseLayout: React.FC = ({ children }) => {
               </Styled.SpinnerWrapper>
             }
           >
-            <div style={{ height: "98%", overflow: "auto" }}>{children}</div>
-            <VLibras forceOnload={true} />
+            {children}
+            <div>
+              <VLibras forceOnload={true} />
+            </div>
           </React.Suspense>
           {/* <Footer /> */}
         </Styled.ContentWrapper>

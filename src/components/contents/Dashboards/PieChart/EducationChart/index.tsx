@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 import { PCDService } from 'services/PCD/PCDService';
 
-export default function BarChart() {
+export default function EducationChart() {
   const [chartData, setChartData] = useState({});
   const [chartOptions, setChartOptions] = useState({});
   let labels: string[] = [];
   let numbers: number[] = [];
 
   useEffect(() => {
-    new PCDService().GetDisabilityTypeCount().then((res) => {
-      labels = res.data.map(disability => disability.disabilityTypeName);
-      numbers = res.data.map(disability => disability.disabilityTypeCount);
+    new PCDService().GetEducationLevelCount().then((res) => {
+      labels = res.data.map(item => item.educationLevelName);
+      numbers = res.data.map(item => item.educationLevelCount);
+      const documentStyle = getComputedStyle(document.documentElement);
 
       const data = {
         labels: labels,
@@ -19,18 +20,18 @@ export default function BarChart() {
           {
             label: 'Pessoas com deficiência',
             data: numbers,
-            backgroundColor: 'rgb(50, 79, 130)',
-            borderColor: 'rgb(60, 79, 130)',
-            borderWidth: 1
+            borderWidth: 1,
+            backgroundColor: [
+              'rgb(47 130 237)',
+              'rgb(50, 79, 130)',
+              documentStyle.getPropertyValue('--pink-500'),
+              'rgb(169 169 169)',
+              'rgb(0 0 0 / 78%)',
+            ],
           }
         ]
       };
       const options = {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
       };
 
       setChartData(data);
@@ -40,7 +41,7 @@ export default function BarChart() {
 
   return (
     <div className="card">
-      <Chart type="bar" data={chartData} options={chartOptions} />
+      <Chart type="doughnut" data={chartData} options={chartOptions} />
     </div>
   )
 }

@@ -35,6 +35,7 @@ export const HeaderTitle = ({
             marginRight: "10px",
             marginBottom: "0",
             color: "#3C4F82",
+            marginTop: "5px",
           }}
         >
           {titleBold}

@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 import { PCDService } from 'services/PCD/PCDService';
 
-export default function BarChart() {
+export default function NeighborhoodChart() {
   const [chartData, setChartData] = useState({});
   const [chartOptions, setChartOptions] = useState({});
   let labels: string[] = [];
   let numbers: number[] = [];
 
   useEffect(() => {
-    new PCDService().GetDisabilityTypeCount().then((res) => {
-      labels = res.data.map(disability => disability.disabilityTypeName);
-      numbers = res.data.map(disability => disability.disabilityTypeCount);
+    new PCDService().GetNeighborhoodCount().then((res) => {
+      labels = res.data.map(item => item.neighborhoodName);
+      numbers = res.data.map(item => item.neighborhoodCount);
 
       const data = {
         labels: labels,
@@ -26,6 +26,7 @@ export default function BarChart() {
         ]
       };
       const options = {
+        indexAxis: 'y',
         scales: {
           y: {
             beginAtZero: true

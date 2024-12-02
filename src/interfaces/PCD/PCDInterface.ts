@@ -13,3 +13,8 @@ export interface PCDModel {
   disabilityTypePCD: string;
   addressPCD: AddressModel;
 }
+
+export interface DisabilityTypeCount {
+  disabilityTypeCount: number;
+  disabilityTypeName: string;
+}
