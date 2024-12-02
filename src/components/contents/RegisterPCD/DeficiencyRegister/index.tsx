@@ -91,11 +91,20 @@ export const DeficiencyRegister = () => {
       <h3>Escolaridade</h3>
       <SubForm columns={2}>
 
-        <ItemInput disabled={false} name="accessSchool" label="Acesso à escola" placeholder="Digite aqui..." />
+        <ItemYesNo disabled={false} name="accessSchool" label="Acesso à escola?" />
 
         <ItemInput disabled={false} name="schoolName" label="Nome da escola" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="schoolType" label="Tipo da escola e classe" placeholder="Digite aqui..." />
+        <ItemSelect options={[
+          { label: "Escola pública", value: "ESCOLA_PUBLICA" },
+          { label: "Escola privada", value: "ESCOLA_PRIVADA" },
+          { label: "Escola comunitária", value: "ESCOLA_COMUNITARIA" },
+          { label: "Escola filantrópica", value: "ESCOLA_FILANTROPICA" },
+          { label: "Classe regular", value: "CLASSE_REGULAR" },
+          { label: "Classe especial", value: "CLASSE_ESPECIAL" },
+          { label: "EJA (Educação de Jovens e Adultos)", value: "EJA" },
+          { label: "Outro", value: "OUTRO" }
+        ]} disabled={false} name="schoolType" label="Tipo da escola e classe" placeholder="Digite aqui..." />
 
         <ItemYesNo disabled={false} name="regularEducationClass" label="Frequenta classe comum do ensino regular?" />
 
@@ -103,7 +112,7 @@ export const DeficiencyRegister = () => {
 
         <ItemInput disabled={false} name="yearCicle" label="Qual ano/ciclo?" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="frequencyDaysWeek" label="Frequência (dias por semana)" placeholder="Digite aqui..." />
+        <ItemInput type={"number"} disabled={false} name="frequencyDaysWeek" label="Frequência (dias por semana)" placeholder="Digite aqui..." />
 
         <ItemInput disabled={false} name="travelTime" label="Tempo de trajeto casa/escola" placeholder="Digite aqui..." />
       </SubForm>
@@ -120,39 +129,88 @@ export const DeficiencyRegister = () => {
 
         <ItemYesNo disabled={false} name="affordableTransportations" label="Transporte escolar apropriado/acessível?" />
 
-        <ItemInput disabled={false} name="typeTransportation" label="Tipo de transporte escolar" placeholder="Digite aqui..." />
+        <ItemSelect options={[
+          { label: "Transporte escolar público", value: "TRANSPORTE_ESCOLAR_PUBLICO" },
+          { label: "Transporte escolar privado", value: "TRANSPORTE_ESCOLAR_PRIVADO" },
+          { label: "Transporte familiar", value: "TRANSPORTE_FAMILIAR" },
+          { label: "Transporte coletivo urbano", value: "TRANSPORTE_COLETIVO_URBANO" },
+          { label: "Outro", value: "OUTRO" }
+        ]} disabled={false} name="typeTransportation" label="Tipo de transporte escolar" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Cuidados Pessoais e Interações */}
       <h3>Cuidados Pessoais e Interações</h3>
       <SubForm columns={2}>
 
-        <ItemYesNo disabled={false} name="hasSupportProfessional" label="Profissional de apoio na escola?" />
+        <ItemYesNo disabled={false} name="hasSupportProfessional" label="Possui profissional de apoio na escola?" />
 
         <ItemYesNo disabled={false} name="needsSupportExtraActivities" label="Precisa de apoio extra nas atividades diárias?" />
 
-        <ItemYesNo disabled={false} name="physicalBarriersSchool" label="Barreiras físicas na escola?" />
+        <ItemYesNo disabled={false} name="physicalBarriersSchool" label="Possui barreiras físicas na escola?" />
 
-        <ItemYesNo disabled={false} name="playWithColleagues" label="Brinca/diverte-se com outras crianças?" />
+        <ItemYesNo disabled={false} name="playWithColleagues" label="Brinca/diverte-se com outros colegas?" />
 
         <ItemYesNo disabled={false} name="hasCaregiver" label="Possui cuidador?" />
 
-        <ItemInput disabled={false} name="primaryCaregiver" label="Quem é o cuidador principal?" placeholder="Digite aqui..." />
+        <ItemSelect options={[
+          { label: "Pai", value: "PAI" },
+          { label: "Mãe", value: "MAE" },
+          { label: "Avô/Avó", value: "AVO_AVO" },
+          { label: "Irmão/Irmã", value: "IRMAO_IRMA" },
+          { label: "Tio/Tia", value: "TIO_TIA" },
+          { label: "Cônjuge/Parceiro(a)", value: "CONJUGE_PARCEIRO" },
+          { label: "Amigo(a)", value: "AMIGO" },
+          { label: "Vizinho(a)", value: "VIZINHO" },
+          { label: "Cuidador Profissional", value: "CUIDADOR_PROFISSIONAL" },
+          { label: "Outro", value: "OUTRO" }
+        ]} disabled={false} name="primaryCaregiver" label="Quem é o cuidador principal?" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Benefícios e Serviços Públicos */}
       <h3>Benefícios e Serviços Públicos</h3>
       <SubForm columns={2}>
 
-        <ItemInput disabled={false} name="benefitsRecived" label="Benefícios recebidos pela família" placeholder="Digite aqui..." />
+        <ItemSelect options={[
+          { label: "Bolsa Família", value: "BOLSA_FAMILIA" },
+          { label: "Auxílio Emergencial", value: "AUXILIO_EMERGENCIAL" },
+          { label: "Auxílio Gás", value: "AUXILIO_GAS" },
+          { label: "Aposentadoria", value: "APOSENTADORIA" },
+          { label: "Pensão por Morte", value: "PENSAO_POR_MORTE" },
+          { label: "Benefício de Prestação Continuada (BPC)", value: "BPC" },
+          { label: "Seguro-Desemprego", value: "SEGURO_DESEMPREGO" },
+          { label: "Auxílio-Inclusão", value: "AUXILIO_INCLUSAO" },
+          { label: "Isenção Tarifária de Energia Elétrica", value: "ISENCAO_TARIFARIA" },
+          { label: "Vale-Alimentação", value: "VALE_ALIMENTACAO" },
+          { label: "Auxílio Reabilitação Psicossocial", value: "AUXILIO_REABILITACAO_PSICOSSOCIAL" },
+          { label: "Bolsa-Escola Municipal", value: "BOLSA_ESCOLA_MUNICIPAL" },
+          { label: "Benefício de Sindicato", value: "BENEFICIO_SINDICATO" },
+          { label: "Benefício de ONG", value: "BENEFICIO_ONG" },
+          { label: "Benefício da Igreja", value: "BENEFICIO_IGREJA" },
+          { label: "PETI", value: "PETI" },
+          { label: "Renda Mensal Vitalícia", value: "RENDA_MENSAL_VITALICIA" },
+          { label: "BPC-Pessoa com Deficiência", value: "BPC_PESSOA_DEFICIENCIA" },
+          { label: "BPC-Idoso", value: "BPC_IDOSO" },
+          { label: "Nenhum", value: "NENHUM" },
+          { label: "Outro", value: "OUTRO" }
+        ]} disabled={false} name="benefitsRecived" label="Benefícios recebidos pela família" placeholder="Selecione aqui..." />
 
         <ItemYesNo disabled={false} name="freePublicTransport" label="Transporte público é gratuito?" />
 
         <ItemYesNo disabled={false} name="accessiblePublicTransport" label="Transporte público acessível?" />
 
-        <ItemInput disabled={false} name="areaResidence" label="Área da residência" placeholder="Digite aqui..." />
+        <ItemSelect options={[{ label: "Rural", value: "RURAL" }, { label: "Urbana", value: "URBANA" }]} disabled={false} name="areaResidence" label="Área da residência" placeholder="Selecione aqui..." />
 
-        <ItemInput disabled={false} name="housingConditions" label="Condições de moradia" placeholder="Descreva aqui..." />
+        <ItemSelect options={[
+          { label: "Casa própria", value: "CASA_PROPRIA" },
+          { label: "Casa alugada", value: "CASA_ALUGADA" },
+          { label: "Casa cedida", value: "CASA_CEDIDA" },
+          { label: "Casa financiada", value: "CASA_FINANCIADA" },
+          { label: "Barraco", value: "BARRACO" },
+          { label: "Ocupação irregular", value: "OCUPACAO_IRREGULAR" },
+          { label: "Alojamento coletivo", value: "ALOJAMENTO_COLETIVO" },
+          { label: "Em situação de rua", value: "SITUACAO_RUA" },
+          { label: "Outro", value: "OUTRO" }
+        ]} disabled={false} name="housingConditions" label="Condições de moradia" placeholder="Selecione aqui..." />
 
       </SubForm>
     </>
