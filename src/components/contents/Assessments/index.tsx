@@ -3,53 +3,44 @@ import { AssessmentsCard } from "components/AssessmentsCard";
 import { CarouselComponent } from "components/Carousel";
 import { HeaderTitle } from "components/HeaderTitle";
 import React from "react";
+import { AvaliationService } from "services/Avaliations/AvaliationService";
+import { useEffect, useState } from "react";
+import { AvaliationInterface } from "interfaces/Avaliations/AvaliationInterface";
 
 export const AssessmentsComponent = () => {
-  const assessments = [
-    {
-      portalName: "Restaurante A",
-      imageSrc: "assets/images/restaurant.jpg",
-      logoVisible: false,
-    },
-    {
-      portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
-      logoVisible: false,
-    },
-    {
-      portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
-      logoVisible: false,
-    },
-    {
-      portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
-      logoVisible: false,
-    },
-    {
-      portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
-      logoVisible: false,
-    },
-    {
-      portalName: "Café B",
-      imageSrc: "assets/images/coffee.jpg",
-      logoVisible: false,
-    },
-  ];
+  const avaliationService = new AvaliationService();
+  const [avaliationFilter, setFilterAvalation] = useState<string>("");
+  const [assessments, setAssessments] = useState<AvaliationInterface[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAssessments = async () => {
+      try {
+        const response = await avaliationService.GetAvaliations("");
+        setAssessments(response);
+      } catch (error) {
+        console.error("Error fetching assessments:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAssessments();
+  }, []);
 
   return (
     <>
       <HeaderTitle titleBold="Lugares" normalTitle="para visitar" />
-      <CarouselComponent data={assessments} />
+      {isLoading ? (
+        <p>Carregando...</p>
+      ) : (
+        <CarouselComponent data={assessments} />
+      )}
       <div style={{ padding: "20px" }}>
         <Row gutter={[16, 16]}>
           {assessments.map((estabelecimento, index) => (
             <Col span={6} key={index}>
-              <AssessmentsCard
-                nameAssessment={estabelecimento.portalName}
-                imageUrl={estabelecimento.imageSrc}
-              />
+              <AssessmentsCard assessment={estabelecimento} />
             </Col>
           ))}
         </Row>

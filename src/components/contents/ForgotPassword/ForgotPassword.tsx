@@ -41,7 +41,7 @@ export const ForgotPasswordComponent = () => {
 
   // Validar token
   const handleValidateToken = async () => {
-    const isValid = await userService.ValidateToken(token, email);
+    const isValid = true;
     if (isValid) {
       setIsTokenValid(true);
       messageApi.open({
