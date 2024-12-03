@@ -74,7 +74,7 @@ const addressPCD = z.object({
 
 const informationDeficiency = z.object({
   deficiencyAcquired: z.boolean().nullish(),
-  deficiency: z.string().nullish(),
+  deficiency: z.string(),
   formTypeDeficiency: z.string().nullish(),
   accessSchool: z.boolean().nullish(),
   schoolName: z.string().nullish(),
@@ -82,7 +82,6 @@ const informationDeficiency = z.object({
   regularEducationClass: z.boolean().nullish(),
   specializedEducationalService: z.string().nullish(),
   yearCicle: z.string().nullish(),
-  frequencyDaysWeek: z.number().nullish(),
   travelTime: z.string().nullish(),
   needsCompany: z.boolean().nullish(),
   lackOfAccessibilityWay: z.boolean().nullish(),
@@ -107,9 +106,9 @@ const schema = z.object({
   emailPCD: z.string().email("E-mail inválido"),
   cpfPCD: z.string().refine(isValidCPF, { message: "CPF inválido" }),
   telephonePCD: z.string().regex(/^\+55\s\(\d{2}\)\s\d{5}-\d{4}$/, "Telefone inválido"),
-  bpcNumber: z.string().regex(/^\d{4} \d{4} \d{4} \d{4}$/, "Número do benefício BPC inválido").nullish(),
-  nit: z.string().regex(/^\d{3}\.\d{5}\.\d{2}-\d{1}$/, "NIT inválido").nullish(),
-  susNumber: z.string().regex(/^\d{3} \d{4} \d{4} \d{4}$/, "Número do benefício BPC inválido").nullish(),
+  bpcNumber: z.string().nullish(),
+  nit: z.string().nullish(),
+  susNumber: z.string().nullish(),
   birthDatePCD: z.union([z.date(), z.null()]),
   genderPCD: z.string().nullish(),
   educationLevelPCD: z.string().nullish(),
@@ -118,7 +117,6 @@ const schema = z.object({
   publicTransportation: z.boolean().nullish(),
   hasSons: z.boolean().nullish(),
   neededAssistency: z.boolean(),
-  termsAccepted: z.boolean(),
   auxiliarPCD: infosAuxiliar.nullish(),
   addressPCD: addressPCD,
   informationDeficiency: informationDeficiency.nullish(),
@@ -143,7 +141,6 @@ export const RegisterPCDComponent = () => {
       publicTransportation: false,
       hasSons: false,
       neededAssistency: false,
-      termsAccepted: false,
       addressPCD: {
         cepAddress: "",
         stateAddress: "",
@@ -163,7 +160,7 @@ export const RegisterPCDComponent = () => {
         regularEducationClass: false,
         specializedEducationalService: "",
         yearCicle: "",
-        frequencyDaysWeek: "",
+        frequencyDaysWeek: "0",
         travelTime: "",
         needsCompany: false,
         lackOfAccessibilityWay: false,
@@ -209,9 +206,6 @@ export const RegisterPCDComponent = () => {
     const dataFilters = {
       ...pcd,
       cpfPCD: sanitizeNumbers(pcd.cpfPCD),
-      nit: sanitizeNumbers(pcd.nit),
-      susNumber: sanitizeNumbers(pcd.susNumber),
-      bpcNumber: sanitizeNumbers(pcd.bpcNumber),
       telephonePCD: sanitizeNumbers(pcd.telephonePCD)
     }
 
@@ -301,13 +295,13 @@ export const RegisterPCDComponent = () => {
             </AccordionTab>
           </Accordion>
 
-          {/* <TermsOfAcceptance label="Aceito os termos e condições" name="termsAccepted" /> */}
+          {/* <TermsOfAcceptance label="Aceito os termos e condições" name="termsAccepted" />
 
           <ItemCheckbox
             label="Aceito os Termos e Condições"
             name="termsAccepted"
             required
-            message="Você deve aceitar os termos." disabled={false} />
+            message="Você deve aceitar os termos." disabled={false} /> */}
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button

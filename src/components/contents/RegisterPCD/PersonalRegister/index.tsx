@@ -134,17 +134,17 @@ export const PersonalRegister = () => {
       </SubForm>
 
       <SubForm columns={3}>
-        <ItemYesNo disabled={false} label="Empregado?" name="employee" />
+        <ItemYesNo disabled={false} label="*Empregado?" name="employee" required={true} />
 
         <ItemYesNo
           disabled={false}
-          label="Utiliza transporte público?"
+          label="*Utiliza transporte público?"
           name="publicTransportation"
         />
 
         <ItemYesNo
           disabled={false}
-          label="Possui filhos?"
+          label="*Possui filhos?"
           name="hasSons"
         />
       </SubForm>

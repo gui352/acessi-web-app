@@ -49,14 +49,14 @@ export const DeficiencyRegister = () => {
     { label: "Doenças Crônicas/Degenerativas", value: "DOENCAS_CRONICAS", forms: [] }
   ];
 
-  const selectedDeficiencyValue = watch("deficiency");
+  const selectedDeficiencyValue = watch("informationDeficiency.deficiency");
   const selectedDeficiency = deficiencyTypes.find(
     (def) => def.value === selectedDeficiencyValue
   );
 
   React.useEffect(() => {
     if (selectedDeficiency && selectedDeficiency.forms?.length === 0) {
-      resetField("formTypeDeficiency");
+      resetField("informationDeficiency.deficiency");
     }
   }, [selectedDeficiency, resetField]);
 
@@ -75,6 +75,7 @@ export const DeficiencyRegister = () => {
           options={deficiencyTypes.map(({ label, value }) => ({ label, value }))}
           label="Selecione o tipo da deficiência"
           placeholder="Selecione aqui..."
+          required={true}
         />
 
         {selectedDeficiency && selectedDeficiency.forms?.length > 0 && (
