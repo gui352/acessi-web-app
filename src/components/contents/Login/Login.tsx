@@ -8,21 +8,34 @@ import "primeicons/primeicons.css";
 import { UserModel } from "interfaces/User/UserInterface";
 import { UserService } from "services/User/UserService";
 import { useRouter } from "next/router";
+import { Card, FloatButton } from "antd";
+import useSpeechToText from "components/Accessibility/useSpeechToText";
+import { AudioMutedOutlined, AudioOutlined } from "@ant-design/icons";
 
 export const LoginComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
   const serviceUser = new UserService();
   const Router = useRouter();
+  const [emailInput, setEmailInput] = useState('');
+  const [emailFocus, setEmailFocus] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordFocus, setPasswordFocus] = useState(false);
+
+  const { isListening, transcript, startListening, stopListening } = useSpeechToText({ continuous: true })
+
+  const startStopListening = () => {
+    isListening ? stopListening() : startListening()
+  }
 
   const validate = (data: any) => {
     let erros: any = {};
 
-    if (!data.email) {
+    if (!emailInput) {
       erros.email = "Email é obrigatório.";
     }
 
-    if (!data.password) {
+    if (!passwordInput) {
       erros.password = "Senha é obrigatória.";
     }
 
@@ -34,8 +47,8 @@ export const LoginComponent = () => {
     setShowMessage(true);
 
     const user: UserModel = {
-      emailUser: data.email,
-      passwordUser: data.password,
+      emailUser: emailInput,
+      passwordUser: passwordInput,
     };
 
     serviceUser.LoginUser(user).then((res) => {
@@ -120,6 +133,17 @@ export const LoginComponent = () => {
                           className={classNames({
                             "p-invalid": isFormFieldValid(meta),
                           })}
+                          value={isListening && emailFocus ? emailInput + (transcript.length ? (emailInput.length ? ' ' : '') + transcript : '') : emailInput}
+                          onChange={(e) => {
+                            setEmailInput(e.target.value);
+                          }}
+                          onFocus={() => {
+                            setEmailFocus(true);
+                          }}
+                          onBlur={() => {
+                            setEmailFocus(false);
+                            setEmailInput(prevVal => prevVal + (transcript.length ? (prevVal.length ? ' ' : '') + transcript : ''));
+                          }}
                         />
                         <label
                           htmlFor="email"
@@ -154,6 +178,17 @@ export const LoginComponent = () => {
                           type="password"
                           size={30}
                           style={{ width: "100%" }}
+                          value={isListening && passwordFocus ? passwordInput + (transcript.length ? (passwordInput.length ? ' ' : '') + transcript : '') : passwordInput}
+                          onChange={(e) => {
+                            setPasswordInput(e.target.value);
+                          }}
+                          onFocus={() => {
+                            setPasswordFocus(true);
+                          }}
+                          onBlur={() => {
+                            setPasswordFocus(false);
+                            setPasswordInput(prevVal => prevVal + (transcript.length ? (prevVal.length ? ' ' : '') + transcript : ''));
+                          }}
                         />
                         <label
                           htmlFor="password"
@@ -198,6 +233,14 @@ export const LoginComponent = () => {
           /> */}
         </div>
       </div>
+
+      <FloatButton
+        shape="circle"
+        type="primary"
+        style={{ insetInlineEnd: 94, position: "fixed", bottom: "38vh", right: "0.5vw" }}
+        icon={isListening ? <AudioMutedOutlined /> : <AudioOutlined />}
+        onClick={() => { startStopListening() }}
+      />
     </div>
   );
 };

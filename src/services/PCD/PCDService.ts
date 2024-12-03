@@ -2,14 +2,52 @@ import axios from "axios";
 import { PCDModel } from "interfaces/PCD/PCDInterface";
 
 export class PCDService {
-  private API = "http://localhost:8085/acessi";
+  private API = "http://localhost:8085/acessi/pcd";
 
   async CreateUser(pcd: PCDModel) {
-    console.log("Entrou service");
-    console.log(pcd);
-    console.log(`${this.API}/pcd`);
+    const response = await axios.post(`${this.API}`, pcd, {
+      withCredentials: true,
+    });
+    return response;
+  }
 
-    const response = await axios.post(`${this.API}/pcd`, pcd, {
+  async GetDisabilityTypeCount() {
+    const response = await axios.get(`${this.API}/type`, {
+      withCredentials: true,
+    });
+    return response;
+  }
+
+  async GetCount() {
+    const response = await axios.get(`${this.API}/count`, {
+      withCredentials: true,
+    });
+    return response;
+  }
+
+  async GetEducationLevelCount() {
+    const response = await axios.get(`${this.API}/education`, {
+      withCredentials: true,
+    });
+    return response;
+  }
+
+  async GetGenderCount() {
+    const response = await axios.get(`${this.API}/gender`, {
+      withCredentials: true,
+    });
+    return response;
+  }
+
+  async GetNeighborhoodCount() {
+    const response = await axios.get(`${this.API}/neighborhood`, {
+      withCredentials: true,
+    });
+    return response;
+  }
+
+  async GetPyramidCount() {
+    const response = await axios.get(`${this.API}/pyramid`, {
       withCredentials: true,
     });
     return response;

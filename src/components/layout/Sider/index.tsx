@@ -39,22 +39,22 @@ export const Sider: React.FC<SiderProps> = ({ className }) => {
         router.push("/registerPcd");
       },
     },
+    // {
+    //   label: "Notícias",
+    //   icon: "pi pi-fw pi-megaphone",
+    //   command: () => {
+    //     router.push("/news");
+    //   },
+    // },
+    // {
+    //   label: "Vagas",
+    //   icon: "pi pi-fw pi-shopping-bag",
+    //   command: () => {
+    //     router.push("/jobs");
+    //   },
+    // },
     {
-      label: "Notícias",
-      icon: "pi pi-fw pi-megaphone",
-      command: () => {
-        router.push("/news");
-      },
-    },
-    {
-      label: "Vagas",
-      icon: "pi pi-fw pi-shopping-bag",
-      command: () => {
-        router.push("/jobs");
-      },
-    },
-    {
-      label: "Dashboards",
+      label: "Censo",
       icon: "pi pi-fw pi-chart-bar",
       command: () => {
         router.push("/dashboards");

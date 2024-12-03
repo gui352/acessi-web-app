@@ -7,7 +7,8 @@ import { Password } from "primereact/password";
 import { UserService } from "services/User/UserService";
 import { UserModel } from "interfaces/User/UserInterface";
 import { useRouter } from "next/router";
-import { message } from "antd";
+import { FloatButton, message } from "antd";
+import { AudioMutedOutlined, AudioOutlined } from "@ant-design/icons";
 
 export const RegisterUserComponent = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -15,6 +16,11 @@ export const RegisterUserComponent = () => {
   const serviceUser = new UserService();
   const Router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
+  const [isListening, setIsListening] = useState(false);
+
+  const startStopListening = () => {
+    setIsListening(!isListening);
+  }
 
   const onSubmit = (data: any, form: any) => {
     setFormData(data);
@@ -297,6 +303,13 @@ export const RegisterUserComponent = () => {
             ></Form>
           </div>
         </div>
+        <FloatButton
+          shape="circle"
+          type="primary"
+          style={{ insetInlineEnd: 94, position: "fixed", bottom: "38vh", right: "0.5vw" }}
+          icon={isListening ? <AudioMutedOutlined /> : <AudioOutlined />}
+          onClick={() => { startStopListening() }}
+        />
       </div>
     </>
   );

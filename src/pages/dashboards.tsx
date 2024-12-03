@@ -1,4 +1,4 @@
-import { DashboardsPage } from "components/contents/Dashboards/Dashbaord";
+import { DashboardsPage } from "components/contents/Dashboards/Dashboard";
 import { getServerSideTranslations } from "configs/language/server";
 import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";

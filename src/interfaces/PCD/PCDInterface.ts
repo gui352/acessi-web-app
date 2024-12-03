@@ -21,3 +21,8 @@ export interface PCDModel {
   informationDeficiency: InformationDeficiency;
   auxiliarPCD: {};
 }
+
+export interface DisabilityTypeCount {
+  disabilityTypeCount: number;
+  disabilityTypeName: string;
+}
