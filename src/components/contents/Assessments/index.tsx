@@ -1,11 +1,14 @@
-import { Col, Row } from "antd";
-import { AssessmentsCard } from "components/AssessmentsCard";
-import { CarouselComponent } from "components/Carousel";
-import { HeaderTitle } from "components/HeaderTitle";
 import React from "react";
+import { Card } from "primereact/card";
+import { Galleria } from "primereact/galleria";
+import "primeflex/primeflex.css";
+import { HeaderTitle } from "components/HeaderTitle";
+import { CarouselComponent } from "components/Carousel";
 import { AvaliationService } from "services/Avaliations/AvaliationService";
 import { useEffect, useState } from "react";
 import { AvaliationInterface } from "interfaces/Avaliations/AvaliationInterface";
+import { Col, Row } from "antd";
+import { AssessmentsCard } from "components/AssessmentsCard";
 
 export const AssessmentsComponent = () => {
   const avaliationService = new AvaliationService();
