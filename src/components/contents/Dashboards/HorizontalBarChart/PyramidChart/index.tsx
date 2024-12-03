@@ -52,8 +52,8 @@ export default function PyramidChart() {
       let maleList = res.data.filter(item => item.genderPCD == "Masculino");
       let femaleList = res.data.filter(item => item.genderPCD == "Feminino");
       labels.forEach(label => {
-        males.push(maleList.find(item => item.ageRange == label).ageRangeCount);
-        famales.push(femaleList.find(item => item.ageRange == label).ageRangeCount * -1);
+        males.push(maleList.find(item => item.ageRange == label)?.ageRangeCount);
+        famales.push(femaleList.find(item => item.ageRange == label)?.ageRangeCount * -1);
       });
 
       const data = {
