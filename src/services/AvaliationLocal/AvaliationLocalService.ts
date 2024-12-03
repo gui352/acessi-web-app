@@ -7,10 +7,7 @@ export class AvaliationLocalService {
 
   async GetAllAvaliations() {
     return await axios.get<AvaliationLocalModel[]>(
-      `${this.ApiUrl}/avaliation`,
-      {
-        withCredentials: true,
-      }
+      `${this.ApiUrl}/avaliation/search-all-avaliation`
     );
   }
 
@@ -18,9 +15,7 @@ export class AvaliationLocalService {
     console.log("chegou objeto no ", avaliationLocal);
     const createAvaliation = () => {
       return axios
-        .post(`${this.ApiUrl}/avaliation`, avaliationLocal, {
-          withCredentials: true,
-        })
+        .post(`${this.ApiUrl}/avaliation`, avaliationLocal)
         .then((response) => response.data as AvaliationLocalModel);
     };
 
@@ -33,16 +28,12 @@ export class AvaliationLocalService {
       "rota",
       `${this.ApiUrl}/avaliation/${avaliationLocal.idLocalAvaliation}`
     );
-    return await axios.post(`${this.ApiUrl}/avaliation`, avaliationLocal, {
-      withCredentials: true,
-    });
+    return await axios.post(`${this.ApiUrl}/avaliation`, avaliationLocal);
   }
 
   async DeleteAvaliationLocal(id: number) {
     console.log("chegou id", id);
     console.log("rota", `${this.ApiUrl}/avaliation/${id}`);
-    return await axios.delete(`${this.ApiUrl}/avaliation/${id}`, {
-      withCredentials: true,
-    });
+    return await axios.delete(`${this.ApiUrl}/avaliation/${id}`);
   }
 }

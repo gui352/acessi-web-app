@@ -25,7 +25,7 @@ export const RegisterAvaliationLocal = () => {
   let emptyAvaliation: AvaliationLocalModel = {
     idLocalAvaliation: 0,
     name: "",
-    imageAvaliationLocal: [],
+    imageAvaliationLocal: "",
     typeLocalAvaliation: LocalAvaliationType.Another,
   };
 
@@ -68,22 +68,20 @@ export const RegisterAvaliationLocal = () => {
     setDeleteProductsDialog(false);
   };
 
-  const saveProduct = () => {
+  const saveProduct = async () => {
     setSubmitted(true);
     let _products = Array.isArray(products) ? [...products] : [];
     let _product = { ...product };
 
-    console.log("produto que chegou", product);
-    console.log("lista de produtos antes de salvar/editar", products);
-
     if (
       product.name.trim() &&
-      product.imageAvaliationLocal.length > 0 &&
+      product.imageAvaliationLocal != undefined &&
+      product.imageAvaliationLocal != "" &&
       product.typeLocalAvaliation
     ) {
       if (product.idLocalAvaliation) {
-        console.log("objeto passado pro update", _product);
-        avaliationLocalService.UpdateAvaliationLocal(_product);
+        // Atualizando produto
+        await avaliationLocalService.UpdateAvaliationLocal(_product);
         const index = _products.findIndex(
           (p) => p.idLocalAvaliation === product.idLocalAvaliation
         );
@@ -97,30 +95,34 @@ export const RegisterAvaliationLocal = () => {
           life: 3000,
         });
       } else {
-        console.log("comecou create");
-
-        const createAvaliation = async () => {
-          let avaliationCriada: AvaliationLocalModel =
+        // Criando novo produto
+        try {
+          const avaliationCriada =
             await avaliationLocalService.CreateAvaliationLocal(_product);
 
-          console.log("objeto recebido api", avaliationCriada);
-
-          if (avaliationCriada != null) {
+          if (avaliationCriada) {
             _product.idLocalAvaliation = avaliationCriada.idLocalAvaliation;
+            _products.push(_product);
           }
-          _products.push(_product);
-        };
 
-        createAvaliation();
-        console.log(`apos adicionado`, _products);
-        toast.current.show({
-          severity: "success",
-          summary: "Sucesso",
-          detail: "Avaliação criada",
-          life: 3000,
-        });
+          // Atualiza o estado dos produtos após a criação
+          setProducts(_products);
 
-        window.location.reload();
+          toast.current.show({
+            severity: "success",
+            summary: "Sucesso",
+            detail: "Avaliação criada",
+            life: 3000,
+          });
+        } catch (error) {
+          console.error("Erro ao criar avaliação:", error);
+          toast.current.show({
+            severity: "error",
+            summary: "Erro",
+            detail: "Falha ao criar avaliação.",
+            life: 3000,
+          });
+        }
       }
     } else {
       toast.current.show({
@@ -130,12 +132,11 @@ export const RegisterAvaliationLocal = () => {
         life: 3000,
       });
     }
-    setProducts(_products);
+
     setProductDialog(false);
     setProduct(emptyAvaliation);
     setImageAvaliation("");
   };
-
   const editProduct = (product) => {
     console.log("chamou edit propduct");
     console.log("lista atual de produtos", products);
@@ -220,13 +221,13 @@ export const RegisterAvaliationLocal = () => {
           severity="success"
           onClick={openNew}
         />
-        {/* <Button
+        <Button
           label="Delete"
           icon="pi pi-trash"
           severity="danger"
           onClick={confirmDeleteSelected}
           disabled={!selectedProducts || !selectedProducts.length}
-        /> */}
+        />
       </div>
     );
   };
@@ -317,17 +318,18 @@ export const RegisterAvaliationLocal = () => {
     if (event.target.files && event.target.files[0]) {
       setImageAvaliation(URL.createObjectURL(event.target.files[0]));
     }
+
     const file = event.target.files[0];
     const reader = new FileReader();
     let _product = { ...product };
 
     reader.onload = (progressEvent) => {
-      const arrayBuffer = progressEvent.target.result as ArrayBuffer;
-      const uint8Array = Array.from(new Uint8Array(arrayBuffer));
-      _product.imageAvaliationLocal = uint8Array;
+      const base64String = progressEvent.target.result as string; // Será uma string base64
+      _product.imageAvaliationLocal = base64String;
       setProduct(_product);
     };
-    reader.readAsArrayBuffer(file);
+
+    reader.readAsDataURL(file); // Lê o arquivo como DataURL (Base64)
   };
 
   return (

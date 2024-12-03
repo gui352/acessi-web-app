@@ -10,6 +10,6 @@ export enum LocalAvaliationType {
 export interface AvaliationLocalModel {
   idLocalAvaliation: number | null;
   name: string;
-  imageAvaliationLocal: number[];
+  imageAvaliationLocal: string;
   typeLocalAvaliation: LocalAvaliationType;
 }
