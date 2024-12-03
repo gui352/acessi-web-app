@@ -7,11 +7,12 @@ import axios from "axios";
 
 export const AdressRegister = () => {
   const { watch, setValue } = useFormContext();
-  const cep = watch("cep")
-  const cepAuxiliar = watch("cepAuxiliar")
+  const cep = watch("addressPCD.cepAddress")
+  const cepAuxiliar = watch("auxiliarPCD.addressAuxiliar.cepAddress")
 
   const fetchAddressData = async (cep, setFields) => {
-    if (cep && cep.length === 8) {
+    const cepRegex = cep?.replace(/-/g, "")
+    if (cepRegex && cepRegex.length === 8) {
       try {
         const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         if (response.data) {
@@ -28,16 +29,19 @@ export const AdressRegister = () => {
   // Busca para o endereço do PCD
   useEffect(() => {
     fetchAddressData(cep, (city, state, neighborhood, street) => {
-      setValue("city", city);
-      setValue("state", state);
-      setValue("neighborhood", neighborhood);
-      setValue("street", street);
+      setValue("addressPCD.cityAddress", city);
+      setValue("addressPCD.stateAddress", state);
+      setValue("addressPCD.neighborhoodAddress", neighborhood);
+      setValue("addressPCD.streetAddress", street);
 
-      if (watch("withPCD") === true) {
-        setValue("cityAuxiliar", city);
-        setValue("stateAuxiliar", state);
-        setValue("neighborhoodAuxiliar", neighborhood);
-        setValue("streetAuxiliar", street);
+      if (watch("auxiliarPCD.withPCD") === true) {
+        setValue("auxiliarPCD.addressAuxiliar.cityAddress", watch("addressPCD.cityAddress"));
+        setValue("auxiliarPCD.addressAuxiliar.stateAddress", watch("addressPCD.stateAddress"));
+        setValue("auxiliarPCD.addressAuxiliar.neighborhoodAddress", watch("addressPCD.neighborhoodAddress"));
+        setValue("auxiliarPCD.addressAuxiliar.streetAddress", watch("addressPCD.streetAddress"));
+        setValue("auxiliarPCD.addressAuxiliar.cepAddress", watch("addressPCD.cepAddress"));
+        setValue("auxiliarPCD.addressAuxiliar.complementAddress", watch("addressPCD.complementAddress"));
+        setValue("auxiliarPCD.addressAuxiliar.numberAddress", watch("addressPCD.numberAddress"));
       }
     });
 
@@ -46,41 +50,30 @@ export const AdressRegister = () => {
   // Busca para o endereço do Auxiliar
   useEffect(() => {
     fetchAddressData(cepAuxiliar, (city, state, neighborhood, street) => {
-      setValue("cityAuxiliar", city);
-      setValue("stateAuxiliar", state);
-      setValue("neighborhoodAuxiliar", neighborhood);
-      setValue("streetAuxiliar", street);
+      setValue("auxiliarPCD.addressAuxiliar.cityAuxiliar", city);
+      setValue("auxiliarPCD.addressAuxiliar.stateAuxiliar", state);
+      setValue("auxiliarPCD.addressAuxiliar.neighborhoodAuxiliar", neighborhood);
+      setValue("auxiliarPCD.addressAuxiliar.streetAuxiliar", street);
     });
   }, [cepAuxiliar, setValue]);
 
-  /* eslint-disable no-template-curly-in-string */
-  const validateMessages = {
-    required: "${label} is required!",
-    types: {
-      email: "${label} is not a valid email!",
-      number: "${label} is not a valid number!",
-    },
-    number: {
-      range: "${label} must be between ${min} and ${max}",
-    },
-  };
 
-  console.log(watch())
   return (
     <>
       <SubForm columns={3}>
         <ItemInput
           disabled={false}
           label="CEP"
-          name="cep"
+          name="addressPCD.cepAddress"
           placeholder="Digite aqui..."
           mask="99999-999"
+          required={true}
         />
 
         <ItemInput
           disabled={true}
           label="Estado"
-          name="state"
+          name="addressPCD.stateAddress"
           placeholder="Digite aqui..."
         />
       </SubForm>
@@ -89,14 +82,14 @@ export const AdressRegister = () => {
         <ItemInput
           disabled={true}
           label="Cidade"
-          name="city"
+          name="addressPCD.cityAddress"
           placeholder="Digite aqui..."
         />
 
         <ItemInput
           disabled={false}
           label="Bairro"
-          name="neighborhood"
+          name="addressPCD.neighborhoodAddress"
           placeholder="Digite aqui..."
         />
       </SubForm>
@@ -105,14 +98,14 @@ export const AdressRegister = () => {
         <ItemInput
           disabled={false}
           label="Rua"
-          name="street"
+          name="addressPCD.streetAddress"
           placeholder="Digite aqui..."
         />
 
         <ItemInput
           disabled={false}
           label="Número"
-          name="numberHome"
+          name="addressPCD.numberAddress"
           placeholder="Digite aqui..."
         />
       </SubForm>
@@ -120,7 +113,7 @@ export const AdressRegister = () => {
       <ItemInput
         disabled={false}
         label="Complemento"
-        name="complement"
+        name="addressPCD.complementAddress"
         placeholder="Digite aqui..."
       />
 
@@ -129,17 +122,17 @@ export const AdressRegister = () => {
         <ItemYesNo
           disabled={false}
           label="Você reside junto com o PCD?"
-          name="withPCD"
+          name="auxiliarPCD.withPCD"
         />
       </div>
 
-      <div style={{ display: watch("withPCD") === false ? "" : "none" }}>
+      <div style={{ display: watch("auxiliarPCD.withPCD") === false ? "" : "none" }}>
         <h3>Complementos do auxiliar:</h3>
         <SubForm columns={3}>
           <ItemInput
             disabled={false}
             label="CEP"
-            name="cepAuxiliar"
+            name="auxiliarPCD.addressAuxiliar.cepAddress"
             placeholder="Digite aqui..."
             mask="99999-999"
           />
@@ -147,7 +140,7 @@ export const AdressRegister = () => {
           <ItemInput
             disabled={true}
             label="Estado"
-            name="stateAuxiliar"
+            name="auxiliarPCD.addressAuxiliar.stateAddress"
             placeholder="Digite aqui..."
           />
         </SubForm>
@@ -156,14 +149,14 @@ export const AdressRegister = () => {
           <ItemInput
             disabled={true}
             label="Cidade"
-            name="cityAuxiliar"
+            name="auxiliarPCD.addressAuxiliar.cityAddress"
             placeholder="Digite aqui..."
           />
 
           <ItemInput
             disabled={false}
             label="Bairro"
-            name="neighborhoodAuxiliar"
+            name="auxiliarPCD.addressAuxiliar.neighborhoodAddress"
             placeholder="Digite aqui..."
           />
         </SubForm>
@@ -172,14 +165,14 @@ export const AdressRegister = () => {
           <ItemInput
             disabled={false}
             label="Rua"
-            name="streetAuxiliar"
+            name="auxiliarPCD.addressAuxiliar.streetAddress"
             placeholder="Digite aqui..."
           />
 
           <ItemInput
             disabled={false}
             label="Número"
-            name="numberHomeAuxiliar"
+            name="auxiliarPCD.addressAuxiliar.numberAddress"
             placeholder="Digite aqui..."
           />
         </SubForm>
@@ -187,7 +180,7 @@ export const AdressRegister = () => {
         <ItemInput
           disabled={false}
           label="Complemento"
-          name="complementAuxiliar"
+          name="auxiliarPCD.addressAuxiliar.complementAddress"
           placeholder="Digite aqui..."
         />
       </div>

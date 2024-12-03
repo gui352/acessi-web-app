@@ -1,3 +1,4 @@
+import { InformationDeficiency } from "interfaces/InformationDeficiency";
 import { AddressModel } from "../Adress/AddressInterface";
 
 export interface PCDModel {
@@ -10,15 +11,13 @@ export interface PCDModel {
   educationLevelPCD: string;
   employee: boolean;
   publicTransportation: boolean;
-  disabilityTypePCD: string;
-  bpc: string;
+  bpcNumber: string;
   nit: string;
-  sus: string;
+  susNumber: string;
   color: string;
-  isEmployee: boolean;
-  isUsePublicTransport: boolean;
   hasSons: boolean;
   neededAssistency: boolean;
   addressPCD: AddressModel;
-  aboutDeficiency: {};
+  informationDeficiency: InformationDeficiency;
+  auxiliarPCD: {};
 }

@@ -4,16 +4,16 @@ import * as React from "react";
 import { useController } from "react-hook-form";
 import ItemProps from "../ItemProps";
 
-interface ItemInputProps extends ItemProps {
+interface ItemNumberProps extends ItemProps {
   min?: number;
   max?: number;
-  type?;
-  // defaultValue?;
+  step?: number; // Adiciona suporte a passos personalizados
+  useGrouping?: boolean; // Suporte para agrupamento de milhares
   hideLabel?: boolean;
   hideFeedback?: boolean;
   message?: string;
-  addonAfter?;
-  addonBefore?;
+  addonAfter?: React.ReactNode;
+  addonBefore?: React.ReactNode;
 }
 
 const ItemNumber = ({
@@ -22,14 +22,15 @@ const ItemNumber = ({
   placeholder,
   disabled,
   min,
+  max,
+  step,
+  useGrouping = true, // Padrão como verdadeiro
   addonAfter,
   addonBefore,
-  max,
-  // defaultValue,
   hideLabel,
   message,
   hideFeedback,
-}: ItemInputProps) => {
+}: ItemNumberProps) => {
   const { field, fieldState } = useController({ name });
 
   const _message = fieldState.error?.message
@@ -38,7 +39,15 @@ const ItemNumber = ({
 
   return (
     <Form.Item
-      label={label}
+      label={
+        hideLabel ? null : (
+          <>
+            {label}
+            {addonAfter && <span style={{ marginLeft: 4 }}>{addonAfter}</span>}
+            {addonBefore && <span style={{ marginRight: 4 }}>{addonBefore}</span>}
+          </>
+        )
+      }
       name={name}
       hideLabel={hideLabel}
       message={_message}
@@ -47,15 +56,17 @@ const ItemNumber = ({
       <InputNumber
         placeholder={placeholder}
         {...field}
-        // defaultValue={defaultValue}
+        value={field.value || undefined}
+        onChange={(e) => field.onChange(e.value)}
         disabled={disabled}
         min={min}
         max={max}
+        step={step || 1}
+        useGrouping={useGrouping}
         style={{ width: "100%" }}
-      // addonAfter={addonAfter}
-      // addonBefore={addonBefore}
       />
     </Form.Item>
   );
 };
+
 export default ItemNumber;

@@ -10,8 +10,9 @@ interface ItemInputProps extends ItemProps {
   defaultValue?: string;
   message?: string;
   hideFeedback?: boolean;
-  mask?: string; // Suporte para máscara
-  validate?: (value: string) => boolean | string; // Validação customizada
+  mask?: string;
+  validate?: (value: string) => boolean | string;
+  required?: boolean
 }
 
 const ItemInput: React.FC<ItemInputProps> = ({
@@ -25,6 +26,7 @@ const ItemInput: React.FC<ItemInputProps> = ({
   message,
   mask,
   validate,
+  required
 }) => {
   const { field, fieldState } = useController({
     name,
@@ -39,7 +41,12 @@ const ItemInput: React.FC<ItemInputProps> = ({
 
   return (
     <Form.Item
-      label={label}
+      label={
+        <>
+          {required && <span style={{ color: "red", marginLeft: "4px" }}>*</span>}
+          {label}
+        </>
+      }
       name={name}
       message={_message}
       hideFeedback={hideFeedback}
@@ -66,7 +73,6 @@ const ItemInput: React.FC<ItemInputProps> = ({
           {...field}
           defaultValue={defaultValue}
           disabled={disabled}
-
         />
       )}
     </Form.Item>

@@ -5,47 +5,48 @@ import ItemYesNo from "components/FormItems/ItemYesNo";
 import { SubForm } from "components/common/Form/SubForm";
 import { useFormContext } from "react-hook-form";
 import ItemInput from "components/FormItems/ItemInput";
+import ItemNumber from "components/FormItems/ItemNumber";
 
 export const DeficiencyRegister = () => {
 
   const { watch, resetField } = useFormContext();
 
   const deficiencyTypes = [
-    { label: "Deficiência Múltipla", value: "deficiencia_multipla" },
-    { label: "Cegueira", value: "cegueira", forms: [] },
-    { label: "Baixa Visão", value: "baixa_visao", forms: [] },
-    { label: "Surdez", value: "surdez", forms: [] },
-    { label: "Deficiência Auditiva", value: "deficiencia_auditiva", forms: [] },
-    { label: "Surdocegueira", value: "surdocegueira", forms: [] },
+    { label: "Deficiência Múltipla", value: "DEFICIENCIA_MULTIPLA" },
+    { label: "Cegueira", value: "CEGUEIRA", forms: [] },
+    { label: "Baixa Visão", value: "BAIXA_VISAO", forms: [] },
+    { label: "Surdez", value: "SURDEZ", forms: [] },
+    { label: "Deficiência Auditiva", value: "DEFICIENCIA_AUDITIVA", forms: [] },
+    { label: "Surdocegueira", value: "SURDOCEGUEIRA", forms: [] },
     {
       label: "Deficiência Física",
-      value: "deficiencia_fisica",
+      value: "DEFICIENCIA_FISICA",
       forms: [
-        { label: "Paraplegia/Paraparesia", value: "paraplegia_paraparesia" },
-        { label: "Tetraplegia/Tetraparesia", value: "tetraplegia_tetraparesia" },
-        { label: "Monoplegia/Monoparesia", value: "monoplegia_monoparesia" },
-        { label: "Hemiplegia/Hemiparesia", value: "hemiplegia_hemiparesia" },
-        { label: "Amputação/Ausência de Membros", value: "amputacao_ausencia" },
-        { label: "Paralisia Cerebral", value: "paralisia_cerebral" },
-        { label: "Nanismo", value: "nanismo" },
-        { label: "Ostomia", value: "ostomia" },
-        { label: "Deformidades no Corpo", value: "deformidades_corpo" }
+        { label: "Paraplegia/Paraparesia", value: "PARAPLEGIA_PARAPARESIA" },
+        { label: "Tetraplegia/Tetraparesia", value: "TETRAPLEGIA_TETRAPARESIA" },
+        { label: "Monoplegia/Monoparesia", value: "MONOPLEGIA_MONOPARESIA" },
+        { label: "Hemiplegia/Hemiparesia", value: "HEMIPLEGIA_HEMIPARESIA" },
+        { label: "Amputação/Ausência de Membros", value: "AMPUTACAO_AUSENCIA" },
+        { label: "Paralisia Cerebral", value: "PARALISIA_CEREBRAL" },
+        { label: "Nanismo", value: "NANISMO" },
+        { label: "Ostomia", value: "OSTOMIA" },
+        { label: "Deformidades no Corpo", value: "DEFORMIDADES_CORPO" }
       ]
     },
-    { label: "Deficiência Mental/Intelectual", value: "deficiencia_mental", forms: [] },
+    { label: "Deficiência Mental/Intelectual", value: "DEFICIENCIA_MENTAL", forms: [] },
     {
       label: "Transtornos Globais do Desenvolvimento",
-      value: "transtornos_desenvolvimento",
+      value: "TRANSTORNOS_DESENVOLVIMENTO",
       forms: [
-        { label: "Autismo", value: "autismo" },
-        { label: "Psicose Infantil", value: "psicose_infantil" },
-        { label: "Síndrome de Kanner", value: "sindrome_kanner" },
-        { label: "Síndrome de Rett", value: "sindrome_rett" },
-        { label: "Síndrome de Asperger", value: "sindrome_asperger" }
+        { label: "Autismo", value: "AUTISMO" },
+        { label: "Psicose Infantil", value: "PSICOSE_INFANTIL" },
+        { label: "Síndrome de Kanner", value: "SINDROME_KANNER" },
+        { label: "Síndrome de Rett", value: "SINDROME_RETT" },
+        { label: "Síndrome de Asperger", value: "SINDROME_ASPERGER" }
       ]
     },
-    { label: "Síndrome de Down", value: "sindrome_down", forms: [] },
-    { label: "Doenças Crônicas/Degenerativas", value: "doencas_cronicas", forms: [] }
+    { label: "Síndrome de Down", value: "SINDROME_DOWN", forms: [] },
+    { label: "Doenças Crônicas/Degenerativas", value: "DOENCAS_CRONICAS", forms: [] }
   ];
 
   const selectedDeficiencyValue = watch("deficiency");
@@ -65,12 +66,12 @@ export const DeficiencyRegister = () => {
         <ItemYesNo
           disabled={false}
           label="Deficiência adquirida?"
-          name="deficiencyAcquired"
+          name="informationDeficiency.deficiencyAcquired"
         />
 
         <ItemSelect
           disabled={false}
-          name="deficiency"
+          name="informationDeficiency.deficiency"
           options={deficiencyTypes.map(({ label, value }) => ({ label, value }))}
           label="Selecione o tipo da deficiência"
           placeholder="Selecione aqui..."
@@ -79,7 +80,7 @@ export const DeficiencyRegister = () => {
         {selectedDeficiency && selectedDeficiency.forms?.length > 0 && (
           <ItemSelect
             disabled={false}
-            name="formTypeDeficiency"
+            name="informationDeficiency.formTypeDeficiency"
             options={selectedDeficiency?.forms?.map(({ label, value }) => ({ label, value }))}
             label="Grau/Forma da deficiência"
             placeholder="Selecione aqui..."
@@ -91,9 +92,9 @@ export const DeficiencyRegister = () => {
       <h3>Escolaridade</h3>
       <SubForm columns={2}>
 
-        <ItemYesNo disabled={false} name="accessSchool" label="Acesso à escola?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.accessSchool" label="Acesso à escola?" />
 
-        <ItemInput disabled={false} name="schoolName" label="Nome da escola" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="informationDeficiency.schoolName" label="Nome da escola" placeholder="Digite aqui..." />
 
         <ItemSelect options={[
           { label: "Escola pública", value: "ESCOLA_PUBLICA" },
@@ -104,30 +105,30 @@ export const DeficiencyRegister = () => {
           { label: "Classe especial", value: "CLASSE_ESPECIAL" },
           { label: "EJA (Educação de Jovens e Adultos)", value: "EJA" },
           { label: "Outro", value: "OUTRO" }
-        ]} disabled={false} name="schoolType" label="Tipo da escola e classe" placeholder="Digite aqui..." />
+        ]} disabled={false} name="informationDeficiency.schoolType" label="Tipo da escola e classe" placeholder="Digite aqui..." />
 
-        <ItemYesNo disabled={false} name="regularEducationClass" label="Frequenta classe comum do ensino regular?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.regularEducationClass" label="Frequenta classe comum do ensino regular?" />
 
-        <ItemInput disabled={false} name="specializedEducationalService" label="Onde frequenta atendimento educacional especializado?" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="informationDeficiency.specializedEducationalService" label="Onde frequenta atendimento educacional especializado?" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="yearCicle" label="Qual ano/ciclo?" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="informationDeficiency.yearCicle" label="Qual ano/ciclo?" placeholder="Digite aqui..." />
 
-        <ItemInput type={"number"} disabled={false} name="frequencyDaysWeek" label="Frequência (dias por semana)" placeholder="Digite aqui..." />
+        <ItemNumber max={7} disabled={false} name="informationDeficiency.frequencyDaysWeek" label="Frequência (dias por semana)" placeholder="Digite aqui..." />
 
-        <ItemInput disabled={false} name="travelTime" label="Tempo de trajeto casa/escola" placeholder="Digite aqui..." />
+        <ItemInput disabled={false} name="informationDeficiency.travelTime" label="Tempo de trajeto casa/escola" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Transporte e Acessibilidade */}
       <h3>Transporte e Acessibilidade</h3>
       <SubForm columns={2}>
 
-        <ItemYesNo disabled={false} name="needsCompany" label="Necessita de companhia para o trajeto?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.needsCompany" label="Necessita de companhia para o trajeto?" />
 
-        <ItemYesNo disabled={false} name="lackOfAccessibilityWay" label="Existe falta de acessibilidade no caminho?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.lackOfAccessibilityWay" label="Existe falta de acessibilidade no caminho?" />
 
-        <ItemInput disabled={false} name="barriersWay" label="Outras barreiras no caminho" placeholder="Descreva aqui..." />
+        <ItemInput disabled={false} name="informationDeficiency.barriersWay" label="Outras barreiras no caminho" placeholder="Descreva aqui..." />
 
-        <ItemYesNo disabled={false} name="affordableTransportations" label="Transporte escolar apropriado/acessível?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.affordableTransportations" label="Transporte escolar apropriado/acessível?" />
 
         <ItemSelect options={[
           { label: "Transporte escolar público", value: "TRANSPORTE_ESCOLAR_PUBLICO" },
@@ -135,22 +136,22 @@ export const DeficiencyRegister = () => {
           { label: "Transporte familiar", value: "TRANSPORTE_FAMILIAR" },
           { label: "Transporte coletivo urbano", value: "TRANSPORTE_COLETIVO_URBANO" },
           { label: "Outro", value: "OUTRO" }
-        ]} disabled={false} name="typeTransportation" label="Tipo de transporte escolar" placeholder="Digite aqui..." />
+        ]} disabled={false} name="informationDeficiency.typeTransportation" label="Tipo de transporte escolar" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Cuidados Pessoais e Interações */}
       <h3>Cuidados Pessoais e Interações</h3>
       <SubForm columns={2}>
 
-        <ItemYesNo disabled={false} name="hasSupportProfessional" label="Possui profissional de apoio na escola?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.hasSupportProfessional" label="Possui profissional de apoio na escola?" />
 
-        <ItemYesNo disabled={false} name="needsSupportExtraActivities" label="Precisa de apoio extra nas atividades diárias?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.needsSupportExtraActivities" label="Precisa de apoio extra nas atividades diárias?" />
 
-        <ItemYesNo disabled={false} name="physicalBarriersSchool" label="Possui barreiras físicas na escola?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.physicalBarriersSchool" label="Possui barreiras físicas na escola?" />
 
-        <ItemYesNo disabled={false} name="playWithColleagues" label="Brinca/diverte-se com outros colegas?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.playWithColleagues" label="Brinca/diverte-se com outros colegas?" />
 
-        <ItemYesNo disabled={false} name="hasCaregiver" label="Possui cuidador?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.hasCaregiver" label="Possui cuidador?" />
 
         <ItemSelect options={[
           { label: "Pai", value: "PAI" },
@@ -163,7 +164,7 @@ export const DeficiencyRegister = () => {
           { label: "Vizinho(a)", value: "VIZINHO" },
           { label: "Cuidador Profissional", value: "CUIDADOR_PROFISSIONAL" },
           { label: "Outro", value: "OUTRO" }
-        ]} disabled={false} name="primaryCaregiver" label="Quem é o cuidador principal?" placeholder="Digite aqui..." />
+        ]} disabled={false} name="informationDeficiency.primaryCaregiver" label="Quem é o cuidador principal?" placeholder="Digite aqui..." />
       </SubForm>
 
       {/* Setor de Benefícios e Serviços Públicos */}
@@ -192,13 +193,11 @@ export const DeficiencyRegister = () => {
           { label: "BPC-Idoso", value: "BPC_IDOSO" },
           { label: "Nenhum", value: "NENHUM" },
           { label: "Outro", value: "OUTRO" }
-        ]} disabled={false} name="benefitsRecived" label="Benefícios recebidos pela família" placeholder="Selecione aqui..." />
+        ]} disabled={false} name="informationDeficiency.benefitsRecived" label="Benefícios recebidos pela família" placeholder="Selecione aqui..." />
 
-        <ItemYesNo disabled={false} name="freePublicTransport" label="Transporte público é gratuito?" />
+        <ItemYesNo disabled={false} name="informationDeficiency.freePublicTransport" label="Transporte público é gratuito?" />
 
-        <ItemYesNo disabled={false} name="accessiblePublicTransport" label="Transporte público acessível?" />
-
-        <ItemSelect options={[{ label: "Rural", value: "RURAL" }, { label: "Urbana", value: "URBANA" }]} disabled={false} name="areaResidence" label="Área da residência" placeholder="Selecione aqui..." />
+        <ItemSelect options={[{ label: "Rural", value: "RURAL" }, { label: "Urbana", value: "URBANA" }]} disabled={false} name="informationDeficiency.areaResidence" label="Área da residência" placeholder="Selecione aqui..." />
 
         <ItemSelect options={[
           { label: "Casa própria", value: "CASA_PROPRIA" },
@@ -210,7 +209,7 @@ export const DeficiencyRegister = () => {
           { label: "Alojamento coletivo", value: "ALOJAMENTO_COLETIVO" },
           { label: "Em situação de rua", value: "SITUACAO_RUA" },
           { label: "Outro", value: "OUTRO" }
-        ]} disabled={false} name="housingConditions" label="Condições de moradia" placeholder="Selecione aqui..." />
+        ]} disabled={false} name="informationDeficiency.housingConditions" label="Condições de moradia" placeholder="Selecione aqui..." />
 
       </SubForm>
     </>

@@ -10,6 +10,7 @@ interface ItemDatePickerProps extends ItemProps {
   message?: string;
   hideFeedback?: boolean;
   defaultValue?;
+  required?: boolean
 }
 
 const ItemDatePicker = ({
@@ -20,8 +21,8 @@ const ItemDatePicker = ({
   message,
   hideFeedback,
   defaultValue,
+  required
 }: ItemDatePickerProps) => {
-  // const dateFormatter = useDateFormatter();
 
   const { field, fieldState } = useController({ name });
   const dataValue = field.value ? dayjs(field.value) : undefined;
@@ -32,7 +33,12 @@ const ItemDatePicker = ({
 
   return (
     <Form.Item
-      label={label}
+      label={
+        <>
+          {required && <span style={{ color: "red", marginLeft: "4px" }}>*</span>}
+          {label}
+        </>
+      }
       name={name}
       hideFeedback={hideFeedback}
       message={_message}
@@ -43,17 +49,14 @@ const ItemDatePicker = ({
         id={name}
         placeholder={placeholder || "Digite aqui..."}
         disabled={disabled}
-        // value={dataValue}
-        // defaultValue={defaultValue}
+        dateFormat="dd/mm/yy"
         onChange={(date) => {
           if (date === null) {
             field.onChange(date);
           } else {
-            // console.log(date.toDate().toISOString())
             field.onChange(date);
           }
         }}
-      // format={"DD/MM/YYYY"}
       />
     </Form.Item>
   );

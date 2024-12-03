@@ -12,6 +12,7 @@ interface ItemSelectProps extends ItemProps {
   hideFeedback?: boolean;
   message?: string;
   hideLabel?: boolean;
+  required?: boolean
 }
 
 const ItemSelect = ({
@@ -25,6 +26,7 @@ const ItemSelect = ({
   message,
   hideLabel,
   multi = false,
+  required
 }: ItemSelectProps) => {
   const { field, fieldState } = useController({ name });
 
@@ -34,7 +36,12 @@ const ItemSelect = ({
 
   return (
     <Form.Item
-      label={label}
+      label={
+        <>
+          {required && <span style={{ color: "red", marginLeft: "4px" }}>*</span>}
+          {label}
+        </>
+      }
       name={name}
       message={_message}
       hideFeedback={hideFeedback}

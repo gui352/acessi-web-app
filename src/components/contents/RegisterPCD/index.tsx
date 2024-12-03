@@ -18,6 +18,8 @@ import { message } from "antd";
 import ItemYesNo from "components/FormItems/ItemYesNo";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import TermsOfAcceptance from "components/common/TermsAcceptance";
+import ItemCheckbox from "components/FormItems/ItemCheckbox";
 
 export const isValidCPF = (cpf: string): boolean => {
   if (!cpf || typeof cpf !== "string") return false;
@@ -38,198 +40,205 @@ export const isValidCPF = (cpf: string): boolean => {
   return rest === parseInt(cpf.substring(10, 11));
 };
 
-const adressAuxiliar = z.object({
-  withPCD: z.string().optional(),
-  cepAuxiliar: z.string().optional(),
-  stateAuxiliar: z.string().optional(),
-  cityAuxiliar: z.string().optional(),
-  neighborhoodAuxiliar: z.string().optional(),
-  streetAuxiliar: z.string().optional(),
-  numberHomeAuxiliar: z.string().optional(),
-  complementAuxiliar: z.string().optional(),
+const addressAuxiliar = z.object({
+  cepAddress: z.string().nullish(),
+  stateAddress: z.string().nullish(),
+  cityAddress: z.string().nullish(),
+  neighborhoodAddress: z.string().nullish(),
+  streetAddress: z.string().nullish(),
+  numberAddress: z.string().nullish(),
+  complementAddress: z.string().nullish(),
 });
 
 const infosAuxiliar = z.object({
-  nameAuxiliar: z.string().min(1, "Nome é obrigatório"),
-  emailAuxiliar: z.string().email("E-mail inválido").optional(),
-  cpfAuxiliar: z.string().refine(isValidCPF, { message: "CPF inválido" }),
-  phoneAuxiliar: z.string().regex(/^\+55\s\(\d{2}\)\s\d{5}-\d{4}$/, "Telefone inválido"),
-  birthAuxiliar: z.string().optional(),
-  genderAuxiliar: z.string().optional(),
-  familyBond: z.string().optional(),
-  adressAuxiliar: adressAuxiliar
+  nameAuxiliar: z.string().min(1, "Nome é obrigatório").nullish(),
+  emailAuxiliar: z.string().email("E-mail inválido").nullish(),
+  cpfAuxiliar: z.string().refine(isValidCPF, { message: "CPF inválido" }).nullish(),
+  phoneAuxiliar: z.string().regex(/^\+55\s\(\d{2}\)\s\d{5}-\d{4}$/, "Telefone inválido").nullish(),
+  birthDateAuxiliar: z.date().nullish(),
+  genderAuxiliar: z.string().nullish(),
+  familyBond: z.string().nullish(),
+  addressAuxiliar: addressAuxiliar.nullish(),
+  withPCD: z.boolean().nullish()
 });
 
-const adressPCD = z.object({
-  cep: z.string().optional(),
-  state: z.string().optional(),
-  city: z.string().optional(),
-  neighborhood: z.string().optional(),
-  street: z.string().optional(),
-  numberHome: z.string().optional(),
-  complemente: z.string().optional(),
+const addressPCD = z.object({
+  cepAddress: z.string(),
+  stateAddress: z.string(),
+  cityAddress: z.string(),
+  neighborhoodAddress: z.string(),
+  streetAddress: z.string(),
+  numberAddress: z.string(),
+  complementAddress: z.string(),
 });
 
-const aboutDeficiency = z.object({
-  deficiencyAcquired: z.boolean().optional(),
-  deficiency: z.string().optional(),
-  formTypeDeficiency: z.string().optional(),
-  accessSchool: z.string().optional(),
-  schoolName: z.string().optional(),
-  schoolType: z.string().optional(),
-  regularEducationClass: z.boolean().optional(),
-  specializedEducationalService: z.string().optional(),
-  yearCicle: z.string().optional(),
-  frequencyDaysWeek: z.string().optional(),
-  travelTime: z.string().optional(),
-  needsCompany: z.boolean().optional(),
-  lackOfAccessibilityWay: z.boolean().optional(),
-  barriersWay: z.string().optional(),
-  affordableTransportations: z.boolean().optional(),
-  typeTransportation: z.string().optional(),
-  hasSupportProfessional: z.boolean().optional(),
-  needsSupportExtraActivities: z.boolean().optional(),
-  physicalBarriersSchool: z.boolean().optional(),
-  playWithColleagues: z.boolean().optional(),
-  hasCaregiver: z.boolean().optional(),
-  primaryCaregiver: z.string().optional(),
-  benefitsRecived: z.string().optional(),
-  freePublicTransport: z.boolean().optional(),
-  accessiblePublicTransport: z.boolean().optional(),
-  areaResidence: z.string().optional(),
-  housingConditions: z.string().optional(),
+const informationDeficiency = z.object({
+  deficiencyAcquired: z.boolean().nullish(),
+  deficiency: z.string().nullish(),
+  formTypeDeficiency: z.string().nullish(),
+  accessSchool: z.boolean().nullish(),
+  schoolName: z.string().nullish(),
+  schoolType: z.string().nullish(),
+  regularEducationClass: z.boolean().nullish(),
+  specializedEducationalService: z.string().nullish(),
+  yearCicle: z.string().nullish(),
+  frequencyDaysWeek: z.number().nullish(),
+  travelTime: z.string().nullish(),
+  needsCompany: z.boolean().nullish(),
+  lackOfAccessibilityWay: z.boolean().nullish(),
+  barriersWay: z.string().nullish(),
+  affordableTransportations: z.boolean().nullish(),
+  typeTransportation: z.string().nullish(),
+  hasSupportProfessional: z.boolean().nullish(),
+  needsSupportExtraActivities: z.boolean().nullish(),
+  physicalBarriersSchool: z.boolean().nullish(),
+  playWithColleagues: z.boolean().nullish(),
+  hasCaregiver: z.boolean().nullish(),
+  primaryCaregiver: z.string().nullish(),
+  benefitsRecived: z.string().nullish(),
+  freePublicTransport: z.boolean().nullish(),
+  accessiblePublicTransport: z.boolean().nullish(),
+  areaResidence: z.string().nullish(),
+  housingConditions: z.string().nullish(),
 });
 
 const schema = z.object({
-  name: z.string().min(1, "Nome é obrigatório"),
-  email: z.string().email("E-mail inválido").optional(),
-  cpf: z.string().refine(isValidCPF, { message: "CPF inválido" }),
-  phone: z.string().regex(/^\+55\s\(\d{2}\)\s\d{5}-\d{4}$/, "Telefone inválido"),
-  bpc: z.string().regex(/^\d{4}\ \d{4}\ \d{4}\ d{4}$/, "Número do benefício BPC inválido"),
-  nit: z.string().regex(/^\d{3}\.\d{5}\.\d{2}-\d{1}$/, "NIT inválido"),
-  sus: z.string().regex(/^\d{3}\ \d{4}\ \d{4}\ d{4}$/, "Número do SUS inválido"),
-  birth: z.string().optional(),
-  gender: z.string().optional(),
-  education: z.string().optional(),
-  color: z.string().optional(),
-  isEmployee: z.boolean().optional(),
-  isUsePublicTransport: z.boolean().optional(),
-  hasSons: z.boolean().optional(),
-  neededAssistency: z.boolean().optional(),
-  auxiliarPCD: infosAuxiliar,
-  adressPCD: adressPCD,
-  aboutDeficiency: aboutDeficiency,
+  namePCD: z.string().min(1, "Nome é obrigatório"),
+  emailPCD: z.string().email("E-mail inválido"),
+  cpfPCD: z.string().refine(isValidCPF, { message: "CPF inválido" }),
+  telephonePCD: z.string().regex(/^\+55\s\(\d{2}\)\s\d{5}-\d{4}$/, "Telefone inválido"),
+  bpcNumber: z.string().regex(/^\d{4} \d{4} \d{4} \d{4}$/, "Número do benefício BPC inválido").nullish(),
+  nit: z.string().regex(/^\d{3}\.\d{5}\.\d{2}-\d{1}$/, "NIT inválido").nullish(),
+  susNumber: z.string().regex(/^\d{3} \d{4} \d{4} \d{4}$/, "Número do benefício BPC inválido").nullish(),
+  birthDatePCD: z.union([z.date(), z.null()]),
+  genderPCD: z.string().nullish(),
+  educationLevelPCD: z.string().nullish(),
+  race: z.string().nullish(),
+  employee: z.boolean().nullish(),
+  publicTransportation: z.boolean().nullish(),
+  hasSons: z.boolean().nullish(),
+  neededAssistency: z.boolean(),
+  termsAccepted: z.boolean(),
+  auxiliarPCD: infosAuxiliar.nullish(),
+  addressPCD: addressPCD,
+  informationDeficiency: informationDeficiency.nullish(),
 });
 
 export const RegisterPCDComponent = () => {
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: "",
-      email: "",
-      cpf: "",
-      phone: "",
-      bpc: "",
-      nit: "",
-      sus: "",
-      gender: "",
-      education: "",
-      color: "",
-      isEmployee: false,
-      isUsePublicTransport: false,
+      namePCD: "",
+      emailPCD: "",
+      cpfPCD: "",
+      telephonePCD: "",
+      bpcNumber: null,
+      nit: null,
+      susNumber: null,
+      birthDatePCD: null,
+      genderPCD: "",
+      educationLevelPCD: "",
+      race: "",
+      employee: false,
+      publicTransportation: false,
       hasSons: false,
       neededAssistency: false,
+      termsAccepted: false,
+      addressPCD: {
+        cepAddress: "",
+        stateAddress: "",
+        cityAddress: "",
+        neighborhoodAddress: "",
+        streetAddress: "",
+        numberAddress: "",
+        complementAddress: "",
+      },
+      informationDeficiency: {
+        deficiencyAcquired: false,
+        deficiency: "",
+        formTypeDeficiency: "",
+        accessSchool: false,
+        schoolName: "",
+        schoolType: "",
+        regularEducationClass: false,
+        specializedEducationalService: "",
+        yearCicle: "",
+        frequencyDaysWeek: "",
+        travelTime: "",
+        needsCompany: false,
+        lackOfAccessibilityWay: false,
+        barriersWay: "",
+        affordableTransportations: false,
+        typeTransportation: "",
+        hasSupportProfessional: false,
+        needsSupportExtraActivities: false,
+        physicalBarriersSchool: false,
+        playWithColleagues: false,
+        hasCaregiver: false,
+        primaryCaregiver: "",
+        benefitsRecived: "",
+        freePublicTransport: false,
+        accessiblePublicTransport: false,
+        areaResidence: "",
+        housingConditions: "",
+      },
     }
   });
 
   const { handleSubmit, control, reset } = methods;
-  const toastRef = useRef(null);
+
+  // const onSubmit = async (data) => {
+  //   try {
+  //     await schema.parseAsync(data);
+  //     console.log("Dados validados:", data);
+  //   } catch (error) {
+  //     console.error("Erro de validação:", error.errors);
+  //   }
+  // };
 
   const onSubmit = (data) => {
-    console.log("Testando data", data);
 
-    const pcd: PCDModel = {
-      bpc: data.bpc,
-      nit: data.nit,
-      sus: data.sus,
-      color: data.color,
-      isEmployee: data.isEmployee,
-      isUsePublicTransport: data.isUsePublicTransport,
-      hasSons: data.hasSons,
-      neededAssistency: data.neededAssistency,
-      namePCD: data.name,
-      cpfPCD: data.cpf,
-      birthDatePCD: data.birth,
-      telephonePCD: data.phone,
-      emailPCD: data.email,
-      genderPCD: data.gender,
-      educationLevelPCD: data.education,
-      employee: data.isEmployee,
-      publicTransportation: data.isUsePublicTransport,
-      disabilityTypePCD: data.deficiency,
-      addressPCD: {
-        cityAddress: data.city,
-        streetAddress: data.street,
-        neighborhoodAddress: data.neighborhood,
-        numberAddress: data.numberHome,
-        complementAddress: data.complement,
-        cepAddress: data.cep,
-      } as AddressModel,
-      aboutDeficiency: {
-        deficiencyAcquired: data.deficiencyAcquired,
-        deficiency: data.deficiency,
-        formTypeDeficiency: data.formTypeDeficiency,
-        accessSchool: data.accessSchool,
-        schoolName: data.schoolName,
-        schoolType: data.schoolType,
-        regularEducationClass: data.regularEducationClass,
-        specializedEducationalService: data.specializedEducationalService,
-        yearCicle: data.yearCicle,
-        frequencyDaysWeek: data.frequencyDaysWeek,
-        travelTime: data.travelTime,
-        needsCompany: data.needsCompany,
-        lackOfAccessibilityWay: data.lackOfAccessibilityWay,
-        barriersWay: data.barriersWay,
-        affordableTransportations: data.affordableTransportations,
-        typeTransportation: data.typeTransportation,
-        hasSupportProfessional: data.hasSupportProfessional,
-        needsSupportExtraActivities: data.needsSupportExtraActivities,
-        physicalBarriersSchool: data.physicalBarriersSchool,
-        playWithColleagues: data.playWithColleagues,
-        hasCaregiver: data.hasCaregiver,
-        primaryCaregiver: data.primaryCaregiver,
-        benefitsRecived: data.benefitsRecived,
-        freePublicTransport: data.freePublicTransport,
-        accessiblePublicTransport: data.accessiblePublicTransport,
-        areaResidence: data.areaResidence,
-        housingConditions: data.housingConditions,
-      }
-    };
+    const sanitizeNumbers = (input) => input.replace(/\D/g, '');
 
-    const auxiliarPCD = {
-      nameAuxiliar: data.nameAuxiliar,
-      emailAuxiliar: data.emailAuxiliar,
-      cpfAuxiliar: data.cpfAuxiliar,
-      phoneAuxiliar: data.phoneAuxiliar,
-      birthAuxiliar: data.birthAuxiliar,
-      genderAuxiliar: data.genderAuxiliar,
-      familyBond: data.familyBond,
-      adressAuxiliar: {
-        withPCD: data.withPCD,
-        cepAuxiliar: data.cepAuxiliar,
-        stateAuxiliar: data.stateAuxiliar,
-        cityAuxiliar: data.cityAuxiliar,
-        neighborhoodAuxiliar: data.neighborhoodAuxiliar,
-        streetAuxiliar: data.streetAuxiliar,
-        numberHomeAuxiliar: data.numberHomeAuxiliar,
-        complementAuxiliar: data.complementAuxiliar,
-      }
+    if (data.neededAssistency === false) {
+      delete data.auxiliarPCD
     }
+
+    const pcd: PCDModel = data;
+
+    const dataFilters = {
+      ...pcd,
+      cpfPCD: sanitizeNumbers(pcd.cpfPCD),
+      nit: sanitizeNumbers(pcd.nit),
+      susNumber: sanitizeNumbers(pcd.susNumber),
+      bpcNumber: sanitizeNumbers(pcd.bpcNumber),
+      telephonePCD: sanitizeNumbers(pcd.telephonePCD)
+    }
+
+    // const auxiliarPCD = {
+    //   nameAuxiliar: data.nameAuxiliar,
+    //   emailAuxiliar: data.emailAuxiliar,
+    //   cpfAuxiliar: data.cpfAuxiliar,
+    //   phoneAuxiliar: data.phoneAuxiliar,
+    //   birthAuxiliar: data.birthAuxiliar,
+    //   genderAuxiliar: data.genderAuxiliar,
+    //   familyBond: data.familyBond,
+    //   addressAuxiliar: {
+    //     withPCD: data.auxiliarPCD.addressAuxiliar.withPCD,
+    //     cepAddress: data.auxiliarPCD.addressAuxiliar.cepAddress,
+    //     stateAddress: data.auxiliarPCD.addressAuxiliar.stateAddress,
+    //     cityAddress: data.auxiliarPCD.addressAuxiliar.cityAddress,
+    //     neighborhoodAddress: data.auxiliarPCD.addressAuxiliar.neighborhoodAddress,
+    //     streetAddress: data.auxiliarPCD.addressAuxiliar.streetAddress,
+    //     numberHomeAddress: data.auxiliarPCD.addressAuxiliar.numberHomeAddress,
+    //     complementAddress: data.auxiliarPCD.addressAuxiliar.complementAddress,
+    //   }
+    // }
 
     const pcdService = new PCDService();
 
-    pcdService.CreateUser(pcd).then((res) => {
-      console.log(res);
+
+    pcdService.CreateUser(dataFilters).then((res) => {
       if (res.status == 200) {
         message.open({
           type: "success",
@@ -244,20 +253,6 @@ export const RegisterPCDComponent = () => {
       }
     });
   };
-
-  const [disabilityType, setDisabilityType] = useState([]);
-
-  // useEffect(() => {
-  //   disabilityTypeService.GetType().then((res) => {
-  //     const types = [];
-  //     for (const type in res.data) {
-  //       types.push({ value: type, label: res.data[type] });
-  //     }
-  //     setDisabilityType(types);
-  //   });
-  // }, []);
-
-  // const onSubmit = (data) => console.log(data);
 
   return (
     <div>
@@ -288,21 +283,8 @@ export const RegisterPCDComponent = () => {
             </h2>
             <ItemYesNo
               disabled={false}
-              // label="Está utilizando assistência para cadastrar?"
               name="neededAssistency"
             />
-
-            {/* <h2
-              style={{
-                fontWeight: "bold",
-                marginRight: "10px",
-                width: "45%",
-                color: "#3C4F82",
-              }}
-            >
-              Para iniciar, selecione o seu tipo de deficiência:
-            </h2> */}
-
           </div>
 
           <Accordion multiple style={{ marginBottom: 20 }}>
@@ -319,7 +301,13 @@ export const RegisterPCDComponent = () => {
             </AccordionTab>
           </Accordion>
 
+          {/* <TermsOfAcceptance label="Aceito os termos e condições" name="termsAccepted" /> */}
 
+          <ItemCheckbox
+            label="Aceito os Termos e Condições"
+            name="termsAccepted"
+            required
+            message="Você deve aceitar os termos." disabled={false} />
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button
