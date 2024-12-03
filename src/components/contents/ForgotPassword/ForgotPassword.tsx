@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
+import { FloatButton } from "antd";
+import { AudioMutedOutlined, AudioOutlined } from "@ant-design/icons";
 
 export const ForgotPasswordComponent = () => {
+
+  const [isListening, setIsListening] = useState(false);
+
+  const startStopListening = () => {
+    setIsListening(!isListening);
+  }
+
   const header = (
     <img
       src={"/assets/images/acessi+LogoName.svg"}
@@ -63,6 +72,13 @@ export const ForgotPasswordComponent = () => {
             </div>
           </Card>
         </div>
+        <FloatButton
+          shape="circle"
+          type="primary"
+          style={{ insetInlineEnd: 94, position: "fixed", bottom: "38vh", right: "0.5vw" }}
+          icon={isListening ? <AudioMutedOutlined /> : <AudioOutlined />}
+          onClick={() => { startStopListening() }}
+        />
       </div>
     </>
   );
