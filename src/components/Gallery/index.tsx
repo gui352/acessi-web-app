@@ -17,7 +17,7 @@ export const ImageGallery = () => {
 
       <div style={{ position: "relative", width: "70%", height: "100%" }}>
         <img
-          src="/assets/images/accessible.jpg"
+          src="/assets/images/WEG.jpeg"
           alt="Imagem Esquerda"
           style={{ borderRadius: 3, width: "95%", height: "100%" }}
         />
@@ -26,7 +26,7 @@ export const ImageGallery = () => {
             position: "absolute",
             bottom: 0,
             left: 0,
-            background: "rgba(0, 0, 0, 0.3)",
+            background: "rgba(0, 0, 0, 0.7)",
             color: "white",
             padding: "8px",
             width: "95%",
@@ -34,7 +34,7 @@ export const ImageGallery = () => {
             borderRadius: "0px 0px 10px 10px",
           }}
         >
-          Legenda da Imagem Esquerda
+          WEG leva cadeirantes para corrida de rua em Jaraguá do Sul
         </div>
       </div>
 
@@ -58,7 +58,7 @@ export const ImageGallery = () => {
           }}
         >
           <img
-            src="/assets/images/accessible.jpg"
+            src="/assets/images/OCP.jpeg"
             alt="Imagem Direita 1"
             style={{ borderRadius: 3, width: "100%", height: "100%" }}
           />
@@ -67,7 +67,7 @@ export const ImageGallery = () => {
               position: "absolute",
               bottom: 0,
               left: 0,
-              background: "rgba(0, 0, 0, 0.3)",
+              background: "rgba(0, 0, 0, 0.7)",
               color: "white",
               padding: "8px",
               width: "100%",
@@ -75,7 +75,7 @@ export const ImageGallery = () => {
               borderRadius: "0px 0px 10px 10px",
             }}
           >
-            Legenda da Imagem Direita 1
+            Assistência Social em Jaraguá do Sul lembra o Dia Nacional de Luta da Pessoa com Deficiência
           </div>
         </div>
 
@@ -89,7 +89,7 @@ export const ImageGallery = () => {
           }}
         >
           <img
-            src="/assets/images/accessible.jpg"
+            src="/assets/images/Camara.jpg"
             alt="Imagem Direita 2"
             style={{ borderRadius: 3, width: "100%", height: "100%" }}
           />
@@ -98,7 +98,7 @@ export const ImageGallery = () => {
               position: "absolute",
               bottom: 0,
               left: 0,
-              background: "rgba(0, 0, 0, 0.3)",
+              background: "rgba(0, 0, 0, 0.7)",
               color: "white",
               padding: "8px",
               width: "100%",
@@ -106,7 +106,7 @@ export const ImageGallery = () => {
               borderRadius: "0px 0px 10px 10px",
             }}
           >
-            Legenda da Imagem Direita 2
+            Vereadores querem realização de Conferência das Pessoas com Deficiência
           </div>
         </div>
       </div>

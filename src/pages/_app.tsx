@@ -12,7 +12,6 @@ import { withHOCs } from "hocs/withHOCs";
 import { withTheme } from "hocs/withTheme";
 import { withTranslations } from "hocs/withTranslations";
 import { ReactNode } from "react";
-import VLibras from "@djpfs/react-vlibras/dist/types";
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
   const value = {

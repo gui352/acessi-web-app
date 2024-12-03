@@ -77,4 +77,11 @@ export class UserService {
       return 403;
     }
   };
+
+  async isAdmin() {
+    const response = await axios.get(`${this.API}/user/isAdmin`, {
+      withCredentials: true,
+    });
+    return response;
+  }
 }

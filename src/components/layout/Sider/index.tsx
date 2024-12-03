@@ -6,11 +6,12 @@ export interface SiderProps {
 }
 
 import { Menu } from "primereact/menu";
+import { UserService } from "services/User/UserService";
 
 export const Sider: React.FC<SiderProps> = ({ className }) => {
   const router = useRouter();
 
-  const model = [
+  const [model, setModel] = React.useState([
     {
       template: () => {
         return (
@@ -76,7 +77,15 @@ export const Sider: React.FC<SiderProps> = ({ className }) => {
         router.push("/register-avaliations");
       },
     },
-  ];
+  ]);
+
+  React.useEffect(() => {
+    new UserService().isAdmin().then((res) => {
+      if (res.data === false) {
+        setModel(model.splice(0, model.length - 1));
+      }
+    });
+  }, []);
 
   return (
     <>

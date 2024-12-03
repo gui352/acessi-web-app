@@ -3,8 +3,9 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { UserService } from "services/User/UserService";
-import { message } from "antd";
+import { FloatButton, message } from "antd";
 import { useRouter } from "next/router";
+import { AudioMutedOutlined, AudioOutlined } from "@ant-design/icons";
 
 export const ForgotPasswordComponent = () => {
   const userService = new UserService();
@@ -17,6 +18,12 @@ export const ForgotPasswordComponent = () => {
   const [isPasswordChanged, setIsPasswordChanged] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
+
+  const [isListening, setIsListening] = useState(false);
+
+  const startStopListening = () => {
+    setIsListening(!isListening);
+  }
 
   // Enviar token para o e-mail
   const handleSendEmail = async () => {
@@ -116,6 +123,24 @@ export const ForgotPasswordComponent = () => {
           height: "100vh",
         }}
       >
+        <div style={{ height: '100%', position: "fixed", left: "0" }}>
+          <div>
+            <a
+              href="/"
+              style={{
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              <i className="pi pi-arrow-circle-left" style={{ fontSize: '1.5rem', marginLeft: "20px" }}></i>
+              <h4 style={{ marginLeft: "5px" }}>
+                Voltar
+              </h4>
+            </a>
+          </div>
+        </div>
+
         <div className="card flex justify-content-center">
           <Card
             title="Recuperação de Conta"
@@ -187,6 +212,13 @@ export const ForgotPasswordComponent = () => {
             )}
           </Card>
         </div>
+        <FloatButton
+          shape="circle"
+          type="primary"
+          style={{ insetInlineEnd: 94, position: "fixed", bottom: "38vh", right: "0.5vw" }}
+          icon={isListening ? <AudioMutedOutlined /> : <AudioOutlined />}
+          onClick={() => { startStopListening() }}
+        />
       </div>
     </>
   );
